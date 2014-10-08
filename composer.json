@@ -1,0 +1,22 @@
+{
+    "name": "basvandorst/StravaPHP",
+    "description": "test",
+    "require": {
+        "respect/validation": "0.6.1",
+        "educoder/pest": "1.0.0",
+        "league/oauth2-client": "dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Bas van Dorst",
+            "email": "basvandorst@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-0": {
+            "Strava":        "src/"
+        }
+    }
+}
