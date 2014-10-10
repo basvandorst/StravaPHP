@@ -4,6 +4,46 @@ StravaPHP - Work in progress
 Strava API REST client with OAuth authentication
 
 WIP
+## Methods
+### Athlete
+#### Retrieve current athlete
+```php
+$strava->getAthlete();
+```
+#### Retrieve another athlete
+```php
+$strava->getAthlete(201946203);
+```
+#### Update current athlete
+```php
+$strava->updateAthlete('Dongen', 'NB', 'The Netherlands', 'M', 81.00);
+```
+#### List athlete K/QOMs/CRs
+```php
+$strava->getAthleteKom(201946203);
+```
+#### List athlete clubs
+```php
+$strava->getClubs(1234);
+```
+
+### Clubs
+#### Retrieve a club
+```php
+$strava->getClub(1234);
+```
+#### List club members
+```php
+$strava->getClubMembers(1234);
+```
+#### List club activities
+```php
+$strava->getClubActivities(1234);
+```
+
+
+
+
 
 ### Example
 
