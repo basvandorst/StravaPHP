@@ -29,7 +29,7 @@ class Client {
      * 
      * @param IService $service
      */
-    public function __construct(IService $service) {
+    public function __construct( $service) {
         $this->service = $service;
     }
 
@@ -39,13 +39,23 @@ class Client {
     public function getAthleteActivities($before, $after, $page, $per_page) {
         return $this->service->getAthleteActivities($before, $after, $page, $per_page);
     }
-    public function getAthleteFriends() {}
+    
+    public function getAthleteFriends($id = null, $page, $per_page) {
+        return $this->service->getAthleteFriends($before, $after, $page, $per_page);
+    }
     public function getAthleteFollowers() {}
     public function getAthleteBothFollowing() {}
-    public function getAthleteKom() {}
+    public function getAthleteKom() {
+        return $this->service->get($id, $page, $per_page);
+    }
+    
     public function getAthleteStarredSegments() {}
-    public function getAthleteClubs() {}
-    public function updateAthlete() {}
+    public function getAthleteClubs() {
+        return $this->service->getAthleteClubs();
+    }
+    public function updateAthlete($city, $state, $country, $sex, $weight){
+        return $this->service->updateAthlete($city, $state, $country, $sex, $weight);
+    }
     
     public function getActivity() {}
     
@@ -62,30 +72,51 @@ class Client {
     public function deleteActivity() {}
     
     public function getGear($id) {
-        try {
-           Validator::string()->notEmpty()->assert($id);
-           
-           $this->service->getGear($id);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
-        } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
-        }
+        return $this->service->getGear($id);
     }
     
-    public function getClub($id) {}
-    public function getClubMembers($id, $page, $per_page) {}
-    public function getClubActivities($id, $page, $per_page) {}
+    // club
+    public function getClub($id) {
+        return $this->service->getClub($id);
+    }
     
-    public function getSegment($id) {}
-    public function getSegmentEffort($id, $athlete_id, $start_date_local, $end_date_local, $page, $per_page) {}
-    public function getSegmentLeaderboard($id, $gender, $age_group, $weight_class, $following, $club_id, $date_range, $page, $per_page) {}
-    public function getSegmentExplorer($bounds, $activity_type, $min_cat, $max_cat) {}
-
-    public function getStreamsActivity($id, $types, $resolution, $series_type) {}
-    public function getStreamsEffort($id, $types, $resolution, $series_type) {}
+    public function getClubMembers($id, $page = null, $per_page  = null) {
+        return $this->service->getClubMembers($id, $page, $per_page);
+    }
+    
+    public function getClubActivities($id, $page = null, $per_page  = null) {
+        return $this->service->getClubActivities($id, $page, $per_page);
+    }
+    
+    // segment
+    public function getSegment($id) {
+        return $this->service->getSegment($id);
+    }
+    
+    public function getSegmentEffort($id, $athlete_id, $start_date_local, $end_date_local, $page, $per_page) {
+        return $this->service->getSegmentEffort($id, $athlete_id, $start_date_local, $end_date_local, $page, $per_page);
+    }
+    
+    public function getSegmentLeaderboard($id, $gender, $age_group, $weight_class, $following, $club_id, $date_range, $page, $per_page) {
+        return $this->service->getSegmentLeaderboard($id, $gender, $age_group, $weight_class, $following, $club_id, $date_range, $page, $per_page);
+    }
+    
+    public function getSegmentExplorer($bounds, $activity_type, $min_cat, $max_cat) {
+        return $this->service->getSegmentExplorer($bounds, $activity_type, $min_cat, $max_cat);
+    }    
+    
+    // www.streams
+    public function getStreamsActivity($id, $types, $resolution, $series_type) {
+        return $this->service->getStreamsActivity($id, $types, $resolution, $series_type);
+    }
+    
+    public function getStreamsEffort($id, $types, $resolution, $series_type) {
+        return $this->service->getStreamsEffort($id, $types, $resolution, $series_type);
+    }
+    
+    public function getStreamsSegment($id, $types, $resolution, $series_type) {
+        return $this->service->getStreamsSegment($id, $types, $resolution, $series_type);
+    }
     
     /**
      * Retrieve segment streams

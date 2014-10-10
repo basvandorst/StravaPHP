@@ -10,9 +10,9 @@ use Strava\API\V3\ServiceREST as ServiceREST;
 
 try {
     $OAuth = new OAuth(array(
-        'clientId'     => 'CLIENT ID',
-        'clientSecret' => 'SECRET HERE',
-        'redirectUri'  => 'URL ENDPOINT'
+        'clientId'     => '562',
+        'clientSecret' => '05fdb76a660ae25556e392b5b915b3edb6ed1b9f',
+        'redirectUri'  => 'http://localhost/StravaPHP/example.php'
     ));
     
     if (!isset($_GET['code'])) {
@@ -26,8 +26,16 @@ try {
         $activities = $strava->getAthleteActivities(null, null, null, 2);
         print_r($activities);
         
-        $gear = $strava->getGear(1);
-        print_r($gear);
+        $update = $strava->updateAthlete('Dongen', 'NB', 'The Netherlands', 'M', 81.00);
+        print_r($update);
+        //$clubs = $strava->getAthleteClubs();
+        //print_r($clubs);
+        
+        //$members = $strava->getClub(9729);
+        //print_r($members);
+        
+        //$gear = $strava->getGear(1);
+        //print_r($gear);
     }
     
 } catch(Exception $e) {

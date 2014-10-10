@@ -6,6 +6,9 @@ use \League\OAuth2\Client\Token\AccessToken as AccessToken;
 class OAuth extends \League\OAuth2\Client\Provider\AbstractProvider
 {
 
+    public $scopes = array('write');
+    public $responseType = 'json';
+    
     public function __construct($options)
     {
         parent::__construct($options);

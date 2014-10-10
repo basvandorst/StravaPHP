@@ -11,7 +11,7 @@ use Exception;
  * @author: Bas van Dorst
  * @package Strava
  */
-class ServiceREST implements IService {
+class ServiceREST {
     
     private static $endpoint = 'https://www.strava.com/api/v3';
     
@@ -43,13 +43,30 @@ class ServiceREST implements IService {
         $result = $this->client->get('/athlete/activities', $parameters, $this->getHeaders());
         return json_decode($result,true);
     }
-    public function getAthleteFriends(){}
+    public function getAthleteFriends(){
+        
+    }
     public function getAthleteFollowers(){}
     public function getAthleteBothFollowing(){}
     public function getAthleteKom(){}
+    
     public function getAthleteStarredSegments(){}
-    public function getAthleteClubs(){}
-    public function updateAthlete(){}
+    
+    public function getAthleteClubs(){
+        $result = $this->client->get('/athlete/clubs', null, $this->getHeaders());
+        return json_decode($result,true);
+    }
+    public function updateAthlete($city, $state, $country, $sex, $weight){
+        $parameters = array(
+            'city' => $city,
+            'state' => $state,
+            'country' => $country,
+            'sex' => $sex,
+            'weight' => $weight,
+        );
+        $result = $this->client->put('/athlete', $parameters, $this->getHeaders());
+        return json_decode($result,true);
+    }
     
     public function getActivity(){}
     public function getActivityComments(){}
@@ -65,20 +82,37 @@ class ServiceREST implements IService {
     public function deleteActivity(){}
     
     public function getGear($id) {
-        try {
-            $parameters = array(
-                'id' => $id,
-            );
-            $result = $this->client->get('/gear/'.$id, $parameters, $this->getHeaders());
-            return json_decode($result,true);
-        } catch(Exception $e) {
-            throw new ServiceException($e->getMessage());
-        }
+        $parameters = array(
+            'id' => $id,
+        );
+        $result = $this->client->get('/gear/'.$id, $parameters, $this->getHeaders());
+        return json_decode($result,true);
     }
     
-    public function getClub($id){}
-    public function getClubMembers($id, $page, $per_page){}
-    public function getClubActivities($id, $page, $per_page){}
+    public function getClub($id){
+        $result = $this->client->get('/clubs/'.$id, null, $this->getHeaders());
+        return json_decode($result,true);
+    }
+    
+    public function getClubMembers($id, $page, $per_page){
+        $parameters = array(
+            'id' => $id,
+            'page' => $page,
+            'per_page' => $per_page,
+        );
+        $result = $this->client->get('/clubs/'.$id.'/members', $parameters, $this->getHeaders());
+        return json_decode($result,true);
+    }
+    
+    public function getClubActivities($id, $page, $per_page){
+        $parameters = array(
+                'id' => $id,
+                'page' => $page,
+                'per_page' => $per_page,
+        );
+        $result = $this->client->get('/clubs/'.$id.'/activities', $parameters, $this->getHeaders());
+        return json_decode($result,true);
+    }
     
     public function getSegment($id){}
     public function getSegmentEffort($id, $athlete_id, $start_date_local, $end_date_local, $page, $per_page){}
@@ -88,10 +122,6 @@ class ServiceREST implements IService {
     public function getStreamsActivity($id, $types, $resolution, $series_type){}
     public function getStreamsEffort($id, $types, $resolution, $series_type){}
     public function getStreamsSegment($id, $types, $resolution, $series_type) {
-        try {
-            $thing = $this->client->get('/gear/g138727');
-        } catch(Exception $e) {
-            throw new ServiceException($e->getMessage());
-        }
+        
     }    
 }
