@@ -10,33 +10,33 @@ WIP
 ```php
 $strava->getAthlete();
 ```
-#### Retrieve another athlete
+###### Retrieve another athlete
 ```php
 $strava->getAthlete(201946203);
 ```
-#### Update current athlete
+###### Update current athlete
 ```php
 $strava->updateAthlete('Dongen', 'NB', 'The Netherlands', 'M', 81.00);
 ```
-#### List athlete K/QOMs/CRs
+###### List athlete K/QOMs/CRs
 ```php
 $strava->getAthleteKom(201946203);
 ```
-#### List athlete clubs
+###### List athlete clubs
 ```php
 $strava->getClubs(1234);
 ```
 
 ### Clubs
-#### Retrieve a club
+###### Retrieve a club
 ```php
 $strava->getClub(1234);
 ```
-#### List club members
+###### List club members
 ```php
 $strava->getClubMembers(1234);
 ```
-#### List club activities
+###### List club activities
 ```php
 $strava->getClubActivities(1234);
 ```

@@ -3,6 +3,7 @@ namespace Strava\API\V3;
 
 use Exception;
 use Strava\API\V3;
+use Strava\API\V3\ServiceException;
 use Respect\Validation\Validator;
 use Respect\Validation\Exceptions\ValidationException;
 
@@ -29,53 +30,84 @@ class Client {
      * 
      * @param IService $service
      */
-    public function __construct( $service) {
+    public function __construct(IService $service) {
         $this->service = $service;
     }
 
-    public function getAthlete() {
-        return $this->service->getAthlete();
-    }
-    public function getAthleteActivities($before, $after, $page, $per_page) {
-        return $this->service->getAthleteActivities($before, $after, $page, $per_page);
+    public function getAthlete($id = null) {
+        return $this->service->getAthlete($id);
     }
     
-    public function getAthleteFriends($id = null, $page, $per_page) {
-        return $this->service->getAthleteFriends($before, $after, $page, $per_page);
-    }
-    public function getAthleteFollowers() {}
-    public function getAthleteBothFollowing() {}
-    public function getAthleteKom() {
-        return $this->service->get($id, $page, $per_page);
-    }
-    
-    public function getAthleteStarredSegments() {}
     public function getAthleteClubs() {
         return $this->service->getAthleteClubs();
     }
+    
+    public function getAthleteActivities($before = null, $after = null, $page = null, $per_page = null) {
+        return $this->service->getAthleteActivities($before, $after, $page, $per_page);
+    }
+    
+    public function getAthleteFriends($id = null, $page = null, $per_page = null) {
+        return $this->service->getAthleteFriends($id, $page, $per_page);
+    }
+    
+    public function getAthleteFollowers($id = null, $page = null, $per_page = null) {
+        return $this->service->getAthleteFollowers($id, $page, $per_page);
+    }
+    
+    public function getAthleteBothFollowing($id, $page = null, $per_page = null) {
+        return $this->service->getAthleteBothFollowing($id, $page, $per_page);
+    }
+    
+    public function getAthleteKom($id, $page = null, $per_page = null) {
+        return $this->service->getAthleteKom($id, $page, $per_page);
+    }
+    
+    public function getAthleteStarredSegments($id = null, $page = null, $per_page = null) {
+        return $this->service->getAthleteStarredSegments($id, $page, $per_page);
+    }
+    
     public function updateAthlete($city, $state, $country, $sex, $weight){
         return $this->service->updateAthlete($city, $state, $country, $sex, $weight);
     }
     
-    public function getActivity() {}
+    public function getActivity($id, $include_all_efforts = null) {
+        return $this->service->getActivity($id, $include_all_efforts);
+    }
     
-    public function getActivityComments() {}
-    public function getActivityKudos() {}
-    public function getActivityPhotos() {}
-    public function getActivityZones() {}
-    public function getActivityLaps() {}
-    public function getActivityUploadStatus() {}
+    public function getActivityComments($id, $markdown = null, $page = null, $per_page = null) {
+        return $this->service->getActivityComments($id, $markdown, $page, $per_page);
+    }
+    
+    public function getActivityKudos($id, $page = null, $per_page = null) {
+        return $this->service->getActivityKudos($id, $page, $per_page);
+    }
+    
+    public function getActivityPhotos($id) {
+        return $this->service->getActivityPhotos($id);
+    }
+    
+    public function getActivityZones($id) {
+        return $this->service->getActivityZones($id);
+    }
+    
+    public function getActivityLaps($id) {
+        return $this->service->getActivityLaps($id);
+    }
+    
+    public function getActivityUploadStatus($id) {
+        return $this->service->getActivityUploadStatus($id);
+    }
     
     public function createActivity() {}
     public function updateActivity() {}
     public function uploadActivity() {}
     public function deleteActivity() {}
     
+    
     public function getGear($id) {
         return $this->service->getGear($id);
     }
-    
-    // club
+
     public function getClub($id) {
         return $this->service->getClub($id);
     }
@@ -88,7 +120,7 @@ class Client {
         return $this->service->getClubActivities($id, $page, $per_page);
     }
     
-    // segment
+    // todo optional params
     public function getSegment($id) {
         return $this->service->getSegment($id);
     }
@@ -105,17 +137,12 @@ class Client {
         return $this->service->getSegmentExplorer($bounds, $activity_type, $min_cat, $max_cat);
     }    
     
-    // www.streams
     public function getStreamsActivity($id, $types, $resolution, $series_type) {
         return $this->service->getStreamsActivity($id, $types, $resolution, $series_type);
     }
     
     public function getStreamsEffort($id, $types, $resolution, $series_type) {
         return $this->service->getStreamsEffort($id, $types, $resolution, $series_type);
-    }
-    
-    public function getStreamsSegment($id, $types, $resolution, $series_type) {
-        return $this->service->getStreamsSegment($id, $types, $resolution, $series_type);
     }
     
     /**
@@ -130,11 +157,9 @@ class Client {
      */
     public function getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'distance') {
         try {
-           // $usernameValidator = Validator::int()->notEmpty()->length(1,15)->setName('x')->assert($id);
-            //Validator::string()->negative()->notEmpty()->assert($id);
-            $this->service->getStreamsSegment($id, $types, $resolution, $series_type);
+            return $this->service->getStreamsSegment($id, $types, $resolution, $series_type);
         } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
+            throw new Exception('[VALIDATION] test'.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         } catch (Exception $e) {
