@@ -6,22 +6,38 @@ use Exception;
 
 /**
  * Strava REST Service
- * The client validates the parameters and makes the call to the Strava API
  * 
  * @author: Bas van Dorst
  * @package Strava
  */
 class ServiceREST {
     
+    /**
+     * Strava V3 endpoint
+     * @var string 
+     */
     private static $endpoint = 'https://www.strava.com/api/v3';
     
+    /**
+     * REST client
+     * @var stdClass 
+     */
     protected $client;
     
+    /**
+     * Application token
+     * @var string
+     */
     private $token = null;
     
+    /**
+     * Inititate the client with the application token
+     * 
+     * @param string $token
+     */
     public function __construct($token) {
         $this->token = $token;
-        $this->client = new Pest(self::$endpoint);
+        $this->client = new Pest(self::$endpoint); // TODO: dep injection REST
     }
     
     private function getHeaders() {

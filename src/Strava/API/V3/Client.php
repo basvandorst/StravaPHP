@@ -15,6 +15,13 @@ use Respect\Validation\Exceptions\ValidationException;
  * @package Strava
  */
 class Client {
+
+    /**
+     * Exception prefix
+     */
+    const ERROR_VALIDATION = '[VALIDATION] ',
+          ERROR_SERVICE = '[SERVICE] ',
+          ERROR_UNKNOWN = '[UNKOWN] ';
     
     /**
      * @var IService $service
@@ -22,14 +29,14 @@ class Client {
     protected $service;
     
     /**
-     * initiate this class with a subclass of the IService interface. In 
+     * Initiate this class with a subclass of the IService interface. In 
      * the V3 package there are two service subclasses available:
      * - ServiceREST: Service which makes calls to the live Strava API 
      * - ServiceStub: Service stub for test purposes (unit tests)
      * 
-     * @param IService $service
+     * @param ServiceInterface $service
      */
-    public function __construct(IService $service) {
+    public function __construct(ServiceInterface $service) {
         $this->service = $service;
     }
 
@@ -359,10 +366,99 @@ class Client {
         }
     }
     
-    public function createActivity() {}
-    public function updateActivity() {}
-    public function uploadActivity() {}
-    public function deleteActivity() {}
+    /**
+     * Create an activity
+     * 
+     * @param string $name
+     * @param string $type
+     * @param string $start_date_local
+     * @param int $elapsed_time
+     * @param string $description
+     * @param float $distance
+     * @return type
+     * @throws Exception
+     */
+    public function createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null) {
+        try {
+            return $this->service->createActivity($name, $type, $start_date_local, $elapsed_time, $description, $distance);
+        } catch (ValidationException $e) {
+            throw new Exception('[VALIDATION] '.$e->getMessage());
+        } catch (ServiceException $e) {
+            throw new Exception('[SERVICE] '.$e->getMessage());
+        } catch (Exception $e) {
+            throw new Exception('[UNKOWN] '.$e->getMessage());
+        }
+    }
+    
+    /**
+     * Upload an activity
+     * 
+     * @param mixed $file
+     * @param string $activity_type
+     * @param string $name
+     * @param string $description
+     * @param int $private
+     * @param int $trainer
+     * @param string $data_type
+     * @param string $external_id
+     * @return type
+     * @throws Exception
+     */
+    public function uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $data_type = null, $external_id = null) { 
+        try {
+            return $this->service->uploadActivity($file, $activity_type, $name, $description, $private, $trainer, $data_type, $external_id);
+        } catch (ValidationException $e) {
+            throw new Exception('[VALIDATION] '.$e->getMessage());
+        } catch (ServiceException $e) {
+            throw new Exception('[SERVICE] '.$e->getMessage());
+        } catch (Exception $e) {
+            throw new Exception('[UNKOWN] '.$e->getMessage());
+        }
+    }
+    
+    /**
+     * Update an activity
+     * 
+     * @param string $name
+     * @param string $type
+     * @param boolean $private
+     * @param boolean $commute
+     * @param boolean $trainer
+     * @param string $gear_id
+     * @param string $description
+     * @return type
+     * @throws Exception
+     */
+    public function updateActivity($name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null) {
+        try {
+            return $this->service->updateActivity($name, $type, $private, $commute, $trainer, $gear_id, $description);
+        } catch (ValidationException $e) {
+            throw new Exception('[VALIDATION] '.$e->getMessage());
+        } catch (ServiceException $e) {
+            throw new Exception('[SERVICE] '.$e->getMessage());
+        } catch (Exception $e) {
+            throw new Exception('[UNKOWN] '.$e->getMessage());
+        }
+    }
+    
+    /**
+     * Delete an activity
+     * 
+     * @param int $id
+     * @return array
+     * @throws Exception
+     */
+    public function deleteActivity($id) {
+        try {
+            return $this->service->deleteActivity($id);
+        } catch (ValidationException $e) {
+            throw new Exception('[VALIDATION] '.$e->getMessage());
+        } catch (ServiceException $e) {
+            throw new Exception('[SERVICE] '.$e->getMessage());
+        } catch (Exception $e) {
+            throw new Exception('[UNKOWN] '.$e->getMessage());
+        }
+    }
     
     
     /**

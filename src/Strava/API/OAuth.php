@@ -3,6 +3,13 @@ namespace Strava\API;
 
 use \League\OAuth2\Client\Token\AccessToken as AccessToken;
 
+/**
+ * Strava OAuth
+ * The Strava implementation of the OAuth client
+ * 
+ * @see: https://github.com/thephpleague/oauth2-client
+ * @author Bas van Dorst
+ */
 class OAuth extends \League\OAuth2\Client\Provider\AbstractProvider
 {
 
