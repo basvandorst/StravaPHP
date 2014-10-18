@@ -1,6 +1,10 @@
 StravaPHP - WIP
 =========
-TLDR; Strava V3 REST PHP client with OAuth authentication. [Get started](#Get started)
+[![Build Status](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/badges/build.png?b=master)](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/build-status/master)
+[![Code Coverage](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/?branch=master)
+
+**TLDR;** [Getting started](#Getting-started)
 
 The Strava V3 API is a publicly available interface allowing developers access 
 to the rich Strava dataset. The interface is stable and currently used by the 
@@ -67,7 +71,7 @@ $strava->getStreamsEffort($id, $types, $resolution = 'all', $series_type = 'dist
 $strava->getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'distance');
 ```
 
-## Get started
+## Getting started
 ### Get your API key
 All calls to the Strava API require an access token defining the athlete and 
 application making the call. Any registered Strava user can obtain an access 
