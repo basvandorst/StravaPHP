@@ -1,7 +1,7 @@
 <?php
 use Strava\API\V3\ServiceException;
 
-class ClientTest extends PHPUnit_Framework_TestCase
+class ServiceStubTest extends PHPUnit_Framework_TestCase
 {
     protected function setUp ()
     {
