@@ -163,6 +163,9 @@ class ServiceStub implements ServiceInterface {
         return $this->format($json);
     }
     
+    /**
+     * @param string $result
+     */
     private function format($result) {
         return json_decode($result,true);
     }

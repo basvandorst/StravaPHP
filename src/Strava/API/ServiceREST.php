@@ -2,7 +2,6 @@
 namespace Strava\API;
 
 use Pest;
-use Exception;
 
 /**
  * Strava REST Service
@@ -132,6 +131,9 @@ class ServiceREST implements ServiceInterface {
     public function getStreamsEffort($id, $types, $resolution = 'all', $series_type = 'distance') {}
     public function getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'distance') {}
     
+    /**
+     * @param string $result
+     */
     private function format($result) {
         return json_decode($result,true);
     }
