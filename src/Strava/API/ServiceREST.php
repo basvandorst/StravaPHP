@@ -20,7 +20,7 @@ class ServiceREST implements ServiceInterface {
     
     /**
      * REST client
-     * @var stdClass 
+     * @var Pest 
      */
     protected $client;
     

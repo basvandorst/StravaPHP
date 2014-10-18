@@ -23,7 +23,7 @@ class Client {
           ERROR_UNKNOWN = '[UNKOWN] ';
     
     /**
-     * @var IService $service
+     * @var ServiceInterface $service
      */
     protected $service;
     
@@ -568,7 +568,7 @@ class Client {
      */
     public function getSegmentEffort($id, $athlete_id = null, $start_date_local = null, $end_date_local = null, $page = null, $per_page = null) {
         try {
-            return $this->service->getSegmentEffortFiltered($id, $athlete_id, $start_date_local, $end_date_local, $page, $per_page);
+            return $this->service->getSegmentEffort($id, $athlete_id, $start_date_local, $end_date_local, $page, $per_page);
         } catch (ValidationException $e) {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
