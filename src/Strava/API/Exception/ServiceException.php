@@ -1,5 +1,5 @@
 <?php
-namespace Strava\API;
+namespace Strava\API\Exception;
 
 /**
  * Catch me please!

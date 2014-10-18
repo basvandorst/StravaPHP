@@ -1,8 +1,8 @@
 <?php
 namespace Strava\API;
 
-use Exception;
-use Strava\API\ServiceException;
+use Strava\API\Exception\ServiceException;
+use Strava\API\Exception\ClientException;
 
 /**
  * Strava API Client
@@ -47,7 +47,7 @@ class Client {
         try {
             return $this->service->getAthlete($id);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -61,7 +61,7 @@ class Client {
         try {
             return $this->service->getAthleteClubs();
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -79,7 +79,7 @@ class Client {
         try {
             return $this->service->getAthleteActivities($before, $after, $page, $per_page);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -96,7 +96,7 @@ class Client {
         try {
             return $this->service->getAthleteFriends($id, $page, $per_page);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -113,7 +113,7 @@ class Client {
         try {
             return $this->service->getAthleteFollowers($id, $page, $per_page);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -130,7 +130,7 @@ class Client {
         try {
             return $this->service->getAthleteBothFollowing($id, $page, $per_page);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -147,7 +147,7 @@ class Client {
         try {
             return $this->service->getAthleteKom($id, $page, $per_page);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -164,7 +164,7 @@ class Client {
         try {
             return $this->service->getAthleteStarredSegments($id, $page, $per_page);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -183,7 +183,7 @@ class Client {
         try {
             return $this->service->updateAthlete($city, $state, $country, $sex, $weight);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -199,7 +199,7 @@ class Client {
         try {
             return $this->service->getActivity($id, $include_all_efforts);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -217,7 +217,7 @@ class Client {
         try {
             return $this->service->getActivityComments($id, $markdown, $page, $per_page);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -234,7 +234,7 @@ class Client {
         try {
             return $this->service->getActivityKudos($id, $page, $per_page);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -249,7 +249,7 @@ class Client {
         try {
             return $this->service->getActivityPhotos($id);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -264,7 +264,7 @@ class Client {
         try {
             return $this->service->getActivityZones($id);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -279,7 +279,7 @@ class Client {
         try {
             return $this->service->getActivityLaps($id);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -294,7 +294,7 @@ class Client {
         try {
             return $this->service->getActivityUploadStatus($id);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -314,7 +314,7 @@ class Client {
         try {
             return $this->service->createActivity($name, $type, $start_date_local, $elapsed_time, $description, $distance);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -336,7 +336,7 @@ class Client {
         try {
             return $this->service->uploadActivity($file, $activity_type, $name, $description, $private, $trainer, $data_type, $external_id);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -357,7 +357,7 @@ class Client {
         try {
             return $this->service->updateActivity($name, $type, $private, $commute, $trainer, $gear_id, $description);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -372,7 +372,7 @@ class Client {
         try {
             return $this->service->deleteActivity($id);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -388,7 +388,7 @@ class Client {
         try {
             return $this->service->getGear($id);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
 
@@ -403,7 +403,7 @@ class Client {
         try {
             return $this->service->getClub($id);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -420,7 +420,7 @@ class Client {
         try {
             return $this->service->getClubMembers($id, $page, $per_page);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -437,7 +437,7 @@ class Client {
         try {
             return $this->service->getClubActivities($id, $page, $per_page);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -452,7 +452,7 @@ class Client {
         try {
             return $this->service->getSegment($id);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -475,7 +475,7 @@ class Client {
         try {
             return $this->service->getSegmentLeaderboard($id, $gender, $age_group, $weight_class, $following, $club_id, $date_range, $page, $per_page);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -493,7 +493,7 @@ class Client {
         try {
             return $this->service->getSegmentExplorer($bounds, $activity_type, $min_cat, $max_cat);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }     
     }
     
@@ -513,7 +513,7 @@ class Client {
         try {
             return $this->service->getSegmentEffort($id, $athlete_id, $start_date_local, $end_date_local, $page, $per_page);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }            
     }
     
@@ -531,7 +531,7 @@ class Client {
         try {
             return $this->service->getStreamsActivity($id, $types, $resolution, $series_type);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -549,7 +549,7 @@ class Client {
         try {
             return $this->service->getStreamsEffort($id, $types, $resolution, $series_type);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
     
@@ -567,7 +567,7 @@ class Client {
         try {
             return $this->service->getStreamsSegment($id, $types, $resolution, $series_type);
         } catch (ServiceException $e) {
-            throw new Exception('[SERVICE] '.$e->getMessage());
+            throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
 }

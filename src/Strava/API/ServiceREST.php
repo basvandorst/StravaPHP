@@ -52,7 +52,8 @@ class ServiceREST implements ServiceInterface {
     }
     
     public function getAthleteClubs() {
-        $result = $this->client->get('/athlete/clubs', null, $this->getHeaders());
+        $parameters = array();
+        $result = $this->client->get('/athlete/clubs', $parameters, $this->getHeaders());
         return $this->format($result);
     }
     
@@ -101,7 +102,8 @@ class ServiceREST implements ServiceInterface {
         return json_decode($result,true);
     }
     public function getClub($id) {
-        $result = $this->client->get('/clubs/'.$id, null, $this->getHeaders());
+        $parameters = array();
+        $result = $this->client->get('/clubs/'.$id, $parameters, $this->getHeaders());
         return $this->format($result);
     }
     public function getClubMembers($id, $page = null, $per_page  = null) {

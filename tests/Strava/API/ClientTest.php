@@ -1,6 +1,6 @@
 <?php
-use Respect\Validation\Exceptions\ValidationException;
-use Strava\API\ServiceException;
+use Strava\API\Exception\ServiceException;
+use Strava\API\Exception\ClientException;
 
 /**
  * Happy flow testing..
@@ -26,6 +26,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('output', $output);
     }
     
+    public function testGetAthleteException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+        
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getAthlete')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getAthlete(1234);
+    }
+    
     public function testGetAthleteClubs() {
         $serviceMock = $this->getServiceMock();
         $serviceMock->expects($this->once())->method('getAthleteClubs')
@@ -35,6 +46,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $output = $client->getAthleteClubs();
         
         $this->assertEquals('output', $output);
+    }
+    
+    public function testGetAthleteClubsException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getAthleteClubs')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getAthleteClubs();
     }
     
     public function testGetAthleteActivities() {
@@ -48,6 +70,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('output', $output);
     }
     
+    public function testGetAthleteActivitiesException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getAthleteActivities')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getAthleteActivities();
+    }
+    
     public function testGetAthleteFriends() {
         $serviceMock = $this->getServiceMock();
         $serviceMock->expects($this->once())->method('getAthleteFriends')
@@ -57,6 +90,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $output = $client->getAthleteFriends();
         
         $this->assertEquals('output', $output);
+    }
+    
+    public function testGetAthleteFriendsException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getAthleteFriends')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getAthleteFriends();
     }
     
     public function testGetAthleteFollowers() {
@@ -70,6 +114,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('output', $output);
     }
     
+    public function testGetAthleteFollowersException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getAthleteFollowers')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getAthleteFollowers();
+    }
+    
     public function testGetAthleteBothFollowing() {
         $serviceMock = $this->getServiceMock();
         $serviceMock->expects($this->once())->method('getAthleteBothFollowing')
@@ -80,6 +135,18 @@ class ClientTest extends PHPUnit_Framework_TestCase
         
         $this->assertEquals('output', $output);
     }
+    
+    public function testGetAthleteBothFollowingException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getAthleteBothFollowing')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getAthleteBothFollowing(1234);
+    }
+
     
     public function testGetAthleteKom() {
         $serviceMock = $this->getServiceMock();
@@ -92,6 +159,18 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('output', $output);
     }
     
+    public function testGetAthleteKomException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getAthleteKom')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getAthleteKom(1234);
+    }
+    
+    
     public function testGetAthleteStarredSegments() {
         $serviceMock = $this->getServiceMock();
         $serviceMock->expects($this->once())->method('getAthleteStarredSegments')
@@ -101,6 +180,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $output = $client->getAthleteStarredSegments();
         
         $this->assertEquals('output', $output);
+    }
+    
+    public function testGetAthleteStarredSegmentsException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getAthleteStarredSegments')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getAthleteStarredSegments();
     }
     
     public function testUpdateAthlete() {
@@ -114,6 +204,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('output', $output);
     }
     
+        public function testUpdateAthleteException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('updateActivity')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->updateActivity('Xyz','ABC','The Netherlands','M',83.00);
+    }
+    
     public function testGetActivity() {
         $serviceMock = $this->getServiceMock();
         $serviceMock->expects($this->once())->method('getActivity')
@@ -123,6 +224,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $output = $client->getActivity(1234);
         
         $this->assertEquals('output', $output);
+    }
+    
+    public function testGetActivityException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getActivity')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getActivity(1234);
     }
     
     public function testGetActivityComments() {
@@ -136,6 +248,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('output', $output);
     }
     
+    public function testGetActivityCommentsException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getActivityComments')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getActivityComments(1234);
+    }
+    
     public function testGetActivityKudos() {
         $serviceMock = $this->getServiceMock();
         $serviceMock->expects($this->once())->method('getActivityKudos')
@@ -145,6 +268,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $output = $client->getActivityKudos(1234);
         
         $this->assertEquals('output', $output);
+    }
+    
+    public function testGetActivityKudosException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getActivityKudos')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getActivityKudos(1234);
     }
     
     public function testGetActivityPhotos() {
@@ -158,6 +292,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('output', $output);
     }
     
+    public function testGetActivityPhotosException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getActivityPhotos')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getActivityPhotos(1234);
+    }
+    
     public function testGetActivityZones() {
         $serviceMock = $this->getServiceMock();
         $serviceMock->expects($this->once())->method('getActivityZones')
@@ -167,6 +312,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $output = $client->getActivityZones(1234);
         
         $this->assertEquals('output', $output);
+    }
+    
+    public function testGetActivityZonesException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getActivityZones')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getActivityZones(1234);
     }
     
     public function testGetActivityLaps() {
@@ -180,6 +336,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('output', $output);
     }
     
+    public function testGetActivityLapsException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getActivityLaps')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getActivityLaps(1234);
+    }
+    
     public function testGetActivityUploadStatus() {
         $serviceMock = $this->getServiceMock();
         $serviceMock->expects($this->once())->method('getActivityUploadStatus')
@@ -189,6 +356,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $output = $client->getActivityUploadStatus(1234);
         
         $this->assertEquals('output', $output);
+    }
+    
+    public function testGetActivityUploadStatusException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getActivityUploadStatus')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getActivityUploadStatus(1234);
     }
     
     public function testCreateActivity() {
@@ -202,6 +380,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('output', $output);
     }
     
+    public function testCreateActivityException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('createActivity')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->createActivity('cycling ride','cycling','20140101',100);
+    }
+    
     public function testUploadActivity() {
         $serviceMock = $this->getServiceMock();
         $serviceMock->expects($this->once())->method('uploadActivity')
@@ -211,6 +400,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $output = $client->uploadActivity("abc23487fsdfds");
         
         $this->assertEquals('output', $output);
+    }
+    
+    public function testUploadActivityException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('uploadActivity')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->uploadActivity("abc23487fsdfds");
     }
     
     public function testUpdateActivity() {
@@ -224,6 +424,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('output', $output);
     }
     
+    public function testUpdateActivityException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('updateActivity')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->updateActivity('test');
+    }
+    
     public function testDeleteActivity() {
         $serviceMock = $this->getServiceMock();
         $serviceMock->expects($this->once())->method('deleteActivity')
@@ -235,6 +446,18 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('output', $output);
     }
     
+    public function testDeleteActivityException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('deleteActivity')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->deleteActivity(1234);
+    }
+
+    
     public function testGetGear() {
         $serviceMock = $this->getServiceMock();
         $serviceMock->expects($this->once())->method('getGear')
@@ -244,6 +467,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $output = $client->getGear(1234);
         
         $this->assertEquals('output', $output);
+    }
+    
+    public function testGetGearException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getGear')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getGear(1234);
     }
     
     public function testGetClub() {
@@ -257,6 +491,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('output', $output);
     }
     
+    public function testGetClubException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getClub')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getClub(1234);
+    }
+    
     public function testGetClubMembers() {
         $serviceMock = $this->getServiceMock();
         $serviceMock->expects($this->once())->method('getClubMembers')
@@ -266,6 +511,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $output = $client->getClubMembers(1234);
         
         $this->assertEquals('output', $output);
+    }
+    
+    public function testGetClubMembersException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+        
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getClubMembers')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getClubMembers(1234);
     }
     
     public function testGetClubActivities() {
@@ -279,6 +535,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('output', $output);
     }
     
+    public function testGetClubActivitiesException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+        
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getClubActivities')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getClubActivities(1234);
+    }
+    
     public function testGetSegment() {
         $serviceMock = $this->getServiceMock();
         $serviceMock->expects($this->once())->method('getSegment')
@@ -288,6 +555,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $output = $client->getSegment(1234);
         
         $this->assertEquals('output', $output);
+    }
+    
+    public function testGetSegmentException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+        
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getSegment')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getSegment(1234);
     }
     
     public function testGetSegmentLeaderboard() {
@@ -301,6 +579,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('output', $output);
     }
     
+    public function testGetSegmentLeaderboardException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+        
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getSegmentLeaderboard')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getSegmentLeaderboard(1234);
+    }
+    
     public function testGetSegmentExplorer() {
         $serviceMock = $this->getServiceMock();
         $serviceMock->expects($this->once())->method('getSegmentExplorer')
@@ -310,6 +599,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $output = $client->getSegmentExplorer("lng.lat");
         
         $this->assertEquals('output', $output);
+    }
+    
+    public function testGetSegmentExplorerException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+        
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getSegmentExplorer')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getSegmentExplorer("lng.lat");
     }
     
     public function testGetSegmentEffort() {
@@ -323,6 +623,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('output', $output);
     }
     
+    public function testGetSegmentEffortException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+        
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getSegmentEffort')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getSegmentEffort(1234);
+    }
+    
     public function testGetStreamsActivity() {
         $serviceMock = $this->getServiceMock();
         $serviceMock->expects($this->once())->method('getStreamsActivity')
@@ -332,6 +643,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $output = $client->getStreamsActivity(1234,'abc');
         
         $this->assertEquals('output', $output);
+    }
+    
+    public function testGetStreamsActivityException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+        
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getStreamsActivity')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getStreamsActivity(1234,'abc');
     }
     
     public function testGetStreamsEffort() {
@@ -345,6 +667,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('output', $output);
     }
     
+    public function testGetStreamsEffortException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+        
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getStreamsEffort')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getStreamsEffort(1234,'abc');
+    }
+    
     public function testGetStreamsSegment() {
         $serviceMock = $this->getServiceMock();
         $serviceMock->expects($this->once())->method('getStreamsSegment')
@@ -354,6 +687,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $output = $client->getStreamsSegment(1234,'abc');
         
         $this->assertEquals('output', $output);
+    }
+    
+    public function testGetStreamsSegmentException() {
+        $this->setExpectedException('Strava\API\Exception\ClientException');
+        
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getStreamsSegment')
+           ->will($this->throwException(new ServiceException));
+         
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getStreamsSegment(1234,'abc');
     }
 
 }
