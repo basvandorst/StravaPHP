@@ -1,6 +1,6 @@
 <?php
 use Respect\Validation\Exceptions\ValidationException;
-use Strava\API\V3\ServiceException;
+use Strava\API\ServiceException;
 
 /**
  * Happy flow testing..
@@ -8,7 +8,7 @@ use Strava\API\V3\ServiceException;
 class ClientTest extends PHPUnit_Framework_TestCase
 {    
     private function getServiceMock() {
-        $serviceMock = $this->getMockBuilder('Strava\API\V3\ServiceStub')
+        $serviceMock = $this->getMockBuilder('Strava\API\ServiceStub')
             ->disableOriginalConstructor()
             ->getMock();
         return $serviceMock;
@@ -20,14 +20,11 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $serviceMock->expects($this->once())->method('getStreamsSegment')
            ->will($this->returnValue('output'));
          
-        $client = new Strava\API\V3\Client($serviceMock);
+        $client = new Strava\API\Client($serviceMock);
         $segment = $client->getStreamsSegment(1234,'test');
         
         $this->assertEquals('output', $segment);
     }
 
-    function testGetStreamsSegmentInvalidRequest()
-    {
-    }
 }
     

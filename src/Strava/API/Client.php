@@ -1,9 +1,8 @@
 <?php
-namespace Strava\API\V3;
+namespace Strava\API;
 
 use Exception;
-use Strava\API\V3;
-use Strava\API\V3\ServiceException;
+use Strava\API\ServiceException;
 use Respect\Validation\Validator;
 use Respect\Validation\Exceptions\ValidationException;
 
@@ -54,8 +53,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -72,8 +69,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -94,8 +89,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -115,8 +108,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -136,8 +127,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -157,8 +146,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -178,8 +165,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -199,8 +184,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -222,8 +205,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -242,8 +223,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -264,8 +243,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -285,8 +262,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -304,8 +279,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -323,8 +296,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -342,8 +313,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -361,8 +330,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -385,8 +352,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -411,8 +376,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -436,8 +399,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -455,8 +416,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -475,8 +434,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
 
@@ -494,8 +451,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -515,8 +470,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -536,8 +489,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -555,8 +506,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -582,8 +531,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -604,8 +551,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }     
     }
     
@@ -628,8 +573,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }            
     }
     
@@ -650,8 +593,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -672,8 +613,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
     
@@ -694,8 +633,6 @@ class Client {
             throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
-        } catch (Exception $e) {
-            throw new Exception('[UNKOWN] '.$e->getMessage());
         }
     }
 }
