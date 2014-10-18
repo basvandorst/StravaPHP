@@ -1,5 +1,5 @@
 <?php
-namespace Strava\API\V3 {}
+namespace Strava\API\V3;
 
 /**
  * Strava stub Service
