@@ -3,12 +3,9 @@ namespace Strava\API;
 
 use Exception;
 use Strava\API\ServiceException;
-use Respect\Validation\Validator;
-use Respect\Validation\Exceptions\ValidationException;
 
 /**
  * Strava API Client
- * The client validates the parameters and makes the call to the Strava API.
  * 
  * @author: Bas van Dorst
  * @package Strava
@@ -49,8 +46,6 @@ class Client {
     public function getAthlete($id = null) {
         try {
             return $this->service->getAthlete($id);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -65,8 +60,6 @@ class Client {
     public function getAthleteClubs() {
         try {
             return $this->service->getAthleteClubs();
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -85,8 +78,6 @@ class Client {
     public function getAthleteActivities($before = null, $after = null, $page = null, $per_page = null) {
         try {
             return $this->service->getAthleteActivities($before, $after, $page, $per_page);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -104,8 +95,6 @@ class Client {
     public function getAthleteFriends($id = null, $page = null, $per_page = null) {
         try {
             return $this->service->getAthleteFriends($id, $page, $per_page);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -123,8 +112,6 @@ class Client {
     public function getAthleteFollowers($id = null, $page = null, $per_page = null) {
         try {
             return $this->service->getAthleteFollowers($id, $page, $per_page);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -142,8 +129,6 @@ class Client {
     public function getAthleteBothFollowing($id, $page = null, $per_page = null) {
         try {
             return $this->service->getAthleteBothFollowing($id, $page, $per_page);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -161,8 +146,6 @@ class Client {
     public function getAthleteKom($id, $page = null, $per_page = null) {
         try {
             return $this->service->getAthleteKom($id, $page, $per_page);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -180,8 +163,6 @@ class Client {
     public function getAthleteStarredSegments($id = null, $page = null, $per_page = null) {
         try {
             return $this->service->getAthleteStarredSegments($id, $page, $per_page);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -201,8 +182,6 @@ class Client {
     public function updateAthlete($city, $state, $country, $sex, $weight){
         try {
             return $this->service->updateAthlete($city, $state, $country, $sex, $weight);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -219,8 +198,6 @@ class Client {
     public function getActivity($id, $include_all_efforts = null) {
         try {
             return $this->service->getActivity($id, $include_all_efforts);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -239,8 +216,6 @@ class Client {
     public function getActivityComments($id, $markdown = null, $page = null, $per_page = null) {
         try {
             return $this->service->getActivityComments($id, $markdown, $page, $per_page);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -258,8 +233,6 @@ class Client {
     public function getActivityKudos($id, $page = null, $per_page = null) {
         try {
             return $this->service->getActivityKudos($id, $page, $per_page);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -275,8 +248,6 @@ class Client {
     public function getActivityPhotos($id) {
         try {
             return $this->service->getActivityPhotos($id);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -292,8 +263,6 @@ class Client {
     public function getActivityZones($id) {
         try {
             return $this->service->getActivityZones($id);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -309,8 +278,6 @@ class Client {
     public function getActivityLaps($id) {
         try {
             return $this->service->getActivityLaps($id);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -326,8 +293,6 @@ class Client {
     public function getActivityUploadStatus($id) {
         try {
             return $this->service->getActivityUploadStatus($id);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -348,8 +313,6 @@ class Client {
     public function createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null) {
         try {
             return $this->service->createActivity($name, $type, $start_date_local, $elapsed_time, $description, $distance);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -372,8 +335,6 @@ class Client {
     public function uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $data_type = null, $external_id = null) { 
         try {
             return $this->service->uploadActivity($file, $activity_type, $name, $description, $private, $trainer, $data_type, $external_id);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -395,8 +356,6 @@ class Client {
     public function updateActivity($name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null) {
         try {
             return $this->service->updateActivity($name, $type, $private, $commute, $trainer, $gear_id, $description);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -412,8 +371,6 @@ class Client {
     public function deleteActivity($id) {
         try {
             return $this->service->deleteActivity($id);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -430,8 +387,6 @@ class Client {
     public function getGear($id) {
         try {
             return $this->service->getGear($id);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -447,8 +402,6 @@ class Client {
     public function getClub($id) {
         try {
             return $this->service->getClub($id);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -466,8 +419,6 @@ class Client {
     public function getClubMembers($id, $page = null, $per_page  = null) {
         try {
             return $this->service->getClubMembers($id, $page, $per_page);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -485,8 +436,6 @@ class Client {
     public function getClubActivities($id, $page = null, $per_page  = null) {
         try {
             return $this->service->getClubActivities($id, $page, $per_page);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -502,8 +451,6 @@ class Client {
     public function getSegment($id) {
         try {
             return $this->service->getSegment($id);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -527,8 +474,6 @@ class Client {
     public function getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $page = null, $per_page = null) {
         try {
             return $this->service->getSegmentLeaderboard($id, $gender, $age_group, $weight_class, $following, $club_id, $date_range, $page, $per_page);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -547,8 +492,6 @@ class Client {
     public function getSegmentExplorer($bounds, $activity_type = 'riding', $min_cat = null, $max_cat = null) {
         try {
             return $this->service->getSegmentExplorer($bounds, $activity_type, $min_cat, $max_cat);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }     
@@ -569,8 +512,6 @@ class Client {
     public function getSegmentEffort($id, $athlete_id = null, $start_date_local = null, $end_date_local = null, $page = null, $per_page = null) {
         try {
             return $this->service->getSegmentEffort($id, $athlete_id, $start_date_local, $end_date_local, $page, $per_page);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }            
@@ -589,8 +530,6 @@ class Client {
     public function getStreamsActivity($id, $types, $resolution = 'all', $series_type = 'distance') {
         try {
             return $this->service->getStreamsActivity($id, $types, $resolution, $series_type);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -609,8 +548,6 @@ class Client {
     public function getStreamsEffort($id, $types, $resolution = 'all', $series_type = 'distance') {
         try {
             return $this->service->getStreamsEffort($id, $types, $resolution, $series_type);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
@@ -629,8 +566,6 @@ class Client {
     public function getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'distance') {
         try {
             return $this->service->getStreamsSegment($id, $types, $resolution, $series_type);
-        } catch (ValidationException $e) {
-            throw new Exception('[VALIDATION] '.$e->getMessage());
         } catch (ServiceException $e) {
             throw new Exception('[SERVICE] '.$e->getMessage());
         }
