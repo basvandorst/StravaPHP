@@ -93,18 +93,12 @@ Use composer to install this StravaPHP package.
 ```php
 <?php 
 include 'vendor/autoload.php';
-
-use Strava\API\OAuth as OAuthClient;
-use Strava\API\Client as StravaClient;
-use Strava\API\ServiceREST as ServiceREST;
-use Strava\API\Exception\ClientException as ClientException;
+use Strava\API\Exception;
+use Strava\API\Factory;
 
 try {
-    $OAuthClient = new OAuthClient(array(
-        'clientId'     => 'CLIENT ID',
-        'clientSecret' => 'SECRET HERE',
-        'redirectUri'  => 'URL ENDPOINT'
-    ));
+    $factory = new Factory();
+    $OAuthClient = $factory->getOAuthClient('CLIENT_ID', 'CLIENT_SECRET', 'CALLBACK URI');
     
     if (!isset($_GET['code'])) {
         print '<a href="'.$OAuthClient->getAuthorizationUrl().'">connect</a>';
@@ -113,11 +107,11 @@ try {
             'code' => $_GET['code']
         ));
         
-        $strava = new StravaClient(new ServiceREST($token));
-        $activities = $strava->getAthleteActivities(null, null, null, 2);
+        $strava = $factory->getAPIClient($token);
+        $activities = $strava->getAthleteKOM();
         print_r($activities);
     }
-} catch(ClientException $e) {
+} catch(Exception $e) {
     print $e->getMessage();
 }
 ```

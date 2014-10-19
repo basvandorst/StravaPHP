@@ -1,8 +1,9 @@
 <?php
 namespace Strava\API;
 
-use Strava\API\Exception\ServiceException;
-use Strava\API\Exception\ClientException;
+use Strava\API\Service\ServiceInterface;
+use Strava\API\Exception as ClientException;
+use Strava\API\Service\Exception as ServiceException;
 
 /**
  * Strava API Client
@@ -27,8 +28,8 @@ class Client {
     /**
      * Initiate this class with a subclass of the IService interface. In 
      * the V3 package there are two service subclasses available:
-     * - ServiceREST: Service which makes calls to the live Strava API 
-     * - ServiceStub: Service stub for test purposes (unit tests)
+     * - Service\REST: Service which makes calls to the live Strava API 
+     * - Service\Stub: Service stub for test purposes (unit tests)
      * 
      * @param ServiceInterface $service
      */

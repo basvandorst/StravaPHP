@@ -1,5 +1,5 @@
 <?php
-namespace Strava\API\Exception;
+namespace Strava\API\Service;
 
 /**
  * Catch me please!
@@ -7,4 +7,4 @@ namespace Strava\API\Exception;
  * @author: Bas van Dorst
  * @package Strava
  */
-class ServiceException extends \Exception {}
+class Exception extends \Exception {}

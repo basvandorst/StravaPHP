@@ -1,7 +1,5 @@
 <?php
-namespace Strava\API;
-
-use Pest;
+namespace Strava\API\Service;
 
 /**
  * Strava REST Service
@@ -9,7 +7,7 @@ use Pest;
  * @author: Bas van Dorst
  * @package Strava
  */
-class ServiceREST implements ServiceInterface {
+class REST implements ServiceInterface {
     
     /**
      * Strava V3 endpoint
@@ -18,10 +16,10 @@ class ServiceREST implements ServiceInterface {
     private static $endpoint = 'https://www.strava.com/api/v3';
     
     /**
-     * REST client
-     * @var Pest 
+     * REST adapter
+     * @var Strava\API\Adapter\REST\RestInterface
      */
-    protected $client;
+    protected $adapter;
     
     /**
      * Application token
@@ -34,9 +32,9 @@ class ServiceREST implements ServiceInterface {
      * 
      * @param string $token
      */
-    public function __construct($token) {
+    public function __construct($token, $adapter) {
         $this->token = $token;
-        $this->client = new Pest(self::$endpoint); // TODO: dep injection REST
+        $this->adapter = $adapter;
     }
     
     private function getHeaders() {
@@ -46,13 +44,13 @@ class ServiceREST implements ServiceInterface {
     public function getAthlete($id = null) {
         // todo more
         $parameters = array();
-        $result = $this->client->get('/athlete', $parameters, $this->getHeaders());
+        $result = $this->client->get(self::$endpoint.'/athlete', $parameters, $this->getHeaders());
         return $this->format($result);
     }
     
     public function getAthleteClubs() {
         $parameters = array();
-        $result = $this->client->get('/athlete/clubs', $parameters, $this->getHeaders());
+        $result = $this->client->get(self::$endpoint.'/athlete/clubs', $parameters, $this->getHeaders());
         return $this->format($result);
     }
     
@@ -63,7 +61,7 @@ class ServiceREST implements ServiceInterface {
             'page' => $page,
             'per_page' => $per_page,
         );
-        $result = $this->client->get('/athlete/activities', $parameters, $this->getHeaders());
+        $result = $this->client->get(self::$endpoint.'/athlete/activities', $parameters, $this->getHeaders());
         return $this->format($result);
     }
     public function getAthleteFriends($id = null, $page = null, $per_page = null) {}
@@ -79,7 +77,7 @@ class ServiceREST implements ServiceInterface {
             'sex' => $sex,
             'weight' => $weight,
         );
-        $result = $this->client->put('/athlete', $parameters, $this->getHeaders());
+        $result = $this->client->put(self::$endpoint.'/athlete', $parameters, $this->getHeaders());
         return $this->format($result);
     }
     public function getActivity($id, $include_all_efforts = null) {}
@@ -97,12 +95,12 @@ class ServiceREST implements ServiceInterface {
         $parameters = array(
             'id' => $id,
         );
-        $result = $this->client->get('/gear/'.$id, $parameters, $this->getHeaders());
+        $result = $this->client->get(self::$endpoint.'/gear/'.$id, $parameters, $this->getHeaders());
         return json_decode($result,true);
     }
     public function getClub($id) {
         $parameters = array();
-        $result = $this->client->get('/clubs/'.$id, $parameters, $this->getHeaders());
+        $result = $this->client->get(self::$endpoint.'/clubs/'.$id, $parameters, $this->getHeaders());
         return $this->format($result);
     }
     public function getClubMembers($id, $page = null, $per_page  = null) {
@@ -111,7 +109,7 @@ class ServiceREST implements ServiceInterface {
             'page' => $page,
             'per_page' => $per_page,
         );
-        $result = $this->client->get('/clubs/'.$id.'/members', $parameters, $this->getHeaders());
+        $result = $this->client->get(self::$endpoint.'/clubs/'.$id.'/members', $parameters, $this->getHeaders());
         return $this->format($result);
     }
     public function getClubActivities($id, $page = null, $per_page  = null) {
@@ -120,7 +118,7 @@ class ServiceREST implements ServiceInterface {
                 'page' => $page,
                 'per_page' => $per_page,
         );
-        $result = $this->client->get('/clubs/'.$id.'/activities', $parameters, $this->getHeaders());
+        $result = $this->client->get(self::$endpoint.'/clubs/'.$id.'/activities', $parameters, $this->getHeaders());
         return $this->format($result);
     }
     public function getSegment($id) {}

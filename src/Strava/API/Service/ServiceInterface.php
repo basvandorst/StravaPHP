@@ -1,5 +1,5 @@
 <?php
-namespace Strava\API;
+namespace Strava\API\Service;
 
 /**
  * Service interace. 

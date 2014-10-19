@@ -1,5 +1,5 @@
 <?php
-namespace Strava\API;
+namespace Strava\API\Service;
 
 /**
  * Strava stub Service
@@ -7,7 +7,7 @@ namespace Strava\API;
  * @author: Bas van Dorst
  * @package Strava
  */
-class ServiceStub implements ServiceInterface {
+class Stub implements ServiceInterface {
     public function getAthlete($id = null) {
         $json = '{ "id": 227615, "resource_state": 2, "firstname": "John", "lastname": "Applestrava", "profile_medium": "http://pics.com/227615/medium.jpg", "profile": "http://pics.com/227615/large.jpg", "city": "San Francisco", "state": "CA", "country": "United States", "sex": "M", "friend": null, "follower": "accepted", "premium": true, "created_at": "2011-03-19T21:59:57Z", "updated_at": "2013-09-05T16:46:54Z", "approve_followers": false }';
         return $this->format($json);
