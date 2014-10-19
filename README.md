@@ -77,31 +77,39 @@ All calls to the Strava API require an access token defining the athlete and
 application making the call. Any registered Strava user can obtain an access 
 token by first creating an application at [strava.com/developers](http://www.strava.com/developers)
 
-### Install 
+### Composer package 
 Use composer to install this StravaPHP package.
 
-TODO: update composer usage
+```
+{
+    "require": {
+        "basvandorst/StravaPHP": "dev-master"
+    }
+}
+```
 
-### Use it! 
+
+### Use it!
 ```php
 <?php 
 include 'vendor/autoload.php';
 
-use Strava\API\OAuth as OAuth;
-use Strava\API\V3\Client as StravaClient;
-use Strava\API\V3\ServiceREST as ServiceREST;
+use Strava\API\OAuth as OAuthClient;
+use Strava\API\Client as StravaClient;
+use Strava\API\ServiceREST as ServiceREST;
+use Strava\API\Exception\ClientException as ClientException;
 
 try {
-    $OAuth = new OAuth(array(
+    $OAuthClient = new OAuthClient(array(
         'clientId'     => 'CLIENT ID',
         'clientSecret' => 'SECRET HERE',
         'redirectUri'  => 'URL ENDPOINT'
     ));
     
     if (!isset($_GET['code'])) {
-        print '<a href="'.$OAuth->getAuthorizationUrl().'">connect</a>';
+        print '<a href="'.$OAuthClient->getAuthorizationUrl().'">connect</a>';
     } else {
-        $token = $OAuth->getAccessToken('authorization_code', array(
+        $token = $OAuthClient->getAccessToken('authorization_code', array(
             'code' => $_GET['code']
         ));
         
@@ -109,8 +117,7 @@ try {
         $activities = $strava->getAthleteActivities(null, null, null, 2);
         print_r($activities);
     }
-    
-} catch(Exception $e) {
+} catch(ClientException $e) {
     print $e->getMessage();
 }
 ```
