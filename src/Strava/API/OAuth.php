@@ -2,6 +2,7 @@
 namespace Strava\API;
 
 use \League\OAuth2\Client\Token\AccessToken as AccessToken;
+use \League\OAuth2\Client\Provider\AbstractProvider as AbstractProvider;
 
 /**
  * Strava OAuth
@@ -10,12 +11,16 @@ use \League\OAuth2\Client\Token\AccessToken as AccessToken;
  * @see: https://github.com/thephpleague/oauth2-client
  * @author Bas van Dorst
  */
-class OAuth extends \League\OAuth2\Client\Provider\AbstractProvider
+class OAuth extends AbstractProvider
 {
 
     public $scopes = array('write');
     public $responseType = 'json';
     
+    /**
+     * @see AbstractProvider::__construct
+     * @param array $options
+     */
     public function __construct($options)
     {
         parent::__construct($options);
@@ -24,21 +29,33 @@ class OAuth extends \League\OAuth2\Client\Provider\AbstractProvider
         );
     }
     
+    /**
+     * @see AbstractProvider::urlAuthorize
+     */
     public function urlAuthorize()
     {
         return 'https://www.strava.com/oauth/authorize';
     }
 
+    /**
+     * @see AbstractProvider::urlAuthorize
+     */
     public function urlAccessToken()
     {
         return 'https://www.strava.com/oauth/token';
     }
 
+    /**
+     * @see AbstractProvider::urlUserDetails
+     */
     public function urlUserDetails(AccessToken $token)
     {
         return 'https://www.strava.com/api/v3/athlete/?access_token='.$token;
     }
 
+    /**
+     * @see AbstractProvider::userDetails
+     */
     public function userDetails($response, AccessToken $token)
     {
         $user = new User;
@@ -57,16 +74,25 @@ class OAuth extends \League\OAuth2\Client\Provider\AbstractProvider
         return $user;
     }
 
+    /**
+     * @see AbstractProvider::userUid
+     */
     public function userUid($response, AccessToken $token)
     {
         return $response->id;
     }
 
+    /**
+     * @see AbstractProvider::userUid
+     */
     public function userEmail($response, AccessToken $token)
     {
         return isset($response->email) && $response->email ? $response->email : null;
     }
 
+    /**
+     * @see AbstractProvider::userScreenName
+     */
     public function userScreenName($response, AccessToken $token)
     {
         return implode(" ", array($response->firstname, $response->lastname));
