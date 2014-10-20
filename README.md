@@ -117,8 +117,7 @@ try {
 ```
 
 ## Class diagram
-![stravaphp_uml](https://cloud.githubusercontent.com/assets/1196963/4705414/a0ebda34-587b-11e4-9f2b-9687611c6a30.png)
-
+![stravaphp_uml](https://cloud.githubusercontent.com/assets/1196963/4705696/764cd4e2-587e-11e4-8c9f-d265255ee0a2.png)
 
 ## Thanks guys!
 - [Strava API](http://strava.github.io/api/)
