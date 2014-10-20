@@ -75,7 +75,7 @@ $factory->getAPIClient($token);
 $oauth->getAuthorizationUrl($options = array());
 $oauth->getAuthorizationUrl($grant = 'authorization_code', $params = array());
 ```
-
+### Strava\API\Client
 #### Methods
 ```php
 
