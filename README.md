@@ -78,9 +78,6 @@ $oauth->getAuthorizationUrl($grant = 'authorization_code', $params = array());
 ### Strava\API\Client
 #### Methods
 ```php
-
-### Strava\API\Client
-#### Methods
 $client->getAthlete($id = null);
 $client->getAthleteClubs();
 $client->getAthleteActivities($before = null, $after = null, $page = null, $per_page = null);
@@ -90,7 +87,6 @@ $client->getAthleteBothFollowing($id, $page = null, $per_page = null);
 $client->getAthleteKom($id, $page = null, $per_page = null);
 $client->getAthleteStarredSegments($id = null, $page = null, $per_page = null);
 $client->updateAthlete($city, $state, $country, $sex, $weight);
-// Activity
 $client->getActivity($id, $include_all_efforts = null);
 $client->getActivityComments($id, $markdown = null, $page = null, $per_page = null);
 $client->getActivityKudos($id, $page = null, $per_page = null);
@@ -102,18 +98,14 @@ $client->createActivity($name, $type, $start_date_local, $elapsed_time, $descrip
 $client->uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $data_type = null, $external_id = null);
 $client->updateActivity($name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null);
 $client->deleteActivity($id);
-// Gear
 $client->getGear($id);
-// Club
 $client->getClub($id);
 $client->getClubMembers($id, $page = null, $per_page  = null);
 $client->getClubActivities($id, $page = null, $per_page  = null);
-// Segment
 $client->getSegment($id);
 $client->getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $page = null, $per_page = null);
 $client->getSegmentExplorer($bounds, $activity_type = 'riding', $min_cat = null, $max_cat = null);
 $client->getSegmentEffort($id, $athlete_id = null, $start_date_local = null, $end_date_local = null, $page = null, $per_page = null);
-// Stream
 $client->getStreamsActivity($id, $types, $resolution = 'all', $series_type = 'distance');
 $client->getStreamsEffort($id, $types, $resolution = 'all', $series_type = 'distance');
 $client->getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'distance');
