@@ -60,60 +60,63 @@ try {
 }
 ```
 
-## Methods
-### Athlete
+## Class documentation
+
+### Strava\API\Factory
+#### Methods
 ```php
-$strava->getAthlete($id = null);
-$strava->getAthleteClubs();
-$strava->getAthleteActivities($before = null, $after = null, $page = null, $per_page = null);
-$strava->getAthleteFriends($id = null, $page = null, $per_page = null);
-$strava->getAthleteFollowers($id = null, $page = null, $per_page = null);
-$strava->getAthleteBothFollowing($id, $page = null, $per_page = null);
-$strava->getAthleteKom($id, $page = null, $per_page = null);
-$strava->getAthleteStarredSegments($id = null, $page = null, $per_page = null);
-$strava->updateAthlete($city, $state, $country, $sex, $weight);
+$factory->getOAuthClient($client_id, $client_secret, $redirect_uri);
+$factory->getAPIClient($token);
 ```
 
-### Activity
+### Strava\API\OAuth
+#### Methods
 ```php
-$strava->getActivity($id, $include_all_efforts = null);
-$strava->getActivityComments($id, $markdown = null, $page = null, $per_page = null);
-$strava->getActivityKudos($id, $page = null, $per_page = null);
-$strava->getActivityPhotos($id);
-$strava->getActivityZones($id);
-$strava->getActivityLaps($id);
-$strava->getActivityUploadStatus($id);
-$strava->createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null);
-$strava->uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $data_type = null, $external_id = null);
-$strava->updateActivity($name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null);
-$strava->deleteActivity($id);
+$oauth->getAuthorizationUrl($options = array());
+$oauth->getAuthorizationUrl($grant = 'authorization_code', $params = array());
 ```
 
-### Gear
+#### Methods
 ```php
-$strava->getGear($id);
-```
 
-### Club
-```php
-$strava->getClub($id);
-$strava->getClubMembers($id, $page = null, $per_page  = null);
-$strava->getClubActivities($id, $page = null, $per_page  = null);
-```
-
-### Segment
-```php
-$strava->getSegment($id);
-$strava->getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $page = null, $per_page = null);
-$strava->getSegmentExplorer($bounds, $activity_type = 'riding', $min_cat = null, $max_cat = null);
-$strava->getSegmentEffort($id, $athlete_id = null, $start_date_local = null, $end_date_local = null, $page = null, $per_page = null);
-```
-
-### Streams
-```php
-$strava->getStreamsActivity($id, $types, $resolution = 'all', $series_type = 'distance');
-$strava->getStreamsEffort($id, $types, $resolution = 'all', $series_type = 'distance');
-$strava->getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'distance');
+### Strava\API\Client
+#### Methods
+$client->getAthlete($id = null);
+$client->getAthleteClubs();
+$client->getAthleteActivities($before = null, $after = null, $page = null, $per_page = null);
+$client->getAthleteFriends($id = null, $page = null, $per_page = null);
+$client->getAthleteFollowers($id = null, $page = null, $per_page = null);
+$client->getAthleteBothFollowing($id, $page = null, $per_page = null);
+$client->getAthleteKom($id, $page = null, $per_page = null);
+$client->getAthleteStarredSegments($id = null, $page = null, $per_page = null);
+$client->updateAthlete($city, $state, $country, $sex, $weight);
+// Activity
+$client->getActivity($id, $include_all_efforts = null);
+$client->getActivityComments($id, $markdown = null, $page = null, $per_page = null);
+$client->getActivityKudos($id, $page = null, $per_page = null);
+$client->getActivityPhotos($id);
+$client->getActivityZones($id);
+$client->getActivityLaps($id);
+$client->getActivityUploadStatus($id);
+$client->createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null);
+$client->uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $data_type = null, $external_id = null);
+$client->updateActivity($name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null);
+$client->deleteActivity($id);
+// Gear
+$client->getGear($id);
+// Club
+$client->getClub($id);
+$client->getClubMembers($id, $page = null, $per_page  = null);
+$client->getClubActivities($id, $page = null, $per_page  = null);
+// Segment
+$client->getSegment($id);
+$client->getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $page = null, $per_page = null);
+$client->getSegmentExplorer($bounds, $activity_type = 'riding', $min_cat = null, $max_cat = null);
+$client->getSegmentEffort($id, $athlete_id = null, $start_date_local = null, $end_date_local = null, $page = null, $per_page = null);
+// Stream
+$client->getStreamsActivity($id, $types, $resolution = 'all', $series_type = 'distance');
+$client->getStreamsEffort($id, $types, $resolution = 'all', $series_type = 'distance');
+$client->getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'distance');
 ```
 
 ## Class diagram
