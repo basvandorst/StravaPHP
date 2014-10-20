@@ -4,7 +4,7 @@ StravaPHP - WIP
 [![Code Coverage](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/?branch=master)
 
-**TLDR;** [Getting started](#getting-started)
+**TLDR;** Strava V3 API PHP client with OAauth authentication
 
 The Strava V3 API is a publicly available interface allowing developers access 
 to the rich Strava dataset. The interface is stable and currently used by the 
@@ -14,6 +14,51 @@ performance and enhance features. See the [changelog](http://strava.github.io/ap
 In this GitHub repository you can find the PHP implementation of the 
 Strava V3 API. The current version of StravaPHP combines the V3 API 
 with a proper OAuth authentication.
+
+## Getting started
+### Get your API key
+All calls to the Strava API require an access token defining the athlete and 
+application making the call. Any registered Strava user can obtain an access 
+token by first creating an application at [strava.com/developers](http://www.strava.com/developers)
+
+### Composer package 
+Use composer to install this StravaPHP package.
+
+```
+{
+    "require": {
+        "basvandorst/StravaPHP": "dev-master"
+    }
+}
+```
+
+
+### Use it!
+```php
+<?php 
+include 'vendor/autoload.php';
+use Strava\API\Exception;
+use Strava\API\Factory;
+
+try {
+    $factory = new Factory();
+    $OAuthClient = $factory->getOAuthClient('CLIENT_ID', 'CLIENT_SECRET', 'CALLBACK URI');
+    
+    if (!isset($_GET['code'])) {
+        print '<a href="'.$OAuthClient->getAuthorizationUrl().'">connect</a>';
+    } else {
+        $token = $OAuthClient->getAccessToken('authorization_code', array(
+            'code' => $_GET['code']
+        ));
+        
+        $strava = $factory->getAPIClient($token);
+        $activities = $strava->getAthleteKOM();
+        print_r($activities);
+    }
+} catch(Exception $e) {
+    print $e->getMessage();
+}
+```
 
 ## Methods
 ### Athlete
@@ -69,51 +114,6 @@ $strava->getSegmentEffort($id, $athlete_id = null, $start_date_local = null, $en
 $strava->getStreamsActivity($id, $types, $resolution = 'all', $series_type = 'distance');
 $strava->getStreamsEffort($id, $types, $resolution = 'all', $series_type = 'distance');
 $strava->getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'distance');
-```
-
-## Getting started
-### Get your API key
-All calls to the Strava API require an access token defining the athlete and 
-application making the call. Any registered Strava user can obtain an access 
-token by first creating an application at [strava.com/developers](http://www.strava.com/developers)
-
-### Composer package 
-Use composer to install this StravaPHP package.
-
-```
-{
-    "require": {
-        "basvandorst/StravaPHP": "dev-master"
-    }
-}
-```
-
-
-### Use it!
-```php
-<?php 
-include 'vendor/autoload.php';
-use Strava\API\Exception;
-use Strava\API\Factory;
-
-try {
-    $factory = new Factory();
-    $OAuthClient = $factory->getOAuthClient('CLIENT_ID', 'CLIENT_SECRET', 'CALLBACK URI');
-    
-    if (!isset($_GET['code'])) {
-        print '<a href="'.$OAuthClient->getAuthorizationUrl().'">connect</a>';
-    } else {
-        $token = $OAuthClient->getAccessToken('authorization_code', array(
-            'code' => $_GET['code']
-        ));
-        
-        $strava = $factory->getAPIClient($token);
-        $activities = $strava->getAthleteKOM();
-        print_r($activities);
-    }
-} catch(Exception $e) {
-    print $e->getMessage();
-}
 ```
 
 ## Class diagram
