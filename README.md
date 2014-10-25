@@ -4,7 +4,7 @@ StravaPHP
 [![Code Coverage](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/?branch=master)
 
-**TLDR;** Strava V3 API PHP client with OAauth authentication
+**TLDR;** Strava V3 API PHP client with OAuth authentication
 
 The Strava V3 API is a publicly available interface allowing developers access 
 to the rich Strava dataset. The interface is stable and currently used by the 
