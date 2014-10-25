@@ -22,7 +22,7 @@ class Factory {
      * @param string $client_id
      * @param string $client_secret
      * @param string $redirect_uri
-     * @return Strava\API\OAuth
+     * @return OAuth
      */
     public function getOAuthClient($client_id, $client_secret, $redirect_uri) {
         $parameters = array(
@@ -39,7 +39,7 @@ class Factory {
      * Return a new instance of the API Client
      * 
      * @param string $token
-     * @return Strava\API\Client
+     * @return Client
      */
     public function getAPIClient($token) {
         $adapter = new Pest(self::$endpoint);

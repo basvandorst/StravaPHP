@@ -10,6 +10,10 @@ namespace Strava\API\Service;
  * @package StravaPHP
  */
 interface ServiceInterface {
+
+    /**
+     * @param integer $id
+     */
     public function getAthlete($id = null);
     public function getAthleteClubs();
 
@@ -179,6 +183,7 @@ interface ServiceInterface {
      * @param string $date_range
      * @param integer $page
      * @param integer $per_page
+     * @param integer $id
      */
     public function getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $page = null, $per_page = null);
 
