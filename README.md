@@ -159,7 +159,7 @@ $client->getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'dis
 
 
 
-## StravaPHP
+## About StravaPHP
 ### Used libraries
 - [Strava API](http://strava.github.io/api/)
 - [thephpleague/oauth2-client](https://github.com/thephpleague/oauth2-client/)
