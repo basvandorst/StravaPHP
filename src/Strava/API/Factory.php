@@ -8,6 +8,11 @@ use Pest;
 
 // TODO: let the factory do the job..
 class Factory {
+    /**
+     * Strava V3 endpoint
+     * @var string 
+     */
+    private static $endpoint = 'https://www.strava.com/api/v3';
     
     /**
      * Return a new instance of the OAuth Client
@@ -35,7 +40,7 @@ class Factory {
      * @return Strava\API\Client
      */
     public function getAPIClient($token) {
-        $adapter = new Pest('');
+        $adapter = new Pest(self::$endpoint);
         $service = new ServiceREST($token, $adapter);
         
         $APIClient = new APIClient($service);
