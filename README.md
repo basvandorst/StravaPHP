@@ -154,10 +154,11 @@ $client->getStreamsEffort($id, $types, $resolution = 'all', $series_type = 'dist
 $client->getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'distance');
 ```
 
-## Class diagram
-![stravaphp_uml](https://cloud.githubusercontent.com/assets/1196963/4705696/764cd4e2-587e-11e4-8c9f-d265255ee0a2.png)
-
-
+## UML diagrams
+### Class diagram
+![class](https://cloud.githubusercontent.com/assets/1196963/4705696/764cd4e2-587e-11e4-8c9f-d265255ee0a2.png)
+### Sequence diagram
+![sequence](https://cloud.githubusercontent.com/assets/1196963/4781256/14ad07f2-5c93-11e4-9f2c-b304fe312f05.png)
 
 ## About StravaPHP
 ### Used libraries
