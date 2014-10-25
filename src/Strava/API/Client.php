@@ -12,13 +12,6 @@ use Strava\API\Service\Exception as ServiceException;
  * @package StravaPHP
  */
 class Client {
-
-    /**
-     * Exception prefix
-     */
-    const ERROR_VALIDATION = '[VALIDATION] ',
-          ERROR_SERVICE = '[SERVICE] ',
-          ERROR_UNKNOWN = '[UNKOWN] ';
     
     /**
      * @var ServiceInterface $service
@@ -26,8 +19,8 @@ class Client {
     protected $service;
     
     /**
-     * Initiate this class with a subclass of the IService interface. In 
-     * the V3 package there are two service subclasses available:
+     * Initiate this class with a subclass of ServiceInterface. There are two 
+     * service subclasses available:
      * - Service\REST: Service which makes calls to the live Strava API 
      * - Service\Stub: Service stub for test purposes (unit tests)
      * 
@@ -40,9 +33,11 @@ class Client {
     /**
      * Retrieve current athlete
      * 
-     * @param id $id
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/athlete/#get-details,
+     *          http://strava.github.io/api/v3/athlete/#get-another-details
+     * @param   int $id
+     * @return  array
+     * @throws  Exception
      */
     public function getAthlete($id = null) {
         try {
@@ -55,8 +50,9 @@ class Client {
     /**
      * List athlete clubs
      * 
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/clubs/#get-athletes
+     * @return  array
+     * @throws  Exception
      */
     public function getAthleteClubs() {
         try {
@@ -69,12 +65,13 @@ class Client {
     /**
      * List athlete activities
      * 
-     * @param string $before
-     * @param string $after
-     * @param int $page
-     * @param int $per_page
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/activities/#get-activities
+     * @param   string $before
+     * @param   string $after
+     * @param   int $page
+     * @param   int $per_page
+     * @return  array
+     * @throws  Exception
      */
     public function getAthleteActivities($before = null, $after = null, $page = null, $per_page = null) {
         try {
@@ -87,11 +84,12 @@ class Client {
     /**
      * List athlete friends
      * 
-     * @param int $id
-     * @param int $page
-     * @param int $per_page
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/follow/#friends
+     * @param   int $id
+     * @param   int $page
+     * @param   int $per_page
+     * @return  array
+     * @throws  Exception
      */
     public function getAthleteFriends($id = null, $page = null, $per_page = null) {
         try {
@@ -104,11 +102,12 @@ class Client {
     /**
      * List athlete followers
      * 
-     * @param int $id
-     * @param int $page
-     * @param int $per_page
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/follow/#followers
+     * @param   int $id
+     * @param   int $page
+     * @param   int $per_page
+     * @return  array
+     * @throws  Exception
      */
     public function getAthleteFollowers($id = null, $page = null, $per_page = null) {
         try {
@@ -121,11 +120,12 @@ class Client {
     /**
      * List both following
      * 
-     * @param int $id
-     * @param int $page
-     * @param int $per_page
-     * @return type
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/follow/#both
+     * @param   int $id
+     * @param   int $page
+     * @param   int $per_page
+     * @return  array
+     * @throws  Exception
      */
     public function getAthleteBothFollowing($id, $page = null, $per_page = null) {
         try {
@@ -138,11 +138,12 @@ class Client {
     /**
      * List athlete K/QOMs/CRs
      * 
-     * @param int $id
-     * @param int $page
-     * @param int $per_page
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/athlete/#koms
+     * @param   int $id
+     * @param   int $page
+     * @param   int $per_page
+     * @return  array
+     * @throws  Exception
      */
     public function getAthleteKom($id, $page = null, $per_page = null) {
         try {
@@ -155,11 +156,12 @@ class Client {
     /**
      * List starred segment
      * 
-     * @param int $id
-     * @param int $page
-     * @param int $per_page
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/segments/#starred
+     * @param   int $id
+     * @param   int $page
+     * @param   int $per_page
+     * @return  array
+     * @throws  Exception
      */
     public function getAthleteStarredSegments($id = null, $page = null, $per_page = null) {
         try {
@@ -172,13 +174,14 @@ class Client {
     /**
      * Update current athlete
      * 
-     * @param string $city
-     * @param string $state
-     * @param string $country
-     * @param string $sex
-     * @param float $weight
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/athlete/#update
+     * @param   string $city
+     * @param   string $state
+     * @param   string $country
+     * @param   string $sex
+     * @param   float $weight
+     * @return  array
+     * @throws  Exception
      */
     public function updateAthlete($city, $state, $country, $sex, $weight){
         try {
@@ -191,10 +194,12 @@ class Client {
     /**
      * Retrieve an activity
      * 
-     * @param int $id
-     * @param boolean $include_all_efforts
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/athlete/#get-details,
+     *          http://strava.github.io/api/v3/athlete/#get-another-details
+     * @param   int $id
+     * @param   boolean $include_all_efforts
+     * @return  array
+     * @throws  Exception
      */
     public function getActivity($id, $include_all_efforts = null) {
         try {
@@ -207,12 +212,13 @@ class Client {
     /**
      * List activity comments
      * 
-     * @param int $id
-     * @param boolean $markdown
-     * @param int $page
-     * @param int $per_page
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/comments/#list
+     * @param   int $id
+     * @param   boolean $markdown
+     * @param   int $page
+     * @param   int $per_page
+     * @return  array
+     * @throws  Exception
      */
     public function getActivityComments($id, $markdown = null, $page = null, $per_page = null) {
         try {
@@ -225,11 +231,12 @@ class Client {
     /**
      * List activity kudoers
      * 
-     * @param int $id
-     * @param int $page
-     * @param int $per_page
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/kudos/#list
+     * @param   int $id
+     * @param   int $page
+     * @param   int $per_page
+     * @return  array
+     * @throws  Exception
      */
     public function getActivityKudos($id, $page = null, $per_page = null) {
         try {
@@ -242,9 +249,10 @@ class Client {
     /**
      * List activity photos
      * 
-     * @param int $id
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/photos/#list
+     * @param   int $id
+     * @return  array
+     * @throws  Exception
      */
     public function getActivityPhotos($id) {
         try {
@@ -257,9 +265,10 @@ class Client {
     /**
      * List activity zones
      * 
-     * @param int $id
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/activities/#zones
+     * @param   int $id
+     * @return  array
+     * @throws  Exception
      */
     public function getActivityZones($id) {
         try {
@@ -272,9 +281,10 @@ class Client {
     /**
      * List activity laps
      * 
-     * @param int $id
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/activities/#laps
+     * @param   int $id
+     * @return  array
+     * @throws  Exception
      */
     public function getActivityLaps($id) {
         try {
@@ -287,9 +297,10 @@ class Client {
     /**
      * Check upload status
      * 
-     * @param int $id
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/uploads/#get-status
+     * @param   int $id
+     * @return  array
+     * @throws  Exception
      */
     public function getActivityUploadStatus($id) {
         try {
@@ -302,14 +313,15 @@ class Client {
     /**
      * Create an activity
      * 
-     * @param string $name
-     * @param string $type
-     * @param string $start_date_local
-     * @param int $elapsed_time
-     * @param string $description
-     * @param float $distance
-     * @return type
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/activities/#create
+     * @param   string $name
+     * @param   string $type
+     * @param   string $start_date_local
+     * @param   int $elapsed_time
+     * @param   string $description
+     * @param   float $distance
+     * @return  array
+     * @throws  Exception
      */
     public function createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null) {
         try {
@@ -322,16 +334,17 @@ class Client {
     /**
      * Upload an activity
      * 
-     * @param mixed $file
-     * @param string $activity_type
-     * @param string $name
-     * @param string $description
-     * @param int $private
-     * @param int $trainer
-     * @param string $data_type
-     * @param string $external_id
-     * @return type
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/uploads/#post-file
+     * @param   mixed $file
+     * @param   string $activity_type
+     * @param   string $name
+     * @param   string $description
+     * @param   int $private
+     * @param   int $trainer
+     * @param   string $data_type
+     * @param   string $external_id
+     * @return  array
+     * @throws  Exception
      */
     public function uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $data_type = null, $external_id = null) { 
         try {
@@ -344,15 +357,16 @@ class Client {
     /**
      * Update an activity
      * 
-     * @param string $name
-     * @param string $type
-     * @param boolean $private
-     * @param boolean $commute
-     * @param boolean $trainer
-     * @param string $gear_id
-     * @param string $description
-     * @return type
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/activities/#put-updates
+     * @param   string $name
+     * @param   string $type
+     * @param   boolean $private
+     * @param   boolean $commute
+     * @param   boolean $trainer
+     * @param   string $gear_id
+     * @param   string $description
+     * @return  array
+     * @throws  Exception
      */
     public function updateActivity($name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null) {
         try {
@@ -365,9 +379,10 @@ class Client {
     /**
      * Delete an activity
      * 
-     * @param int $id
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/activities/#delete
+     * @param   int $id
+     * @return  array
+     * @throws  Exception
      */
     public function deleteActivity($id) {
         try {
@@ -381,9 +396,10 @@ class Client {
     /**
      * Retrieve gear
      * 
-     * @param int $id
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/gear/
+     * @param   int $id
+     * @return  array
+     * @throws  Exception
      */
     public function getGear($id) {
         try {
@@ -396,9 +412,10 @@ class Client {
     /**
      * Retrieve a club
      * 
-     * @param int $id
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/clubs/#get-details
+     * @param   int $id
+     * @return  array
+     * @throws  Exception
      */
     public function getClub($id) {
         try {
@@ -411,11 +428,12 @@ class Client {
     /**
      * List club members
      * 
-     * @param int $id
-     * @param int $page
-     * @param int $per_page
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/clubs/#get-members
+     * @param   int $id
+     * @param   int $page
+     * @param   int $per_page
+     * @return  array
+     * @throws  Exception
      */
     public function getClubMembers($id, $page = null, $per_page  = null) {
         try {
@@ -428,11 +446,12 @@ class Client {
     /**
      * List club activities
      * 
-     * @param int $id
-     * @param int $page
-     * @param int $per_page
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/clubs/#get-activities
+     * @param   int $id
+     * @param   int $page
+     * @param   int $per_page
+     * @return  array
+     * @throws  Exception
      */
     public function getClubActivities($id, $page = null, $per_page  = null) {
         try {
@@ -445,9 +464,10 @@ class Client {
     /**
      * Retrieve a segment
      * 
-     * @param int $id
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/segments/#retrieve
+     * @param   int $id
+     * @return  array
+     * @throws  Exception
      */
     public function getSegment($id) {
         try {
@@ -460,17 +480,18 @@ class Client {
     /**
      * Segment leaderboards
      * 
-     * @param id $id
-     * @param string $gender
-     * @param string $age_group
-     * @param string $weight_class
-     * @param boolean $following
-     * @param int $club_id
-     * @param string $date_range
-     * @param int $page
-     * @param int $per_page
-     * @return type
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/segments/#leaderboard
+     * @param   int $id
+     * @param   string $gender
+     * @param   string $age_group
+     * @param   string $weight_class
+     * @param   boolean $following
+     * @param   int $club_id
+     * @param   string $date_range
+     * @param   int $page
+     * @param   int $per_page
+     * @return  array
+     * @throws  Exception
      */
     public function getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $page = null, $per_page = null) {
         try {
@@ -483,12 +504,13 @@ class Client {
     /**
      * Segment explorer
      * 
-     * @param string $bounds
-     * @param string $activity_type
-     * @param int $min_cat
-     * @param int $max_cat
-     * @return type
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/segments/#explore
+     * @param   string $bounds
+     * @param   string $activity_type
+     * @param   int $min_cat
+     * @param   int $max_cat
+     * @return  array
+     * @throws  Exception
      */
     public function getSegmentExplorer($bounds, $activity_type = 'riding', $min_cat = null, $max_cat = null) {
         try {
@@ -501,14 +523,15 @@ class Client {
     /**
      * List efforts filtered by athlete and/or a date range
      * 
-     * @param int $id
-     * @param int $athlete_id
-     * @param string $start_date_local
-     * @param string $end_date_local
-     * @param int $page
-     * @param int $per_page
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/segments/#efforts
+     * @param   int $id
+     * @param   int $athlete_id
+     * @param   string $start_date_local
+     * @param   string $end_date_local
+     * @param   int $page
+     * @param   int $per_page
+     * @return  array
+     * @throws  Exception
      */
     public function getSegmentEffort($id, $athlete_id = null, $start_date_local = null, $end_date_local = null, $page = null, $per_page = null) {
         try {
@@ -521,12 +544,13 @@ class Client {
     /**
      * Retrieve activity streams
      * 
-     * @param int $id
-     * @param string $types
-     * @param string $resolution
-     * @param string $series_type
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/streams/#activity
+     * @param   int $id
+     * @param   string $types
+     * @param   string $resolution
+     * @param   string $series_type
+     * @return  array
+     * @throws  Exception
      */
     public function getStreamsActivity($id, $types, $resolution = 'all', $series_type = 'distance') {
         try {
@@ -539,12 +563,13 @@ class Client {
     /**
      * Retrieve effort streams
      * 
-     * @param int $id
-     * @param string $types
-     * @param string $resolution
-     * @param string $series_type
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/streams/#effort
+     * @param   int $id
+     * @param   string $types
+     * @param   string $resolution
+     * @param   string $series_type
+     * @return  array
+     * @throws  Exception
      */
     public function getStreamsEffort($id, $types, $resolution = 'all', $series_type = 'distance') {
         try {
@@ -556,13 +581,13 @@ class Client {
     
     /**
      * Retrieve segment streams
-     * 
-     * @param int $id
-     * @param string $types
-     * @param string $resolution
-     * @param string $series_type
-     * @return array
-     * @throws Exception
+     * @link    http://strava.github.io/api/v3/streams/#segment
+     * @param   int $id
+     * @param   string $types
+     * @param   string $resolution
+     * @param   string $series_type
+     * @return  array
+     * @throws  Exception
      */
     public function getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'distance') {
         try {

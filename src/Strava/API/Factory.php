@@ -1,12 +1,14 @@
 <?php
 namespace Strava\API;
 
-use Strava\API\OAuth as OAuthClient;
-use Strava\API\Client as APIClient;
-use Strava\API\Service\REST as ServiceREST;
 use Pest;
 
-// TODO: let the factory do the job..
+/**
+ * Factory class
+ * 
+ * @author Bas van Dorst
+ * @package StravaPHP
+ */
 class Factory {
     /**
      * Strava V3 endpoint
@@ -28,8 +30,8 @@ class Factory {
             'clientSecret' => $client_secret,
             'redirectUri'  => $redirect_uri
         );
+        $OAuthClient = new OAuth($parameters);
         
-        $OAuthClient = new OAuthClient($parameters);
         return $OAuthClient;
     }
     
@@ -41,9 +43,9 @@ class Factory {
      */
     public function getAPIClient($token) {
         $adapter = new Pest(self::$endpoint);
-        $service = new ServiceREST($token, $adapter);
+        $service = new Service\REST($token, $adapter);
         
-        $APIClient = new APIClient($service);
+        $APIClient = new Client($service);
         
         return $APIClient;
     }

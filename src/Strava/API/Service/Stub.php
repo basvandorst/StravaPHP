@@ -98,7 +98,7 @@ class Stub implements ServiceInterface {
         return $this->format($json);
     }
     
-    public function updateActivity($name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null) {
+    public function updateActivity($id, $name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null) {
         $json = '{"response": 1}';
         return $this->format($json);
     }

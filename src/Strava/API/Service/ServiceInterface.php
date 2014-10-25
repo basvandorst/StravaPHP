@@ -128,12 +128,13 @@ interface ServiceInterface {
     public function uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $data_type = null, $external_id = null);
 
     /**
+     * @param int $id
      * @param string $name
      * @param string $type
      * @param string $gear_id
      * @param string $description
      */
-    public function updateActivity($name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null);
+    public function updateActivity($id, $name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null);
 
     /**
      * @param integer $id
