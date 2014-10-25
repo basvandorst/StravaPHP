@@ -157,8 +157,20 @@ $client->getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'dis
 ## Class diagram
 ![stravaphp_uml](https://cloud.githubusercontent.com/assets/1196963/4705696/764cd4e2-587e-11e4-8c9f-d265255ee0a2.png)
 
-## Thanks guys!
+
+
+## StravaPHP
+### Used libraries
 - [Strava API](http://strava.github.io/api/)
 - [thephpleague/oauth2-client](https://github.com/thephpleague/oauth2-client/)
-- [respect/Validation](https://github.com/respect/Validation)
 - [educoder/pest] (https://github.com/educoder/pest)
+
+### Development
+The StravaPHP library was created by Bas van Dorst, [software engineer](https://www.linkedin.com/in/basvandorst) and cyclist enthusiast.
+
+### Contributing to StravaPHP
+All issues and pull requests should be filled on the basvandorst/StravaPHP repository.
+
+### License
+The StravaPHP library is open-source software licensed under MIT license.
+
