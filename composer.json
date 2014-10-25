@@ -1,6 +1,6 @@
 {
     "name": "basvandorst/stravaphp",
-    "description": "Strava V3 API PHP client with OAauth authentication",
+    "description": "Strava V3 API PHP client with OAuth authentication",
      "keywords":    ["Strava","API","OAuth","PHP","StravaPHP"],
     "require": {
         "educoder/pest": "1.0.0",
