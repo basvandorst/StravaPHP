@@ -42,18 +42,25 @@ use Strava\API\Factory;
 
 try {
     $factory = new Factory();
-    $OAuthClient = $factory->getOAuthClient('CLIENT_ID', 'CLIENT_SECRET', 'CALLBACK URI');
+    $oauth = $factory->getOAuthClient('CLIENT_ID', 'CLIENT_SECRET', 'CALLBACK URI');
     
     if (!isset($_GET['code'])) {
-        print '<a href="'.$OAuthClient->getAuthorizationUrl().'">connect</a>';
+        print '<a href="'.$oauth->getAuthorizationUrl().'">connect</a>';
     } else {
-        $token = $OAuthClient->getAccessToken('authorization_code', array(
+        $token = $oauth->getAccessToken('authorization_code', array(
             'code' => $_GET['code']
         ));
         
-        $strava = $factory->getAPIClient($token);
-        $activities = $strava->getAthleteKOM();
+        $client = $factory->getAPIClient($token);
+        $athlete = $client->getAthlete();
+        print_r($athlete);
+        
+        $activities = $client->getAthleteActivities();
         print_r($activities);
+        
+        $club = $client->getClub(9729);
+        print_r($club);
+        // etc..
     }
 } catch(Exception $e) {
     print $e->getMessage();
@@ -63,6 +70,12 @@ try {
 ## Class documentation
 
 ### Strava\API\Factory
+#### Usage
+```php
+// Configure your app ID, app token and callback uri
+$factory = new Factory();
+$OAuthClient = $factory->getOAuthClient(1234, 'APP-TOKEN', 'http://my-app/callback.php');
+```
 #### Methods
 ```php
 $factory->getOAuthClient($client_id, $client_secret, $redirect_uri);
@@ -70,12 +83,42 @@ $factory->getAPIClient($token);
 ```
 
 ### Strava\API\OAuth
+#### Usage
+```php
+// Parameter information: http://strava.github.io/api/v3/oauth/#get-authorize
+$parameters = array(
+    'clientId'     => 1234,
+    'clientSecret' => 'APP-TOKEN',
+    'redirectUri'  => 'http://my-app/callback.php'
+);
+$oauth = new OAuth($parameters);
+
+// The OAuth authorization procces (1st; let the user approve, 2nd; token exchange with Strava)
+if (!isset($_GET['code'])) {
+    print '<a href="'.$oauth->getAuthorizationUrl().'">connect</a>';
+} else {
+    $token = $oauth->getAccessToken('authorization_code', array('code' => $_GET['code']));
+    print $token;
+}
+```
 #### Methods
 ```php
 $oauth->getAuthorizationUrl($options = array());
 $oauth->getAuthorizationUrl($grant = 'authorization_code', $params = array());
 ```
 ### Strava\API\Client
+#### Usage
+```php
+// REST adapter (We use `Pest` in this project)
+$adapter = new Pest('https://www.strava.com/api/v3');
+// Service to use (Service\Stub is also available for test purposes)
+$service = new Service\REST('RECEIVED-TOKEN', $adapter);
+
+// Receive the athlete!
+$client = new Client($service);
+$athlete = $client->getAthlete();
+print_r($athlete);
+```
 #### Methods
 ```php
 $client->getAthlete($id = null);
@@ -114,8 +157,20 @@ $client->getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'dis
 ## Class diagram
 ![stravaphp_uml](https://cloud.githubusercontent.com/assets/1196963/4705696/764cd4e2-587e-11e4-8c9f-d265255ee0a2.png)
 
-## Thanks guys!
+
+
+## About StravaPHP
+### Used libraries
 - [Strava API](http://strava.github.io/api/)
 - [thephpleague/oauth2-client](https://github.com/thephpleague/oauth2-client/)
-- [respect/Validation](https://github.com/respect/Validation)
 - [educoder/pest] (https://github.com/educoder/pest)
+
+### Development
+The StravaPHP library was created by Bas van Dorst, [software engineer](https://www.linkedin.com/in/basvandorst) and cyclist enthusiast.
+
+### Contributing to StravaPHP
+All issues and pull requests should be filled on the basvandorst/StravaPHP repository.
+
+### License
+The StravaPHP library is open-source software licensed under MIT license.
+
