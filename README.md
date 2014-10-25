@@ -42,18 +42,25 @@ use Strava\API\Factory;
 
 try {
     $factory = new Factory();
-    $OAuthClient = $factory->getOAuthClient('CLIENT_ID', 'CLIENT_SECRET', 'CALLBACK URI');
+    $oauth = $factory->getOAuthClient('CLIENT_ID', 'CLIENT_SECRET', 'CALLBACK URI');
     
     if (!isset($_GET['code'])) {
-        print '<a href="'.$OAuthClient->getAuthorizationUrl().'">connect</a>';
+        print '<a href="'.$oauth->getAuthorizationUrl().'">connect</a>';
     } else {
-        $token = $OAuthClient->getAccessToken('authorization_code', array(
+        $token = $oauth->getAccessToken('authorization_code', array(
             'code' => $_GET['code']
         ));
         
-        $strava = $factory->getAPIClient($token);
-        $activities = $strava->getAthleteKOM();
+        $client = $factory->getAPIClient($token);
+        $athlete = $client->getAthlete();
+        print_r($athlete);
+        
+        $activities = $client->getAthleteActivities();
         print_r($activities);
+        
+        $club = $client->getClub(9729);
+        print_r($club);
+        // etc..
     }
 } catch(Exception $e) {
     print $e->getMessage();
@@ -66,7 +73,8 @@ try {
 #### Usage
 ```php
 $factory = new Factory();
-$OAuthClient = $factory->getOAuthClient(APP-ID, 'APP-TOKEN', 'http://my-app/callback.php');
+// Configure your app ID, app token and callback uri
+$OAuthClient = $factory->getOAuthClient(1234, 'APP-TOKEN', 'http://my-app/callback.php');
 ```
 #### Methods
 ```php
@@ -101,13 +109,13 @@ $oauth->getAuthorizationUrl($grant = 'authorization_code', $params = array());
 ### Strava\API\Client
 #### Usage
 ```php
-// REST adapter
+// REST adapter (We use `Pest` in this project)
 $adapter = new Pest('https://www.strava.com/api/v3');
-// Service to use (Service\Stub for test purposes)
+// Service to use (Service\Stub is also available for test purposes)
 $service = new Service\REST('RECEIVED-TOKEN', $adapter);
-// New Client instance
+
+// Receive the athlete!
 $client = new Client($service);
-// Receive the data!
 $athlete = $client->getAthlete();
 print_r($athlete);
 ```
