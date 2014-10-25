@@ -63,6 +63,11 @@ try {
 ## Class documentation
 
 ### Strava\API\Factory
+#### Usage
+```php
+$factory = new Factory();
+$OAuthClient = $factory->getOAuthClient(APP-ID, 'APP-TOKEN', 'http://my-app/callback.php');
+```
 #### Methods
 ```php
 $factory->getOAuthClient($client_id, $client_secret, $redirect_uri);
@@ -70,12 +75,42 @@ $factory->getAPIClient($token);
 ```
 
 ### Strava\API\OAuth
+#### Usage
+```php
+// Parameter information: http://strava.github.io/api/v3/oauth/#get-authorize
+$parameters = array(
+    'clientId'     => 1234,
+    'clientSecret' => 'APP-TOKEN',
+    'redirectUri'  => 'http://my-app/callback.php'
+);
+$oauth = new OAuth($parameters);
+
+// The OAuth authorization procces (1st; let the user approve, 2nd; token exchange with Strava)
+if (!isset($_GET['code'])) {
+    print '<a href="'.$oauth->getAuthorizationUrl().'">connect</a>';
+} else {
+    $token = $oauth->getAccessToken('authorization_code', array('code' => $_GET['code']));
+    print $token;
+}
+```
 #### Methods
 ```php
 $oauth->getAuthorizationUrl($options = array());
 $oauth->getAuthorizationUrl($grant = 'authorization_code', $params = array());
 ```
 ### Strava\API\Client
+#### Usage
+```php
+// REST adapter
+$adapter = new Pest('https://www.strava.com/api/v3');
+// Service to use (Service\Stub for test purposes)
+$service = new Service\REST('RECEIVED-TOKEN', $adapter);
+// New Client instance
+$client = new Client($service);
+// Receive the data!
+$athlete = $client->getAthlete();
+print_r($athlete);
+```
 #### Methods
 ```php
 $client->getAthlete($id = null);
