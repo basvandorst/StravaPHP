@@ -6,7 +6,7 @@ use Strava\API\Service\Exception as ServiceException;
  * 
  * @see Strava\API\Client
  * @author Bas van Dorst
- * @package StravaPHPPHP
+ * @package StravaPHP
  */
 class ClientTest extends PHPUnit_Framework_TestCase
 {    

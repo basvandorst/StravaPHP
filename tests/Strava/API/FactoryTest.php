@@ -4,7 +4,7 @@
  * 
  * @see Strava\API\Factory
  * @author Bas van Dorst
- * @package StravaPHPPHP
+ * @package StravaPHP
  */
 class FactoryTest extends PHPUnit_Framework_TestCase
 {    

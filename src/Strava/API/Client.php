@@ -358,6 +358,7 @@ class Client {
      * Update an activity
      * 
      * @link    http://strava.github.io/api/v3/activities/#put-updates
+     * @param   int $id
      * @param   string $name
      * @param   string $type
      * @param   boolean $private
@@ -368,9 +369,9 @@ class Client {
      * @return  array
      * @throws  Exception
      */
-    public function updateActivity($name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null) {
+    public function updateActivity($id, $name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null) {
         try {
-            return $this->service->updateActivity($name, $type, $private, $commute, $trainer, $gear_id, $description);
+            return $this->service->updateActivity($id, $name, $type, $private, $commute, $trainer, $gear_id, $description);
         } catch (ServiceException $e) {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }

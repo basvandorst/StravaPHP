@@ -4,7 +4,7 @@
  * 
  * @see Strava\API\Service\Stub
  * @author Bas van Dorst
- * @package StravaPHPPHP
+ * @package StravaPHP
  */
 class StubTest extends PHPUnit_Framework_TestCase
 {

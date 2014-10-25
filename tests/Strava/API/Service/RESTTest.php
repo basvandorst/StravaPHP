@@ -4,7 +4,7 @@
  * 
  * @see Strava\API\Service\REST
  * @author Bas van Dorst
- * @package StravaPHPPHP
+ * @package StravaPHP
  */
 class RESTTest extends PHPUnit_Framework_TestCase
 {

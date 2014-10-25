@@ -4,7 +4,7 @@
  * 
  * @see Strava\API\Exception
  * @author Bas van Dorst
- * @package StravaPHPPHP
+ * @package StravaPHP
  */
 class ExceptionTest extends PHPUnit_Framework_TestCase
 {    
