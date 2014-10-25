@@ -194,11 +194,11 @@ class ClientTest extends PHPUnit_Framework_TestCase
     
     public function testUpdateAthlete() {
         $serviceMock = $this->getServiceMock();
-        $serviceMock->expects($this->once())->method('updateActivity')
+        $serviceMock->expects($this->once())->method('updateAthlete')
            ->will($this->returnValue('output'));
          
         $client = new Strava\API\Client($serviceMock);
-        $output = $client->updateActivity('Xyz','ABC','The Netherlands','M',83.00);
+        $output = $client->updateAthlete('Xyz','ABC','The Netherlands','M',83.00);
         
         $this->assertEquals('output', $output);
     }
@@ -207,11 +207,11 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $this->setExpectedException('Strava\API\Exception');
 
         $serviceMock = $this->getServiceMock();
-        $serviceMock->expects($this->once())->method('updateActivity')
+        $serviceMock->expects($this->once())->method('updateAthlete')
            ->will($this->throwException(new ServiceException));
          
         $client = new Strava\API\Client($serviceMock);
-        $output = $client->updateActivity('Xyz','ABC','The Netherlands','M',83.00);
+        $output = $client->updateAthlete('Xyz','ABC','The Netherlands','M',83.00);
     }
     
     public function testGetActivity() {

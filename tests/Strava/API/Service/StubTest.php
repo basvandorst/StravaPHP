@@ -58,7 +58,7 @@ class StubTest extends PHPUnit_Framework_TestCase
     
     public function testUpdateAthlete() {
         $service = new Strava\API\Service\Stub();
-        $output = $service->updateActivity('Xyz','ABC','The Netherlands','M',83.00);
+        $output = $service->updateAthlete('Xyz','ABC','The Netherlands','M',83.00);
         $this->assertTrue(is_array($output));
     }
     

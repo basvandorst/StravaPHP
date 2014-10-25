@@ -4,7 +4,7 @@ namespace Strava\API;
 use Strava\API\OAuth as OAuthClient;
 use Strava\API\Client as APIClient;
 use Strava\API\Service\REST as ServiceREST;
-use Strava\API\Adapter\REST\Pest as AdapterPest;
+use Pest;
 
 // TODO: let the factory do the job..
 class Factory {
@@ -35,11 +35,11 @@ class Factory {
      * @return Strava\API\Client
      */
     public function getAPIClient($token) {
-        $adapter = new AdapterPest();
+        $adapter = new Pest('');
         $service = new ServiceREST($token, $adapter);
         
         $APIClient = new APIClient($service);
         
-        return new $APIClient;
+        return $APIClient;
     }
 }
