@@ -1,13 +1,13 @@
 <?php
-use Strava\API\ServiceException;
-
+/**
+ * Test...
+ * 
+ * @see Strava\API\Service\Stub
+ * @author Bas van Dorst
+ * @package StravaPHPPHP
+ */
 class StubTest extends PHPUnit_Framework_TestCase
 {
-    protected function setUp ()
-    {
-        parent::setUp();
-    }
-    
     public function testGetAthlete() {
         $service = new Strava\API\Service\Stub();
         $output = $service->getAthlete(1234);

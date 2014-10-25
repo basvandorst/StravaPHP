@@ -4,8 +4,8 @@ namespace Strava\API\Service;
 /**
  * Strava stub Service
  * 
- * @author: Bas van Dorst
- * @package Strava
+ * @author Bas van Dorst
+ * @package StravaPHP
  */
 class Stub implements ServiceInterface {
     public function getAthlete($id = null) {

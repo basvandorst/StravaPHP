@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Test...
+ * 
+ * @see Strava\API\Factory
+ * @author Bas van Dorst
+ * @package StravaPHPPHP
+ */
 class FactoryTest extends PHPUnit_Framework_TestCase
 {    
     public function testGetOAuthInstance() {

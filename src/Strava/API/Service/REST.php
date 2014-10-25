@@ -6,8 +6,8 @@ use Pest;
 /**
  * Strava REST Service
  * 
- * @author: Bas van Dorst
- * @package Strava
+ * @author Bas van Dorst
+ * @package StravaPHP
  */
 class REST implements ServiceInterface {
     

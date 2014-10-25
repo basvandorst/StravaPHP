@@ -8,8 +8,8 @@ use Strava\API\Service\Exception as ServiceException;
 /**
  * Strava API Client
  * 
- * @author: Bas van Dorst
- * @package Strava
+ * @author Bas van Dorst
+ * @package StravaPHP
  */
 class Client {
 

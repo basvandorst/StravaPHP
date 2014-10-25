@@ -1,5 +1,11 @@
 <?php
-
+/**
+ * Test...
+ * 
+ * @see Strava\API\Exception
+ * @author Bas van Dorst
+ * @package StravaPHPPHP
+ */
 class ExceptionTest extends PHPUnit_Framework_TestCase
 {    
     public function testIsException() {

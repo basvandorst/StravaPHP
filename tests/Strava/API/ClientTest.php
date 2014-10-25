@@ -2,7 +2,11 @@
 use Strava\API\Service\Exception as ServiceException;
 
 /**
- * Happy flow testing..
+ * Test...
+ * 
+ * @see Strava\API\Client
+ * @author Bas van Dorst
+ * @package StravaPHPPHP
  */
 class ClientTest extends PHPUnit_Framework_TestCase
 {    
@@ -12,7 +16,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
             ->getMock();
         return $serviceMock;
     }
-    
     
     public function testGetAthlete() {
         $serviceMock = $this->getServiceMock();

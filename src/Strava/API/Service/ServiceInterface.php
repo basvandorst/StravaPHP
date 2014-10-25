@@ -6,8 +6,8 @@ namespace Strava\API\Service;
  * Just to make sure we can trust the method signatures of all the 
  * service classes.
  * 
- * @author: Bas van Dorst
- * @package Strava
+ * @author Bas van Dorst
+ * @package StravaPHP
  */
 interface ServiceInterface {
     public function getAthlete($id = null);
