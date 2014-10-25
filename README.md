@@ -72,8 +72,8 @@ try {
 ### Strava\API\Factory
 #### Usage
 ```php
-$factory = new Factory();
 // Configure your app ID, app token and callback uri
+$factory = new Factory();
 $OAuthClient = $factory->getOAuthClient(1234, 'APP-TOKEN', 'http://my-app/callback.php');
 ```
 #### Methods
