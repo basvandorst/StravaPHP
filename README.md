@@ -164,12 +164,12 @@ $client->getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'dis
 ### Used libraries
 - [Strava API](http://strava.github.io/api/)
 - [thephpleague/oauth2-client](https://github.com/thephpleague/oauth2-client/)
-- [educoder/pest] (https://github.com/educoder/pest)
+- [educoder/pest](https://github.com/educoder/pest)
 
 ### Development
 The StravaPHP library was created by Bas van Dorst, [software engineer](https://www.linkedin.com/in/basvandorst) and cyclist enthusiast.
 
-### Contributing to StravaPHP
+### Contributing
 All issues and pull requests should be filled on the basvandorst/StravaPHP repository.
 
 ### License
