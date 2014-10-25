@@ -198,7 +198,7 @@ class REST implements ServiceInterface {
     }
     
     public function createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null) {
-        $path = '/activities/';
+        $path = '/activities';
         $parameters = array(
             'name' => $name,
             'type' => $type,
@@ -212,7 +212,7 @@ class REST implements ServiceInterface {
     }
     
     public function uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $data_type = null, $external_id = null) {
-        $path = '/uploads/';
+        $path = '/uploads';
         $parameters = array(
             'activity_type' => $activity_type,
             'name' => $name,
@@ -244,21 +244,18 @@ class REST implements ServiceInterface {
     
     public function deleteActivity($id) {
         $path = '/activities/'.$id;
-        $result = $this->adapter->delete($path, array(), $this->getHeaders());
+        $result = $this->adapter->delete($path, array());
         return $this->format($result);
     }
     
     public function getGear($id) {
-        $path = '/gear';
-        $parameters = array(
-            'id' => $id,
-        );
-        $result = $this->adapter->get($path, $parameters, $this->getHeaders());
+        $path = '/gear/'.$id;
+        $result = $this->adapter->get($path, array(), $this->getHeaders());
         return $this->format($result);
     }
     
     public function getClub($id) {
-        $path = '/clubs'.$id;
+        $path = '/clubs/'.$id;
         $result = $this->adapter->get($path, array(), $this->getHeaders());
         return $this->format($result);
     }
