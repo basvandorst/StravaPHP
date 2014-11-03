@@ -7,7 +7,7 @@ StravaPHP
 **TLDR;** Strava V3 API PHP client with OAuth authentication
 
 The Strava V3 API is a publicly available interface allowing developers access 
-to the rich Strava dataset. The interface is stable and currently used by the 
+to the rich [Strava](http://www.strava.com/) dataset. The interface is stable and currently used by the 
 Strava mobile applications. However, changes are occasionally made to improve 
 performance and enhance features. See the [changelog](http://strava.github.io/api/v3/changelog/) for more details.
 
