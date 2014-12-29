@@ -73,7 +73,8 @@ use Strava\API\Exception;
 use Strava\API\Service\REST;
 
 try { 
-    $service = new REST('4b5b18f3be24c35ef0257068fda11a2264c4b6fa', new Pest('https://www.strava.com/api/v3'));
+    $adapter = new Pest('https://www.strava.com/api/v3');
+    $service = new REST($token, $adapter);  // Define your user token here..
     $client = new Client($service);
 
     $athlete = $client->getAthlete();
