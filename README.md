@@ -44,9 +44,9 @@ use Strava\API\Exception;
 
 try {
     $options = array(
-        'clientId'     => 12345, 
-        'clientSecret' => 'CLIENT_SECRET',
-        'redirectUri'  => 'CALLBACK_URI'
+        'clientId'     => 1234,
+        'clientSecret' => 'APP-TOKEN',
+        'redirectUri'  => 'http://my-app/callback.php'
     );
     $oauth = new OAuth($options);
     
@@ -109,12 +109,12 @@ $factory->getAPIClient($token);
 #### Usage
 ```php
 // Parameter information: http://strava.github.io/api/v3/oauth/#get-authorize
-$parameters = array(
+$options = array(
     'clientId'     => 1234,
     'clientSecret' => 'APP-TOKEN',
     'redirectUri'  => 'http://my-app/callback.php'
 );
-$oauth = new OAuth($parameters);
+$oauth = new OAuth($options);
 
 // The OAuth authorization procces (1st; let the user approve, 2nd; token exchange with Strava)
 if (!isset($_GET['code'])) {
