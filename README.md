@@ -63,7 +63,7 @@ try {
 }
 ```
 #### Then, call your API method!
-```
+```php
 <?php 
 include 'vendor/autoload.php';
 
