@@ -27,22 +27,28 @@ Use composer to install this StravaPHP package.
 ```
 {
     "require": {
-        "basvandorst/StravaPHP": "dev-master"
+        "basvandorst/StravaPHP": "1.0.0"
     }
 }
 ```
 
 
-### Use it!
+### StravaPHP usage
+#### First, authorisation and authentication
 ```php
 <?php 
 include 'vendor/autoload.php';
+
+use Strava\API\OAuth;
 use Strava\API\Exception;
-use Strava\API\Factory;
 
 try {
-    $factory = new Factory();
-    $oauth = $factory->getOAuthClient('CLIENT_ID', 'CLIENT_SECRET', 'CALLBACK URI');
+    $options = array(
+        'clientId'     => 12345, 
+        'clientSecret' => 'CLIENT_SECRET',
+        'redirectUri'  => 'CALLBACK_URI'
+    );
+    $oauth = new OAuth($options);
     
     if (!isset($_GET['code'])) {
         print '<a href="'.$oauth->getAuthorizationUrl().'">connect</a>';
@@ -50,18 +56,34 @@ try {
         $token = $oauth->getAccessToken('authorization_code', array(
             'code' => $_GET['code']
         ));
-        
-        $client = $factory->getAPIClient($token);
-        $athlete = $client->getAthlete();
-        print_r($athlete);
-        
-        $activities = $client->getAthleteActivities();
-        print_r($activities);
-        
-        $club = $client->getClub(9729);
-        print_r($club);
-        // etc..
+        print $token;
     }
+} catch(Exception $e) {
+    print $e->getMessage();
+}
+```
+#### Then, call your API method!
+```
+<?php 
+include 'vendor/autoload.php';
+
+use Pest;
+use Strava\API\Client;
+use Strava\API\Exception;
+use Strava\API\Service\REST;
+
+try { 
+    $service = new REST('4b5b18f3be24c35ef0257068fda11a2264c4b6fa', new Pest('https://www.strava.com/api/v3'));
+    $client = new Client($service);
+
+    $athlete = $client->getAthlete();
+    print_r($athlete);
+
+    $activities = $client->getAthleteActivities();
+    print_r($activities);
+
+    $club = $client->getClub(9729);
+    print_r($club);
 } catch(Exception $e) {
     print $e->getMessage();
 }
@@ -104,7 +126,7 @@ if (!isset($_GET['code'])) {
 #### Methods
 ```php
 $oauth->getAuthorizationUrl($options = array());
-$oauth->getAuthorizationUrl($grant = 'authorization_code', $params = array());
+$oauth->getAccessToken($grant = 'authorization_code', $params = array());
 ```
 ### Strava\API\Client
 #### Usage
