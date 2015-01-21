@@ -4,7 +4,7 @@
      "keywords":    ["Strava","API","OAuth","PHP","StravaPHP"],
     "require": {
         "educoder/pest": "1.0.0",
-        "league/oauth2-client": "dev-master"
+        "league/oauth2-client": "master"
     },
     "license": "MIT",
     "authors": [
