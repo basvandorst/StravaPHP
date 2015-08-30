@@ -319,7 +319,7 @@ class REST implements ServiceInterface {
     public function getSegmentEffort($id, $athlete_id = null, $start_date_local = null, $end_date_local = null, $page = null, $per_page = null) {
         $path = '/segments/'.$id.'/all_efforts';
         $parameters = array(
-            'bounds' => $athlete_id,
+            'athlete_id' => $athlete_id,
             'start_date_local' => $start_date_local,
             'end_date_local' => $end_date_local,
             'page' => $page,
