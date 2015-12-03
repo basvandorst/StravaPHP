@@ -15,6 +15,19 @@ interface ServiceInterface {
      * @param integer $id
      */
     public function getAthlete($id = null);
+
+    /**
+     * Retrieve athlete stats
+     *
+     * Only available for the authenticated athlete.
+     *
+     * @link    http://strava.github.io/api/v3/athlete/#stats
+     * @param   int $id
+     * @return  array
+     * @throws  ClientException
+     */
+    public function getAthleteStats($id);
+
     public function getAthleteClubs();
 
     /**

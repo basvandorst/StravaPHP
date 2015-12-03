@@ -13,6 +13,12 @@ class StubTest extends PHPUnit_Framework_TestCase
         $output = $service->getAthlete(1234);
         $this->assertTrue(is_array($output));
     }
+
+    public function testGetAthleteStats() {
+        $service = new Strava\API\Service\Stub();
+        $output = $service->getAthleteStats(1234);
+        $this->assertTrue(is_array($output));
+    }
     
     public function testGetAthleteClubs() {
         $service = new Strava\API\Service\Stub();
