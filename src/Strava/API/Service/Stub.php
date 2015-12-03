@@ -127,7 +127,27 @@ class Stub implements ServiceInterface {
         $json = '{"response": 1}';
         return $this->format($json);
     }
-    
+
+    public function getClubAnnouncements($id) {
+        $json = '{"response": 1}';
+        return $this->format($json);
+    }
+
+    public function getClubGroupEvents($id) {
+        $json = '{"response": 1}';
+        return $this->format($json);
+    }
+
+    public function joinClub($id) {
+        $json = '{"response": 1}';
+        return $this->format($json);
+    }
+
+    public function leaveClub($id) {
+        $json = '{"response": 1}';
+        return $this->format($json);
+    }
+
     public function getSegment($id) {
         $json = '{"response": 1}';
         return $this->format($json);

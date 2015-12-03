@@ -279,7 +279,31 @@ class REST implements ServiceInterface {
         $result = $this->adapter->get($path, $parameters, $this->getHeaders());
         return $this->format($result);
     }
-    
+
+    public function getClubAnnouncements($id) {
+        $path = '/clubs/'.$id.'/announcements';
+        $result = $this->adapter->get($path, array(), $this->getHeaders());
+        return $this->format($result);
+    }
+
+    public function getClubGroupEvents($id) {
+        $path = '/clubs/'.$id.'/group_events';
+        $result = $this->adapter->get($path, array(), $this->getHeaders());
+        return $this->format($result);
+    }
+
+    public function joinClub($id) {
+        $path = '/clubs/'.$id.'/join';
+        $result = $this->adapter->post($path, array(), $this->getHeaders());
+        return $this->format($result);
+    }
+
+    public function leaveClub($id) {
+        $path = '/clubs/'.$id.'/leave';
+        $result = $this->adapter->post($path, array(), $this->getHeaders());
+        return $this->format($result);
+    }
+
     public function getSegment($id) {
         $path = '/segments/'.$id;
         $result = $this->adapter->get($path, array(), $this->getHeaders());
