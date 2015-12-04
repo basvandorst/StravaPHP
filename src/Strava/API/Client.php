@@ -461,7 +461,71 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
+    /**
+     * List club announcements
+     *
+     * @link    https://strava.github.io/api/v3/clubs/#get-announcements
+     * @param   int $id
+     * @return  array
+     * @throws  Exception
+     */
+    public function getClubAnnouncements($id) {
+        try {
+            return $this->service->getClubAnnouncements($id);
+        } catch (ServiceException $e) {
+            throw new ClientException('[SERVICE] '.$e->getMessage());
+        }
+    }
+
+    /**
+     * List club group events
+     *
+     * @link    https://strava.github.io/api/v3/clubs/#get-group-events
+     * @param   int $id
+     * @return  array
+     * @throws  Exception
+     */
+    public function getClubGroupEvents($id) {
+        try {
+            return $this->service->getClubGroupEvents($id);
+        } catch (ServiceException $e) {
+            throw new ClientException('[SERVICE] '.$e->getMessage());
+        }
+    }
+
+    /**
+     * Join a club
+     *
+     * @link    https://strava.github.io/api/v3/clubs/#join
+     * @param   int $id
+     * @return  array
+     * @throws  Exception
+     */
+    public function joinClub($id) {
+        try {
+            return $this->service->joinClub($id);
+        } catch (ServiceException $e) {
+            throw new ClientException('[SERVICE] '.$e->getMessage());
+        }
+    }
+
+    /**
+     * Leave a club
+     *
+     * @link    https://strava.github.io/api/v3/clubs/#leave
+     * @param   int $id
+     * @return  array
+     * @throws  Exception
+     */
+    public function leaveClub($id) {
+        try {
+            return $this->service->leaveClub($id);
+        } catch (ServiceException $e) {
+            throw new ClientException('[SERVICE] '.$e->getMessage());
+        }
+    }
+
     /**
      * Retrieve a segment
      * 

@@ -172,6 +172,26 @@ interface ServiceInterface {
     /**
      * @param integer $id
      */
+    public function getClubAnnouncements($id);
+
+    /**
+     * @param integer $id
+     */
+    public function getClubGroupEvents($id);
+
+    /**
+     * @param integer $id
+     */
+    public function joinClub($id);
+
+    /**
+     * @param integer $id
+     */
+    public function leaveClub($id);
+
+    /**
+     * @param integer $id
+     */
     public function getSegment($id);
 
     /**

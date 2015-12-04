@@ -330,7 +330,51 @@ class RESTTest extends PHPUnit_Framework_TestCase
         $output = $service->getClubActivities(1234);
         $this->assertArrayHasKey('response', $output);
     }
-    
+
+    public function testGetClubAnnouncements() {
+        $pestMock = $this->getPestMock();
+        $pestMock->expects($this->once())->method('get')
+          ->with($this->equalTo('/clubs/1234/announcements'))
+          ->will($this->returnValue('{"response": 1}'));
+
+        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $output = $service->getClubAnnouncements(1234);
+        $this->assertArrayHasKey('response', $output);
+    }
+
+    public function testGetClubGroupEvents() {
+        $pestMock = $this->getPestMock();
+        $pestMock->expects($this->once())->method('get')
+          ->with($this->equalTo('/clubs/1234/group_events'))
+          ->will($this->returnValue('{"response": 1}'));
+
+        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $output = $service->getClubGroupEvents(1234);
+        $this->assertArrayHasKey('response', $output);
+    }
+
+    public function testJoinClub() {
+        $pestMock = $this->getPestMock();
+        $pestMock->expects($this->once())->method('post')
+          ->with($this->equalTo('/clubs/1234/join'))
+          ->will($this->returnValue('{"response": 1}'));
+
+        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $output = $service->joinClub(1234);
+        $this->assertArrayHasKey('response', $output);
+    }
+
+    public function testLeaveClub() {
+        $pestMock = $this->getPestMock();
+        $pestMock->expects($this->once())->method('post')
+          ->with($this->equalTo('/clubs/1234/leave'))
+          ->will($this->returnValue('{"response": 1}'));
+
+        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $output = $service->leaveClub(1234);
+        $this->assertArrayHasKey('response', $output);
+    }
+
     public function testGetSegment() {
         $pestMock = $this->getPestMock();
         $pestMock->expects($this->once())->method('get')

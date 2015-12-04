@@ -151,7 +151,31 @@ class StubTest extends PHPUnit_Framework_TestCase
         $output = $service->getClubActivities(1234);
         $this->assertTrue(is_array($output));
     }
-    
+
+    public function testGetClubAnnouncements() {
+        $service = new Strava\API\Service\Stub();
+        $output = $service->getClubAnnouncements(1234);
+        $this->assertTrue(is_array($output));
+    }
+
+    public function testGetClubGroupEvents() {
+        $service = new Strava\API\Service\Stub();
+        $output = $service->getClubGroupEvents(1234);
+        $this->assertTrue(is_array($output));
+    }
+
+    public function testJoinClub() {
+        $service = new Strava\API\Service\Stub();
+        $output = $service->joinClub(1234);
+        $this->assertTrue(is_array($output));
+    }
+
+    public function testLeaveClub() {
+        $service = new Strava\API\Service\Stub();
+        $output = $service->leaveClub(1234);
+        $this->assertTrue(is_array($output));
+    }
+
     public function testGetSegment() {
         $service = new Strava\API\Service\Stub();
         $output = $service->getSegment(1234);
