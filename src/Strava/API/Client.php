@@ -46,6 +46,24 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
+
+    /**
+     * Retrieve athlete stats
+     *
+     * Only available for the authenticated athlete.
+     *
+     * @link    http://strava.github.io/api/v3/athlete/#stats
+     * @param   int $id
+     * @return  array
+     * @throws  ClientException
+     */
+    public function getAthleteStats($id) {
+        try {
+            return $this->service->getAthleteStats($id);
+        } catch (ServiceException $e) {
+            throw new ClientException('[SERVICE] '.$e->getMessage());
+        }
+    }
     
     /**
      * List athlete clubs

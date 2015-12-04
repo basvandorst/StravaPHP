@@ -47,6 +47,12 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
     
+    public function getAthleteStats($id) {
+        $path = '/athletes/'.$id.'/stats';
+        $result = $this->adapter->get($path, array(), $this->getHeaders());
+        return $this->format($result);
+    }
+
     public function getAthleteClubs() {
         $path = '/athlete/clubs';
         $result = $this->adapter->get($path, array(), $this->getHeaders());

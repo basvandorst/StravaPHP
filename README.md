@@ -145,6 +145,7 @@ print_r($athlete);
 #### Methods
 ```php
 $client->getAthlete($id = null);
+$client->getAthleteStats($id);
 $client->getAthleteClubs();
 $client->getAthleteActivities($before = null, $after = null, $page = null, $per_page = null);
 $client->getAthleteFriends($id = null, $page = null, $per_page = null);

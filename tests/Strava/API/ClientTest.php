@@ -38,6 +38,17 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $client = new Strava\API\Client($serviceMock);
         $output = $client->getAthlete(1234);
     }
+
+    public function testGetAthleteStats() {
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getAthleteStats')
+           ->will($this->returnValue('output'));
+
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getAthleteStats(1234);
+
+        $this->assertEquals('output', $output);
+    }
     
     public function testGetAthleteClubs() {
         $serviceMock = $this->getServiceMock();
