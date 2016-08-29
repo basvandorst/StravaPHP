@@ -158,7 +158,7 @@ class Stub implements ServiceInterface {
         return $this->format($json);
     }
     
-    public function getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $page = null, $per_page = null) {
+    public function getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $context_entries = null, $page = null, $per_page = null) {
         $json = '{"response": 1}';
         return $this->format($json);
     }

@@ -316,7 +316,7 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
     
-    public function getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $page = null, $per_page = null) {
+    public function getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $context_entries = null, $page = null, $per_page = null) {
         $path = '/segments/'.$id.'/leaderboard';
         $parameters = array(
             'id' => $gender,
@@ -325,6 +325,7 @@ class REST implements ServiceInterface {
             'following' => $following,
             'club_id' => $club_id,
             'date_range' => $date_range,
+            'context_entries' => $context_entries,
             'page' => $page,
             'per_page' => $per_page
         );

@@ -571,14 +571,15 @@ class Client {
      * @param   boolean $following
      * @param   int $club_id
      * @param   string $date_range
+     * @param   int $context_entries
      * @param   int $page
      * @param   int $per_page
      * @return  array
      * @throws  Exception
      */
-    public function getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $page = null, $per_page = null) {
+    public function getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $context_entries = null, $page = null, $per_page = null) {
         try {
-            return $this->service->getSegmentLeaderboard($id, $gender, $age_group, $weight_class, $following, $club_id, $date_range, $page, $per_page);
+            return $this->service->getSegmentLeaderboard($id, $gender, $age_group, $weight_class, $following, $club_id, $date_range, $context_entries, $page, $per_page);
         } catch (ServiceException $e) {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }

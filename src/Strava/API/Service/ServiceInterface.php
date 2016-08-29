@@ -218,7 +218,7 @@ interface ServiceInterface {
      * @param integer $per_page
      * @param integer $id
      */
-    public function getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $page = null, $per_page = null);
+    public function getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $context_entries = null, $page = null, $per_page = null);
 
     /**
      * @param string $bounds
