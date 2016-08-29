@@ -250,7 +250,7 @@ class REST implements ServiceInterface {
     
     public function deleteActivity($id) {
         $path = '/activities/'.$id;
-        $result = $this->adapter->delete($path, array());
+        $result = $this->adapter->delete($path, $this->getHeaders());
         return $this->format($result);
     }
     
