@@ -635,7 +635,7 @@ class Client {
      * @return  array
      * @throws  Exception
      */
-    public function getStreamsActivity($id, $types, $resolution = 'all', $series_type = 'distance') {
+    public function getStreamsActivity($id, $types, $resolution = null, $series_type = 'distance') {
         try {
             return $this->service->getStreamsActivity($id, $types, $resolution, $series_type);
         } catch (ServiceException $e) {
@@ -654,7 +654,7 @@ class Client {
      * @return  array
      * @throws  Exception
      */
-    public function getStreamsEffort($id, $types, $resolution = 'all', $series_type = 'distance') {
+    public function getStreamsEffort($id, $types, $resolution = null, $series_type = 'distance') {
         try {
             return $this->service->getStreamsEffort($id, $types, $resolution, $series_type);
         } catch (ServiceException $e) {
@@ -672,7 +672,7 @@ class Client {
      * @return  array
      * @throws  Exception
      */
-    public function getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'distance') {
+    public function getStreamsSegment($id, $types, $resolution = null, $series_type = 'distance') {
         try {
             return $this->service->getStreamsSegment($id, $types, $resolution, $series_type);
         } catch (ServiceException $e) {
