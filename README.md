@@ -24,12 +24,15 @@ Use composer to install this StravaPHP package.
 
 ```
 {
-    "require": {
-        "qligier/StravaPHP": "1.0.1"
-    }
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/qligier/StravaPHP"
+        }
+    ]
 }
 ```
-
+Also watch [basvandorst/StravaPHP](https://packagist.org/packages/basvandorst/stravaphp) package, which could have been updated.
 
 ### StravaPHP usage
 #### First, authorisation and authentication
