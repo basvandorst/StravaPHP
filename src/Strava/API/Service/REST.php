@@ -217,7 +217,7 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
     
-    public function uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $data_type = null, $external_id = null) {
+    public function uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $commute = null, $data_type = null, $external_id = null) {
         $path = '/uploads';
         $parameters = array(
             'activity_type' => $activity_type,
@@ -225,9 +225,10 @@ class REST implements ServiceInterface {
             'description' => $description,
             'private' => $private,
             'trainer' => $trainer,
+            'commute' => $commute,
             'data_type' => $data_type,
             'external_id' => $external_id,
-            'file' => $file,
+            'file' => '@'.ltrim($file, '@'),
         );
         $result = $this->adapter->post($path, $parameters, $this->getHeaders());
         return $this->format($result);

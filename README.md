@@ -162,7 +162,7 @@ $client->getActivityZones($id);
 $client->getActivityLaps($id);
 $client->getActivityUploadStatus($id);
 $client->createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null);
-$client->uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $data_type = null, $external_id = null);
+$client->uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $commute = null, $data_type = null, $external_id = null);
 $client->updateActivity($id, $name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null);
 $client->deleteActivity($id);
 $client->getGear($id);

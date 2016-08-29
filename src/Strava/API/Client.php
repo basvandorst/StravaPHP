@@ -359,14 +359,15 @@ class Client {
      * @param   string $description
      * @param   int $private
      * @param   int $trainer
+     * @param   int $commute
      * @param   string $data_type
      * @param   string $external_id
      * @return  array
      * @throws  Exception
      */
-    public function uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $data_type = null, $external_id = null) { 
+    public function uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $commute = null, $data_type = null, $external_id = null) { 
         try {
-            return $this->service->uploadActivity($file, $activity_type, $name, $description, $private, $trainer, $data_type, $external_id);
+            return $this->service->uploadActivity($file, $activity_type, $name, $description, $private, $trainer, $commute, $data_type, $external_id);
         } catch (ServiceException $e) {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
