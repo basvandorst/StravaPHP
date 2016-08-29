@@ -1,8 +1,6 @@
 StravaPHP
 =========
-[![Build Status](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/badges/build.png?b=master)](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/build-status/master)
-[![Code Coverage](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/?branch=master)
+This is a fork of [basvandorst/StravaPHP](https://github.com/basvandorst/StravaPHP) with up-to-date dependancies.
 
 **TLDR;** Strava V3 API PHP client with OAuth authentication
 
@@ -27,7 +25,7 @@ Use composer to install this StravaPHP package.
 ```
 {
     "require": {
-        "basvandorst/StravaPHP": "1.0.1"
+        "qligier/StravaPHP": "1.0.1"
     }
 }
 ```
