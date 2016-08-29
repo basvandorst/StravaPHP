@@ -65,7 +65,6 @@ try {
 <?php 
 include 'vendor/autoload.php';
 
-use Pest;
 use Strava\API\Client;
 use Strava\API\Exception;
 use Strava\API\Service\REST;
