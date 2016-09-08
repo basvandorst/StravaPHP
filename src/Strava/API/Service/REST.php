@@ -362,7 +362,7 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
     
-    public function getStreamsActivity($id, $types, $resolution = 'all', $series_type = 'distance') {
+    public function getStreamsActivity($id, $types, $resolution = null, $series_type = 'distance') {
         $path = '/activities/'.$id.'/streams/'.$types;
         $parameters = array(
             'resolution' => $resolution,
@@ -373,7 +373,7 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
     
-    public function getStreamsEffort($id, $types, $resolution = 'all', $series_type = 'distance') {
+    public function getStreamsEffort($id, $types, $resolution = null, $series_type = 'distance') {
         $path = '/segment_efforts/'.$id.'/streams/'.$types;
         $parameters = array(
             'resolution' => $resolution,
@@ -384,7 +384,7 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
     
-    public function getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'distance') {
+    public function getStreamsSegment($id, $types, $resolution = null, $series_type = 'distance') {
         $path = '/segments/'.$id.'/streams/'.$types;
         $parameters = array(
             'resolution' => $resolution,

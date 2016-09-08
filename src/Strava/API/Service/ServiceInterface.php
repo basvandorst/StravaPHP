@@ -241,17 +241,17 @@ interface ServiceInterface {
      * @param integer $id
      * @param string $types
      */
-    public function getStreamsActivity($id, $types, $resolution = 'all', $series_type = 'distance');
+    public function getStreamsActivity($id, $types, $resolution = null, $series_type = 'distance');
 
     /**
      * @param integer $id
      * @param string $types
      */
-    public function getStreamsEffort($id, $types, $resolution = 'all', $series_type = 'distance');
+    public function getStreamsEffort($id, $types, $resolution = null, $series_type = 'distance');
 
     /**
      * @param integer $id
      * @param string $types
      */
-    public function getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'distance');
+    public function getStreamsSegment($id, $types, $resolution = null, $series_type = 'distance');
 }

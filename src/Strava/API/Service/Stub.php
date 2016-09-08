@@ -173,17 +173,17 @@ class Stub implements ServiceInterface {
         return $this->format($json);
     }
     
-    public function getStreamsActivity($id, $types, $resolution = 'all', $series_type = 'distance') {
+    public function getStreamsActivity($id, $types, $resolution = null, $series_type = 'distance') {
         $json = '{"response": 1}';
         return $this->format($json);
     }
     
-    public function getStreamsEffort($id, $types, $resolution = 'all', $series_type = 'distance') {
+    public function getStreamsEffort($id, $types, $resolution = null, $series_type = 'distance') {
         $json = '{"response": 1}';
         return $this->format($json);
     }
     
-    public function getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'distance') {
+    public function getStreamsSegment($id, $types, $resolution = null, $series_type = 'distance') {
         $json = '{"response": 1}';
         return $this->format($json);
     }
