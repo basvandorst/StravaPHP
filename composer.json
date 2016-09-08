@@ -1,5 +1,5 @@
 {
-    "name": "qligier/stravaphp",
+    "name": "basvandorst/stravaphp",
     "description": "Strava V3 API PHP client with OAuth authentication",
      "keywords":    ["Strava","API","OAuth","PHP","StravaPHP"],
     "require": {
@@ -11,10 +11,6 @@
         {
             "name": "Bas van Dorst",
             "email": "basvandorst@gmail.com"
-        },
-        {
-            "name": "Quentin Ligier",
-            "email": "quentin.ligier@bluewin.ch"
         }
     ],
     "minimum-stability": "stable",
