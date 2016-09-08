@@ -1,6 +1,8 @@
 StravaPHP
 =========
-This is a fork of [basvandorst/StravaPHP](https://github.com/basvandorst/StravaPHP) with up-to-date dependancies.
+[![Build Status](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/badges/build.png?b=master)](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/build-status/master)
+[![Code Coverage](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/?branch=master)
 
 **TLDR;** Strava V3 API PHP client with OAuth authentication
 
@@ -24,15 +26,12 @@ Use composer to install this StravaPHP package.
 
 ```
 {
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/qligier/StravaPHP"
-        }
-    ]
+    "require": {
+        "basvandorst/StravaPHP": "1.0.1"
+    }
 }
 ```
-Also watch [basvandorst/StravaPHP](https://packagist.org/packages/basvandorst/stravaphp) package, which could have been updated.
+
 
 ### StravaPHP usage
 #### First, authorisation and authentication
@@ -68,6 +67,7 @@ try {
 <?php 
 include 'vendor/autoload.php';
 
+use Pest;
 use Strava\API\Client;
 use Strava\API\Exception;
 use Strava\API\Service\REST;
@@ -162,7 +162,7 @@ $client->getActivityZones($id);
 $client->getActivityLaps($id);
 $client->getActivityUploadStatus($id);
 $client->createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null);
-$client->uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $commute = null, $data_type = null, $external_id = null);
+$client->uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $data_type = null, $external_id = null);
 $client->updateActivity($id, $name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null);
 $client->deleteActivity($id);
 $client->getGear($id);
@@ -170,7 +170,7 @@ $client->getClub($id);
 $client->getClubMembers($id, $page = null, $per_page  = null);
 $client->getClubActivities($id, $page = null, $per_page  = null);
 $client->getSegment($id);
-$client->getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $context_entries = null, $page = null, $per_page = null);
+$client->getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $page = null, $per_page = null);
 $client->getSegmentExplorer($bounds, $activity_type = 'riding', $min_cat = null, $max_cat = null);
 $client->getSegmentEffort($id, $athlete_id = null, $start_date_local = null, $end_date_local = null, $page = null, $per_page = null);
 $client->getStreamsActivity($id, $types, $resolution = null, $series_type = 'distance');
