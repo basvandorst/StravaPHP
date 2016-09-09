@@ -47,7 +47,7 @@ class OAuthTest extends PHPUnit_Framework_TestCase
         
         $oauth = new Strava\API\OAuth(array());
         $output = $oauth->userDetails($reponseMock,$tokenMock);
-        $this->assertInstanceOf('League\OAuth2\Client\Entity\User',$output);
+        $this->assertInstanceOf('stdClass',$output);
     }
     
     public function testUserUid() {
