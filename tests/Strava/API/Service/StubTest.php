@@ -88,7 +88,7 @@ class StubTest extends PHPUnit_Framework_TestCase
     
     public function testGetActivityPhotos() {
         $service = new Strava\API\Service\Stub();
-        $output = $service->getActivityPhotos(1234);
+        $output = $service->getActivityPhotos(1234, 1024);
         $this->assertTrue(is_array($output));
     }
     

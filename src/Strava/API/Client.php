@@ -269,12 +269,14 @@ class Client {
      * 
      * @link    http://strava.github.io/api/v3/photos/#list
      * @param   int $id
+     * @param   int $size In pixels.
+     * @param   string $photo_sources Must be "true".
      * @return  array
      * @throws  Exception
      */
-    public function getActivityPhotos($id) {
+    public function getActivityPhotos($id, $size = 2048, $photo_sources = 'true') {
         try {
-            return $this->service->getActivityPhotos($id);
+            return $this->service->getActivityPhotos($id, $size, $photo_sources);
         } catch (ServiceException $e) {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }

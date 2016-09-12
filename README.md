@@ -157,7 +157,7 @@ $client->updateAthlete($city, $state, $country, $sex, $weight);
 $client->getActivity($id, $include_all_efforts = null);
 $client->getActivityComments($id, $markdown = null, $page = null, $per_page = null);
 $client->getActivityKudos($id, $page = null, $per_page = null);
-$client->getActivityPhotos($id);
+$client->getActivityPhotos($id, $size = 2048, $photo_sources = 'true');
 $client->getActivityZones($id);
 $client->getActivityLaps($id);
 $client->getActivityUploadStatus($id);

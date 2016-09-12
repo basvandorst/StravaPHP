@@ -179,9 +179,13 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
     
-    public function getActivityPhotos($id) {
+    public function getActivityPhotos($id, $size = 2048, $photo_sources = 'true') {
         $path = '/activities/'.$id.'/photos';
-        $result = $this->adapter->get($path, array(), $this->getHeaders());
+        $parameters = array(
+            'size' => $size,
+            'photo_sources' => $photo_sources,
+        );
+        $result = $this->adapter->get($path, $parameters, $this->getHeaders());
         return $this->format($result);
     }
     
