@@ -1,4 +1,4 @@
-§<?php
+<?php
 namespace Strava\API;
 
 use League\OAuth2\Client\Entity\User;
