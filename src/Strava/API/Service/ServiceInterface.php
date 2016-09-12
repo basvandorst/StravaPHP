@@ -2,10 +2,10 @@
 namespace Strava\API\Service;
 
 /**
- * Service interace. 
- * Just to make sure we can trust the method signatures of all the 
+ * Service interace.
+ * Just to make sure we can trust the method signatures of all the
  * service classes.
- * 
+ *
  * @author Bas van Dorst
  * @package StravaPHP
  */
