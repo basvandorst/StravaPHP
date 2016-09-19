@@ -8,7 +8,7 @@ use League\OAuth2\Client\Provider\AbstractProvider as AbstractProvider;
 /**
  * Strava OAuth
  * The Strava implementation of the OAuth client
- * 
+ *
  * @see: https://github.com/thephpleague/oauth2-client
  * @author Bas van Dorst
  */
@@ -17,7 +17,7 @@ class OAuth extends AbstractProvider
 
     public $scopes = array('write');
     public $responseType = 'json';
-    
+
     /**
      * @see AbstractProvider::__construct
      * @param array $options
@@ -29,7 +29,7 @@ class OAuth extends AbstractProvider
             'Authorization' => 'Bearer'
         );
     }
-    
+
     /**
      * @see AbstractProvider::urlAuthorize
      */

@@ -6,22 +6,22 @@ StravaPHP
 
 **TLDR;** Strava V3 API PHP client with OAuth authentication
 
-The Strava V3 API is a publicly available interface allowing developers access 
-to the rich [Strava](http://www.strava.com/) dataset. The interface is stable and currently used by the 
-Strava mobile applications. However, changes are occasionally made to improve 
+The Strava V3 API is a publicly available interface allowing developers access
+to the rich [Strava](http://www.strava.com/) dataset. The interface is stable and currently used by the
+Strava mobile applications. However, changes are occasionally made to improve
 performance and enhance features. See the [changelog](http://strava.github.io/api/v3/changelog/) for more details.
 
-In this GitHub repository you can find the PHP implementation of the 
-Strava V3 API. The current version of StravaPHP combines the V3 API 
+In this GitHub repository you can find the PHP implementation of the
+Strava V3 API. The current version of StravaPHP combines the V3 API
 with a proper OAuth authentication.
 
 ## Getting started
 ### Get your API key
-All calls to the Strava API require an access token defining the athlete and 
-application making the call. Any registered Strava user can obtain an access 
+All calls to the Strava API require an access token defining the athlete and
+application making the call. Any registered Strava user can obtain an access
 token by first creating an application at [strava.com/developers](http://www.strava.com/developers)
 
-### Composer package 
+### Composer package
 Use composer to install this StravaPHP package.
 
 ```
@@ -36,7 +36,7 @@ Use composer to install this StravaPHP package.
 ### StravaPHP usage
 #### First, authorisation and authentication
 ```php
-<?php 
+<?php
 include 'vendor/autoload.php';
 
 use Strava\API\OAuth;
@@ -49,7 +49,7 @@ try {
         'redirectUri'  => 'http://my-app/callback.php'
     );
     $oauth = new OAuth($options);
-    
+
     if (!isset($_GET['code'])) {
         print '<a href="'.$oauth->getAuthorizationUrl().'">connect</a>';
     } else {
@@ -64,7 +64,7 @@ try {
 ```
 #### Then, call your API method!
 ```php
-<?php 
+<?php
 include 'vendor/autoload.php';
 
 use Pest;
@@ -72,7 +72,7 @@ use Strava\API\Client;
 use Strava\API\Exception;
 use Strava\API\Service\REST;
 
-try { 
+try {
     $adapter = new Pest('https://www.strava.com/api/v3');
     $service = new REST($token, $adapter);  // Define your user token here..
     $client = new Client($service);

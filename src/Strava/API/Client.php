@@ -7,23 +7,23 @@ use Strava\API\Service\Exception as ServiceException;
 
 /**
  * Strava API Client
- * 
+ *
  * @author Bas van Dorst
  * @package StravaPHP
  */
 class Client {
-    
+
     /**
      * @var ServiceInterface $service
      */
     protected $service;
-    
+
     /**
-     * Initiate this class with a subclass of ServiceInterface. There are two 
+     * Initiate this class with a subclass of ServiceInterface. There are two
      * service subclasses available:
-     * - Service\REST: Service which makes calls to the live Strava API 
+     * - Service\REST: Service which makes calls to the live Strava API
      * - Service\Stub: Service stub for test purposes (unit tests)
-     * 
+     *
      * @param ServiceInterface $service
      */
     public function __construct(ServiceInterface $service) {
@@ -32,7 +32,7 @@ class Client {
 
     /**
      * Retrieve current athlete
-     * 
+     *
      * @link    http://strava.github.io/api/v3/athlete/#get-details,
      *          http://strava.github.io/api/v3/athlete/#get-another-details
      * @param   int $id
@@ -64,10 +64,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * List athlete clubs
-     * 
+     *
      * @link    http://strava.github.io/api/v3/clubs/#get-athletes
      * @return  array
      * @throws  Exception
@@ -79,10 +79,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * List athlete activities
-     * 
+     *
      * @link    http://strava.github.io/api/v3/activities/#get-activities
      * @param   string $before
      * @param   string $after
@@ -98,10 +98,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * List athlete friends
-     * 
+     *
      * @link    http://strava.github.io/api/v3/follow/#friends
      * @param   int $id
      * @param   int $page
@@ -116,10 +116,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * List athlete followers
-     * 
+     *
      * @link    http://strava.github.io/api/v3/follow/#followers
      * @param   int $id
      * @param   int $page
@@ -134,10 +134,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * List both following
-     * 
+     *
      * @link    http://strava.github.io/api/v3/follow/#both
      * @param   int $id
      * @param   int $page
@@ -152,10 +152,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * List athlete K/QOMs/CRs
-     * 
+     *
      * @link    http://strava.github.io/api/v3/athlete/#koms
      * @param   int $id
      * @param   int $page
@@ -170,10 +170,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * List starred segment
-     * 
+     *
      * @link    http://strava.github.io/api/v3/segments/#starred
      * @param   int $id
      * @param   int $page
@@ -188,10 +188,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * Update current athlete
-     * 
+     *
      * @link    http://strava.github.io/api/v3/athlete/#update
      * @param   string $city
      * @param   string $state
@@ -208,10 +208,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * Retrieve an activity
-     * 
+     *
      * @link    http://strava.github.io/api/v3/athlete/#get-details,
      *          http://strava.github.io/api/v3/athlete/#get-another-details
      * @param   int $id
@@ -226,10 +226,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * List activity comments
-     * 
+     *
      * @link    http://strava.github.io/api/v3/comments/#list
      * @param   int $id
      * @param   boolean $markdown
@@ -245,10 +245,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * List activity kudoers
-     * 
+     *
      * @link    http://strava.github.io/api/v3/kudos/#list
      * @param   int $id
      * @param   int $page
@@ -263,10 +263,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * List activity photos
-     * 
+     *
      * @link    http://strava.github.io/api/v3/photos/#list
      * @param   int $id
      * @return  array
@@ -279,10 +279,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * List activity zones
-     * 
+     *
      * @link    http://strava.github.io/api/v3/activities/#zones
      * @param   int $id
      * @return  array
@@ -295,10 +295,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * List activity laps
-     * 
+     *
      * @link    http://strava.github.io/api/v3/activities/#laps
      * @param   int $id
      * @return  array
@@ -311,10 +311,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * Check upload status
-     * 
+     *
      * @link    http://strava.github.io/api/v3/uploads/#get-status
      * @param   int $id
      * @return  array
@@ -327,10 +327,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * Create an activity
-     * 
+     *
      * @link    http://strava.github.io/api/v3/activities/#create
      * @param   string $name
      * @param   string $type
@@ -348,10 +348,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * Upload an activity
-     * 
+     *
      * @link    http://strava.github.io/api/v3/uploads/#post-file
      * @param   mixed $file
      * @param   string $activity_type
@@ -364,17 +364,17 @@ class Client {
      * @return  array
      * @throws  Exception
      */
-    public function uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $data_type = null, $external_id = null) { 
+    public function uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $data_type = null, $external_id = null) {
         try {
             return $this->service->uploadActivity($file, $activity_type, $name, $description, $private, $trainer, $data_type, $external_id);
         } catch (ServiceException $e) {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * Update an activity
-     * 
+     *
      * @link    http://strava.github.io/api/v3/activities/#put-updates
      * @param   int $id
      * @param   string $name
@@ -394,10 +394,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * Delete an activity
-     * 
+     *
      * @link    http://strava.github.io/api/v3/activities/#delete
      * @param   int $id
      * @return  array
@@ -410,11 +410,11 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
-    
+
+
     /**
      * Retrieve gear
-     * 
+     *
      * @link    http://strava.github.io/api/v3/gear/
      * @param   int $id
      * @return  array
@@ -430,7 +430,7 @@ class Client {
 
     /**
      * Retrieve a club
-     * 
+     *
      * @link    http://strava.github.io/api/v3/clubs/#get-details
      * @param   int $id
      * @return  array
@@ -443,10 +443,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * List club members
-     * 
+     *
      * @link    http://strava.github.io/api/v3/clubs/#get-members
      * @param   int $id
      * @param   int $page
@@ -461,10 +461,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * List club activities
-     * 
+     *
      * @link    http://strava.github.io/api/v3/clubs/#get-activities
      * @param   int $id
      * @param   int $page
@@ -546,7 +546,7 @@ class Client {
 
     /**
      * Retrieve a segment
-     * 
+     *
      * @link    http://strava.github.io/api/v3/segments/#retrieve
      * @param   int $id
      * @return  array
@@ -559,10 +559,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * Segment leaderboards
-     * 
+     *
      * @link    http://strava.github.io/api/v3/segments/#leaderboard
      * @param   int $id
      * @param   string $gender
@@ -583,10 +583,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * Segment explorer
-     * 
+     *
      * @link    http://strava.github.io/api/v3/segments/#explore
      * @param   string $bounds
      * @param   string $activity_type
@@ -600,12 +600,12 @@ class Client {
             return $this->service->getSegmentExplorer($bounds, $activity_type, $min_cat, $max_cat);
         } catch (ServiceException $e) {
             throw new ClientException('[SERVICE] '.$e->getMessage());
-        }     
+        }
     }
-    
+
     /**
      * List efforts filtered by athlete and/or a date range
-     * 
+     *
      * @link    http://strava.github.io/api/v3/segments/#efforts
      * @param   int $id
      * @param   int $athlete_id
@@ -621,12 +621,12 @@ class Client {
             return $this->service->getSegmentEffort($id, $athlete_id, $start_date_local, $end_date_local, $page, $per_page);
         } catch (ServiceException $e) {
             throw new ClientException('[SERVICE] '.$e->getMessage());
-        }            
+        }
     }
-    
+
     /**
      * Retrieve activity streams
-     * 
+     *
      * @link    http://strava.github.io/api/v3/streams/#activity
      * @param   int $id
      * @param   string $types
@@ -642,10 +642,10 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * Retrieve effort streams
-     * 
+     *
      * @link    http://strava.github.io/api/v3/streams/#effort
      * @param   int $id
      * @param   string $types
@@ -661,7 +661,7 @@ class Client {
             throw new ClientException('[SERVICE] '.$e->getMessage());
         }
     }
-    
+
     /**
      * Retrieve segment streams
      * @link    http://strava.github.io/api/v3/streams/#segment
