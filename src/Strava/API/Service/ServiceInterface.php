@@ -2,10 +2,10 @@
 namespace Strava\API\Service;
 
 /**
- * Service interace.
- * Just to make sure we can trust the method signatures of all the
+ * Service interace. 
+ * Just to make sure we can trust the method signatures of all the 
  * service classes.
- *
+ * 
  * @author Bas van Dorst
  * @package StravaPHP
  */
@@ -218,7 +218,7 @@ interface ServiceInterface {
      * @param integer $per_page
      * @param integer $id
      */
-    public function getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $page = null, $per_page = null);
+    public function getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $context_entries = null, $page = null, $per_page = null);
 
     /**
      * @param string $bounds
@@ -241,17 +241,17 @@ interface ServiceInterface {
      * @param integer $id
      * @param string $types
      */
-    public function getStreamsActivity($id, $types, $resolution = 'all', $series_type = 'distance');
+    public function getStreamsActivity($id, $types, $resolution = null, $series_type = 'distance');
 
     /**
      * @param integer $id
      * @param string $types
      */
-    public function getStreamsEffort($id, $types, $resolution = 'all', $series_type = 'distance');
+    public function getStreamsEffort($id, $types, $resolution = null, $series_type = 'distance');
 
     /**
      * @param integer $id
      * @param string $types
      */
-    public function getStreamsSegment($id, $types, $resolution = 'all', $series_type = 'distance');
+    public function getStreamsSegment($id, $types, $resolution = null, $series_type = 'distance');
 }

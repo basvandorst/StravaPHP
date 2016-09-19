@@ -4,11 +4,12 @@ namespace Strava\API;
 use League\OAuth2\Client\Entity\User;
 use League\OAuth2\Client\Token\AccessToken as AccessToken;
 use League\OAuth2\Client\Provider\AbstractProvider as AbstractProvider;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * Strava OAuth
  * The Strava implementation of the OAuth client
- *
+ * 
  * @see: https://github.com/thephpleague/oauth2-client
  * @author Bas van Dorst
  */
@@ -17,7 +18,7 @@ class OAuth extends AbstractProvider
 
     public $scopes = array('write');
     public $responseType = 'json';
-
+    
     /**
      * @see AbstractProvider::__construct
      * @param array $options
@@ -29,7 +30,7 @@ class OAuth extends AbstractProvider
             'Authorization' => 'Bearer'
         );
     }
-
+    
     /**
      * @see AbstractProvider::urlAuthorize
      */
@@ -59,18 +60,16 @@ class OAuth extends AbstractProvider
      */
     public function userDetails($response, AccessToken $token)
     {
-        $user = new User;
+        $user = new \stdClass;
 
-        $user->exchangeArray(array(
-            'uid' => $response->id,
-            'name' => implode(" ", array($response->firstname, $response->lastname)),
-            'firstName' => $response->firstname,
-            'lastName' => $response->lastname,
-            'email' => $response->email,
-            'location' => $response->country,
-            'imageUrl' => $response->profile,
-            'gender' => $response->sex,
-        ));
+        $user->uid = $response->id;
+        $user->name = implode(" ", array($response->firstname, $response->lastname));
+        $user->firstName = $response->firstname;
+        $user->lastName = $response->lastname;
+        $user->email = $response->email;
+        $user->location = $response->country;
+        $user->imageUrl = $response->profile;
+        $user->gender = $response->sex;
 
         return $user;
     }
@@ -97,5 +96,55 @@ class OAuth extends AbstractProvider
     public function userScreenName($response, AccessToken $token)
     {
         return implode(" ", array($response->firstname, $response->lastname));
+    }
+
+    /**
+     * @see AbstractProvider::getBaseAuthorizationUrl
+     */
+    public function getBaseAuthorizationUrl()
+    {
+        return 'https://www.strava.com/oauth/authorize';
+    }
+
+    /**
+     * @see AbstractProvider::getBaseAccessTokenUrl
+     */
+    public function getBaseAccessTokenUrl(array $params)
+    {
+        return 'https://www.strava.com/oauth/token';
+    }
+
+    /**
+     * @see AbstractProvider::getResourceOwnerDetailsUrl
+     */
+    public function getResourceOwnerDetailsUrl(AccessToken $token)
+    {
+        return '';
+    }
+
+
+    /**
+     * @see AbstractProvider::getDefaultScopes
+     */
+    protected function getDefaultScopes()
+    {
+        return array('view_private', 'write');
+    }
+
+
+    /**
+     * @see AbstractProvider::checkResponse
+     */
+    protected function checkResponse(ResponseInterface $response, $data)
+    {
+
+    }
+
+    /**
+     * @see AbstractProvider::createResourceOwner
+     */
+    protected function createResourceOwner(array $response, AccessToken $token)
+    {
+
     }
 }
