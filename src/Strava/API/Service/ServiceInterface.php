@@ -106,7 +106,7 @@ interface ServiceInterface {
     /**
      * @param integer $id
      */
-    public function getActivityPhotos($id);
+    public function getActivityPhotos($id, $size = 2048, $photo_sources = 'true');
 
     /**
      * @param integer $id

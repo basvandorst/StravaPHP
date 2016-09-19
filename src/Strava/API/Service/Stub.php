@@ -72,8 +72,13 @@ class Stub implements ServiceInterface {
         $json = '{"response": 1}';
         return $this->format($json);
     }
+<<<<<<< HEAD
 
     public function getActivityPhotos($id) {
+=======
+    
+    public function getActivityPhotos($id, $size = 2048, $photo_sources = 'true') {
+>>>>>>> 94e968d15abc532c8d1a72b67eb1c90d06ca01b8
         $json = '{"response": 1}';
         return $this->format($json);
     }
