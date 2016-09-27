@@ -3,34 +3,23 @@ namespace Strava\API;
 
 use League\OAuth2\Client\Entity\User;
 use League\OAuth2\Client\Token\AccessToken as AccessToken;
+use League\OAuth2\Client\Tool\BearerAuthorizationTrait as BearerAuthorizationTrait;
 use League\OAuth2\Client\Provider\AbstractProvider as AbstractProvider;
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * Strava OAuth
  * The Strava implementation of the OAuth client
- * 
+ *
  * @see: https://github.com/thephpleague/oauth2-client
  * @author Bas van Dorst
  */
-class OAuth extends AbstractProvider
-{
+class OAuth extends AbstractProvider {
+    use BearerAuthorizationTrait;
 
-    public $scopes = array('write');
+    public $scopes = ['write'];
     public $responseType = 'json';
-    
-    /**
-     * @see AbstractProvider::__construct
-     * @param array $options
-     */
-    public function __construct($options)
-    {
-        parent::__construct($options);
-        $this->headers = array(
-            'Authorization' => 'Bearer'
-        );
-    }
-    
+
     /**
      * @see AbstractProvider::urlAuthorize
      */
@@ -40,7 +29,7 @@ class OAuth extends AbstractProvider
     }
 
     /**
-     * @see AbstractProvider::urlAuthorize
+     * @see AbstractProvider::urlAccessToken
      */
     public function urlAccessToken()
     {
@@ -52,7 +41,7 @@ class OAuth extends AbstractProvider
      */
     public function urlUserDetails(AccessToken $token)
     {
-        return 'https://www.strava.com/api/v3/athlete/?access_token='.$token;
+        return 'https://www.strava.com/api/v3/athlete';
     }
 
     /**
@@ -63,7 +52,7 @@ class OAuth extends AbstractProvider
         $user = new \stdClass;
 
         $user->uid = $response->id;
-        $user->name = implode(" ", array($response->firstname, $response->lastname));
+        $user->name = implode(' ', [$response->firstname, $response->lastname]);
         $user->firstName = $response->firstname;
         $user->lastName = $response->lastname;
         $user->email = $response->email;
@@ -83,7 +72,7 @@ class OAuth extends AbstractProvider
     }
 
     /**
-     * @see AbstractProvider::userUid
+     * @see AbstractProvider::userEmail
      */
     public function userEmail($response, AccessToken $token)
     {
@@ -95,7 +84,7 @@ class OAuth extends AbstractProvider
      */
     public function userScreenName($response, AccessToken $token)
     {
-        return implode(" ", array($response->firstname, $response->lastname));
+        return implode(' ', [$response->firstname, $response->lastname]);
     }
 
     /**
@@ -122,22 +111,19 @@ class OAuth extends AbstractProvider
         return '';
     }
 
-
     /**
      * @see AbstractProvider::getDefaultScopes
      */
     protected function getDefaultScopes()
     {
-        return array('view_private', 'write');
+        return ['write'];
     }
-
 
     /**
      * @see AbstractProvider::checkResponse
      */
     protected function checkResponse(ResponseInterface $response, $data)
     {
-
     }
 
     /**
@@ -145,6 +131,5 @@ class OAuth extends AbstractProvider
      */
     protected function createResourceOwner(array $response, AccessToken $token)
     {
-
     }
 }
