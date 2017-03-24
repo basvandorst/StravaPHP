@@ -207,7 +207,7 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
     
-    public function createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null) {
+    public function createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null, $private = null, $trainer = null) {
         $path = '/activities';
         $parameters = array(
             'name' => $name,
@@ -216,6 +216,8 @@ class REST implements ServiceInterface {
             'elapsed_time' => $elapsed_time,
             'description' => $description,
             'distance' => $distance,
+            'private' => $private,
+            'trainer' => $trainer,
         );
         $result = $this->adapter->post($path, $parameters, $this->getHeaders());
         return $this->format($result);

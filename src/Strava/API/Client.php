@@ -340,10 +340,12 @@ class Client {
      * @param   int $elapsed_time
      * @param   string $description
      * @param   float $distance
+     * @param   int $private
+     * @param   int $trainer
      * @return  array
      * @throws  Exception
      */
-    public function createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null) {
+    public function createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null,  $private = null, $trainer = null) {
         try {
             return $this->service->createActivity($name, $type, $start_date_local, $elapsed_time, $description, $distance);
         } catch (ServiceException $e) {
