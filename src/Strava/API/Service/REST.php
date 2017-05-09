@@ -281,9 +281,10 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
     
-    public function getClubActivities($id, $page = null, $per_page  = null) {
+    public function getClubActivities($id, $before = null, $page = null, $per_page  = null) {
         $path = '/clubs/'.$id.'/activities';
         $parameters = array(
+            'before' => $before,
             'page' => $page,
             'per_page' => $per_page,
         );
