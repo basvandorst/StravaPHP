@@ -232,7 +232,8 @@ class REST implements ServiceInterface {
             'commute' => $commute,
             'data_type' => $data_type,
             'external_id' => $external_id,
-            'file' => '@'.ltrim($file, '@'),
+            'file' => curl_file_create($file),
+            'file_hack' => '@'.ltrim($file, '@'),
         );
         $result = $this->adapter->post($path, $parameters, $this->getHeaders());
         return $this->format($result);
