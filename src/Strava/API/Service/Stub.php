@@ -58,6 +58,11 @@ class Stub implements ServiceInterface {
         return $this->format($json);
     }
     
+    public function getAthleteActivitiesFollowing($before = null, $page = null, $per_page = null) {
+        $json = '{"response": 1}';
+        return $this->format($json);
+    }
+    
     public function getActivity($id, $include_all_efforts = null) {
         $json = '{"response": 1}';
         return $this->format($json);
