@@ -210,6 +210,26 @@ class Client {
     }
     
     /**
+     * Retrieve activity from user followers
+     * 
+     * @link https://strava.github.io/api/v3/activities/#get-feed
+     * 
+     * @param type $before
+     * @param type $page
+     * @param type $per_page
+     * @return type
+     * @throws ClientException
+     */
+    public function getAthleteActivitiesFollowing($before = null, $page = null, $per_page = null) {
+        try {
+            return $this->service->getActivityFollowing($before, $page, $per_page);
+        } catch (ServiceException $e) {
+            throw new ClientException('[SERVICE] '.$e->getMessage());
+        }
+    }
+    
+    
+    /**
      * Retrieve an activity
      * 
      * @link    http://strava.github.io/api/v3/athlete/#get-details,
