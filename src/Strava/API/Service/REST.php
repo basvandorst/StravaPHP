@@ -58,6 +58,19 @@ class REST implements ServiceInterface
         return $this->format($result);
     }
 
+    public function getAthleteRoutes($id, $type = null, $after = null, $page = null, $per_page = null)
+    {
+        $path = '/athletes/' . $id . '/routes';
+        $parameters = array(
+            'type' => $type,
+            'after' => $after,
+            'page' => $page,
+            'per_page' => $per_page,
+        );
+        $result = $this->adapter->get($path, $parameters, $this->getHeaders());
+        return $this->format($result);
+    }
+
     public function getAthleteClubs()
     {
         $path = '/athlete/clubs';
@@ -366,6 +379,13 @@ class REST implements ServiceInterface
     {
         $path = '/clubs/' . $id . '/leave';
         $result = $this->adapter->post($path, array(), $this->getHeaders());
+        return $this->format($result);
+    }
+
+    public function getRoute($id)
+    {
+        $path = '/routes/' . $id;
+        $result = $this->adapter->get($path, array(), $this->getHeaders());
         return $this->format($result);
     }
 

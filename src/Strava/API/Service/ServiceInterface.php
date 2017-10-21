@@ -28,6 +28,15 @@ interface ServiceInterface
      */
     public function getAthleteStats($id);
 
+    /**
+     * @param integer $id
+     * @param string $type
+     * @param integer $after
+     * @param integer $page
+     * @param integer $per_page
+     */
+    public function getAthleteRoutes($id, $type = null, $after = null, $page = null, $per_page = null);
+
     public function getAthleteClubs();
 
     /**
@@ -213,6 +222,11 @@ interface ServiceInterface
      * @param integer $id
      */
     public function leaveClub($id);
+
+    /**
+     * @param integer $id
+     */
+    public function getRoute($id);
 
     /**
      * @param integer $id

@@ -161,6 +161,7 @@ print_r($athlete);
 $client->getAthlete($id = null);
 $client->getAthleteStats($id);
 $client->getAthleteClubs();
+$client->getAthleteRoutes($id, $type = null, $after = null, $page = null, $per_page = null);
 $client->getAthleteActivities($before = null, $after = null, $page = null, $per_page = null);
 $client->getAthleteFriends($id = null, $page = null, $per_page = null);
 $client->getAthleteFollowers($id = null, $page = null, $per_page = null);
@@ -185,6 +186,7 @@ $client->getGear($id);
 $client->getClub($id);
 $client->getClubMembers($id, $page = null, $per_page = null);
 $client->getClubActivities($id, $page = null, $per_page = null);
+$client->getRoute($id);
 $client->getSegment($id);
 $client->getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $page = null, $per_page = null);
 $client->getSegmentExplorer($bounds, $activity_type = 'riding', $min_cat = null, $max_cat = null);
@@ -192,6 +194,7 @@ $client->getSegmentEffort($id, $athlete_id = null, $start_date_local = null, $en
 $client->getStreamsActivity($id, $types, $resolution = null, $series_type = 'distance');
 $client->getStreamsEffort($id, $types, $resolution = null, $series_type = 'distance');
 $client->getStreamsSegment($id, $types, $resolution = null, $series_type = 'distance');
+$client->getStreamsRoute($id);
 ```
 
 ## UML diagrams

@@ -71,15 +71,15 @@ class Client
     /**
      * Retrieve athlete routes
      *
-     * @link    https://strava.github.io/api/v3/athlete/#stats
+     * @link    https://strava.github.io/api/v3/routes/#list
      * @param   int $id
      * @return  array
      * @throws  ClientException
      */
-    public function getAthleteRoutes($id)
+    public function getAthleteRoutes($id, $type = null, $after = null, $page = null, $per_page = null)
     {
         try {
-            return $this->service->getAthleteRoutes($id);
+            return $this->service->getAthleteRoutes($id, $type, $after, $page, $per_page);
         } catch (ServiceException $e) {
             throw new ClientException('[SERVICE] ' . $e->getMessage());
         }
@@ -629,6 +629,23 @@ class Client
     {
         try {
             return $this->service->leaveClub($id);
+        } catch (ServiceException $e) {
+            throw new ClientException('[SERVICE] ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Get route details
+     *
+     * @link    https://strava.github.io/api/v3/routes/#list
+     * @param   int $id
+     * @return  array
+     * @throws  Exception
+     */
+    public function getRoute($id)
+    {
+        try {
+            return $this->service->getRoute($id);
         } catch (ServiceException $e) {
             throw new ClientException('[SERVICE] ' . $e->getMessage());
         }

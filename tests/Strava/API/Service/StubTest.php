@@ -23,6 +23,13 @@ class StubTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($output));
     }
 
+    public function testGetAthleteRoutes()
+    {
+        $service = new Strava\API\Service\Stub();
+        $output = $service->getAthleteRoutes(1234);
+        $this->assertTrue(is_array($output));
+    }
+
     public function testGetAthleteClubs()
     {
         $service = new Strava\API\Service\Stub();
@@ -218,6 +225,14 @@ class StubTest extends PHPUnit_Framework_TestCase
         $output = $service->leaveClub(1234);
         $this->assertTrue(is_array($output));
     }
+
+    public function testGetRoute()
+    {
+        $service = new Strava\API\Service\Stub();
+        $output = $service->getRoute(1234);
+        $this->assertTrue(is_array($output));
+    }
+
 
     public function testGetSegment()
     {
