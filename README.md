@@ -168,6 +168,7 @@ $client->getAthleteBothFollowing($id, $page = null, $per_page = null);
 $client->getAthleteKom($id, $page = null, $per_page = null);
 $client->getAthleteStarredSegments($id = null, $page = null, $per_page = null);
 $client->updateAthlete($city, $state, $country, $sex, $weight);
+$client->getActivityFollowing($before = null, $page = null, $per_page = null) 
 $client->getActivity($id, $include_all_efforts = null);
 $client->getActivityComments($id, $markdown = null, $page = null, $per_page = null);
 $client->getActivityKudos($id, $page = null, $per_page = null);
