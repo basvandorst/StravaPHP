@@ -211,6 +211,7 @@ $client->getStreamsRoute($id);
 
 ### Development
 The StravaPHP library was created by Bas van Dorst, [software engineer](https://www.linkedin.com/in/basvandorst) and cyclist enthusiast.
+And of course, special thanks to all [contributors](https://github.com/basvandorst/StravaPHP/graphs/contributors)
 
 ### Contributing
 All issues and pull requests should be filled on the basvandorst/StravaPHP repository.
