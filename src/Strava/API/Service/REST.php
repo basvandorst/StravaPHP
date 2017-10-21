@@ -460,6 +460,14 @@ class REST implements ServiceInterface
         return $this->format($result);
     }
 
+    public function getStreamsRoute($id)
+    {
+        $path = '/routes/' . $id . '/streams/';
+
+        $result = $this->adapter->get($path, array(), $this->getHeaders());
+        return $this->format($result);
+    }
+
     /**
      * Convert the JSON output to an array
      * @param string $result

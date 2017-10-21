@@ -69,6 +69,23 @@ class Client
     }
 
     /**
+     * Retrieve athlete routes
+     *
+     * @link    https://strava.github.io/api/v3/athlete/#stats
+     * @param   int $id
+     * @return  array
+     * @throws  ClientException
+     */
+    public function getAthleteRoutes($id)
+    {
+        try {
+            return $this->service->getAthleteRoutes($id);
+        } catch (ServiceException $e) {
+            throw new ClientException('[SERVICE] ' . $e->getMessage());
+        }
+    }
+
+    /**
      * List athlete clubs
      *
      * @link    https://strava.github.io/api/v3/clubs/#get-athletes
@@ -756,6 +773,23 @@ class Client
     {
         try {
             return $this->service->getStreamsSegment($id, $types, $resolution, $series_type);
+        } catch (ServiceException $e) {
+            throw new ClientException('[SERVICE] ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Retrieve route streams
+     *
+     * @link    https://strava.github.io/api/v3/streams/#routes
+     * @param   int $id
+     * @return  array
+     * @throws  Exception
+     */
+    public function getStreamsRoute($id)
+    {
+        try {
+            return $this->service->getStreamsRoute($id);
         } catch (ServiceException $e) {
             throw new ClientException('[SERVICE] ' . $e->getMessage());
         }

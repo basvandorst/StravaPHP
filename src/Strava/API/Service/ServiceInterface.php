@@ -266,4 +266,9 @@ interface ServiceInterface
      * @param string $types
      */
     public function getStreamsSegment($id, $types, $resolution = null, $series_type = 'distance');
+
+    /**
+     * @param integer $id
+     */
+    public function getStreamsRoute($id);
 }

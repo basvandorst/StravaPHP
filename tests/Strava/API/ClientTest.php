@@ -895,4 +895,28 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $output = $client->getStreamsSegment(1234, 'abc');
     }
 
+    public function testGetStreamsRoute()
+    {
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getStreamsRoute')
+            ->will($this->returnValue('output'));
+
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getStreamsRoute(1234);
+
+        $this->assertEquals('output', $output);
+    }
+
+    public function testGetStreamsRouteException()
+    {
+        $this->setExpectedException('Strava\API\Exception');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getStreamsRoute')
+            ->will($this->throwException(new ServiceException));
+
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getStreamsRoute(1234);
+    }
+
 }

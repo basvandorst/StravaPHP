@@ -239,6 +239,12 @@ class Stub implements ServiceInterface
         return $this->format($json);
     }
 
+    public function getStreamsRoute($id)
+    {
+        $json = '{"response": 1}';
+        return $this->format($json);
+    }
+
     /**
      * @param string $result
      */

@@ -267,4 +267,11 @@ class StubTest extends PHPUnit_Framework_TestCase
         $output = $service->getStreamsSegment(1234, 'abc');
         $this->assertTrue(is_array($output));
     }
+
+    public function testGetStreamsRoute()
+    {
+        $service = new Strava\API\Service\Stub();
+        $output = $service->getStreamsRoute(1234);
+        $this->assertTrue(is_array($output));
+    }
 }

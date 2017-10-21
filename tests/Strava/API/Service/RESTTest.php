@@ -516,4 +516,16 @@ class RESTTest extends PHPUnit_Framework_TestCase
         $output = $service->getStreamsSegment(1234, 'latlng');
         $this->assertArrayHasKey('response', $output);
     }
+
+    public function testGetStreamsRoute()
+    {
+        $pestMock = $this->getPestMock();
+        $pestMock->expects($this->once())->method('get')
+            ->with($this->equalTo('/routes/1234/streams/'))
+            ->will($this->returnValue('{"response": 1}'));
+
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
+        $output = $service->getStreamsRoute(1234);
+        $this->assertArrayHasKey('response', $output);
+    }
 }
