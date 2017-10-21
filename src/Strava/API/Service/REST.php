@@ -148,7 +148,18 @@ class REST implements ServiceInterface {
         $result = $this->adapter->put($path, $parameters, $this->getHeaders());
         return $this->format($result);
     }
-
+    
+    public function getActivityFollowing($before = null, $page = null, $per_page = null) {
+        $path = '/activities/following';
+        $parameters = array(
+            'before' => $before,
+            'page' => $page,
+            'per_page' => $per_page
+        );
+        $result = $this->adapter->get($path, $parameters, $this->getHeaders());
+        return $this->format($result);        
+    }
+   
     public function getActivity($id, $include_all_efforts = null) {
         $path = '/activities/'.$id;
         $parameters = array(
@@ -157,7 +168,7 @@ class REST implements ServiceInterface {
         $result = $this->adapter->get($path, $parameters, $this->getHeaders());
         return $this->format($result);
     }
-
+  
     public function getActivityComments($id, $markdown = null, $page = null, $per_page = null) {
         $path = '/activities/'.$id.'/comments';
         $parameters = array(
