@@ -219,7 +219,7 @@ class Client {
      * @return type
      * @throws ClientException
      */
-    public function getAthleteActivitiesFollowing($before = null, $page = null, $per_page = null) {
+    public function getActivityFollowing($before = null, $page = null, $per_page = null) {
         try {
             return $this->service->getActivityFollowing($before, $page, $per_page);
         } catch (ServiceException $e) {
