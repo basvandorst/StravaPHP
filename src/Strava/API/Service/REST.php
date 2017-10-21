@@ -132,6 +132,13 @@ class REST implements ServiceInterface
         return $this->format($result);
     }
 
+    public function getAthleteZones()
+    {
+        $path = '/athlete/zones';
+        $result = $this->adapter->get($path, array(), $this->getHeaders());
+        return $this->format($result);
+    }
+
     public function getAthleteStarredSegments($id = null, $page = null, $per_page = null)
     {
         $path = '/segments/starred';

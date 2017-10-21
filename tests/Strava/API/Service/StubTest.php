@@ -65,6 +65,13 @@ class StubTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($output));
     }
 
+    public function testGetAthleteZones()
+    {
+        $service = new Strava\API\Service\Stub();
+        $output = $service->getAthleteZones();
+        $this->assertTrue(is_array($output));
+    }
+
     public function testGetAthleteStarredSegments()
     {
         $service = new Strava\API\Service\Stub();

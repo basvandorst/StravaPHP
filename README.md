@@ -166,6 +166,7 @@ $client->getAthleteFriends($id = null, $page = null, $per_page = null);
 $client->getAthleteFollowers($id = null, $page = null, $per_page = null);
 $client->getAthleteBothFollowing($id, $page = null, $per_page = null);
 $client->getAthleteKom($id, $page = null, $per_page = null);
+$client->getAthleteZones();
 $client->getAthleteStarredSegments($id = null, $page = null, $per_page = null);
 $client->updateAthlete($city, $state, $country, $sex, $weight);
 $client->getActivityFollowing($before = null, $page = null, $per_page = null) 

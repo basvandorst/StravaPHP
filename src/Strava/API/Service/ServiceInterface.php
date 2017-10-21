@@ -66,6 +66,8 @@ interface ServiceInterface
      */
     public function getAthleteKom($id, $page = null, $per_page = null);
 
+    public function getAthleteZones();
+
     /**
      * @param integer $id
      * @param integer $page

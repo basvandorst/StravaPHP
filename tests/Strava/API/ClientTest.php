@@ -198,6 +198,31 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $output = $client->getAthleteKom(1234);
     }
 
+
+    public function testGetAthleteZones()
+    {
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getAthleteZones')
+            ->will($this->returnValue('output'));
+
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getAthleteZones();
+
+        $this->assertEquals('output', $output);
+    }
+
+    public function testGetAthleteZonesException()
+    {
+        $this->setExpectedException('Strava\API\Exception');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('getAthleteZones')
+            ->will($this->throwException(new ServiceException));
+
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->getAthleteZones();
+    }
+
     public function testGetAthleteStarredSegments()
     {
         $serviceMock = $this->getServiceMock();

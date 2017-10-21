@@ -9,6 +9,8 @@ namespace Strava\API\Service;
  */
 class Stub implements ServiceInterface
 {
+
+
     public function getAthlete($id = null)
     {
         $json = '{ "id": 227615, "resource_state": 2, "firstname": "John", "lastname": "Applestrava", "profile_medium": "http://pics.com/227615/medium.jpg", "profile": "http://pics.com/227615/large.jpg", "city": "San Francisco", "state": "CA", "country": "United States", "sex": "M", "friend": null, "follower": "accepted", "premium": true, "created_at": "2011-03-19T21:59:57Z", "updated_at": "2013-09-05T16:46:54Z", "approve_followers": false }';
@@ -54,6 +56,12 @@ class Stub implements ServiceInterface
     public function getAthleteKom($id, $page = null, $per_page = null)
     {
         $json = '{"response": 1}';
+        return $this->format($json);
+    }
+
+    public function getAthleteZones()
+    {
+        $json = '{"heart_rate":{"custom_zones":false,"zones":[{"min":0,"max":115},{"min":115,"max":152},{"min":152,"max":171},{"min":171,"max":190},{"min":190,"max":-1}]},"power":{"zones":[{"min":0,"max":180},{"min":181,"max":246},{"min":247,"max":295},{"min":296,"max":344},{"min":345,"max":393},{"min":394,"max":492},{"min":493,"max":-1}]}}';
         return $this->format($json);
     }
 

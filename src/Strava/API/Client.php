@@ -181,6 +181,24 @@ class Client
     }
 
     /**
+     * List athlete zones
+     *
+     * @link    https://strava.github.io/api/v3/athlete/#zones
+     * @return  array
+     * @throws  Exception
+     */
+    public function getAthleteZones()
+    {
+        try {
+            return $this->service->getAthleteZones();
+        } catch (ServiceException $e) {
+            throw new ClientException('[SERVICE] ' . $e->getMessage());
+        }
+    }
+
+
+
+    /**
      * List starred segment
      *
      * @link    https://strava.github.io/api/v3/segments/#starred

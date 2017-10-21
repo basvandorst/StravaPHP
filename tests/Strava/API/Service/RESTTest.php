@@ -149,6 +149,18 @@ class RESTTest extends PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('response', $output);
     }
 
+    public function testGetAthleteZones()
+    {
+        $pestMock = $this->getPestMock();
+        $pestMock->expects($this->once())->method('get')
+            ->with($this->equalTo('/athlete/zones'))
+            ->will($this->returnValue('{"response": 1}'));
+
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
+        $output = $service->getAthleteZones();
+        $this->assertArrayHasKey('response', $output);
+    }
+
     public function testGetAthleteStarredSegments()
     {
         $pestMock = $this->getPestMock();
