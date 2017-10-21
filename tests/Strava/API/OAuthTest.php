@@ -46,8 +46,8 @@ class OAuthTest extends PHPUnit_Framework_TestCase
         $reponseMock = $this->getResponseMock();
 
         $oauth = new Strava\API\OAuth(array());
-        $output = $oauth->userDetails($reponseMock,$tokenMock);
-        $this->assertInstanceOf('stdClass',$output);
+        $output = $oauth->userDetails($reponseMock, $tokenMock);
+        $this->assertInstanceOf('stdClass', $output);
     }
 
     public function testUserUid() {
@@ -55,7 +55,7 @@ class OAuthTest extends PHPUnit_Framework_TestCase
         $reponseMock = $this->getResponseMock();
 
         $oauth = new Strava\API\OAuth(array());
-        $output = $oauth->userUid($reponseMock,$tokenMock);
+        $output = $oauth->userUid($reponseMock, $tokenMock);
         $this->assertEquals(12345, $output);
     }
 
@@ -64,7 +64,7 @@ class OAuthTest extends PHPUnit_Framework_TestCase
         $reponseMock = $this->getResponseMock();
 
         $oauth = new Strava\API\OAuth(array());
-        $output = $oauth->userEmail($reponseMock,$tokenMock);
+        $output = $oauth->userEmail($reponseMock, $tokenMock);
         $this->assertEquals('mock_email', $output);
     }
 
@@ -73,7 +73,7 @@ class OAuthTest extends PHPUnit_Framework_TestCase
         $reponseMock = $this->getResponseMock();
 
         $oauth = new Strava\API\OAuth(array());
-        $output = $oauth->userScreenName($reponseMock,$tokenMock);
+        $output = $oauth->userScreenName($reponseMock, $tokenMock);
         $this->assertEquals('mock_first_name mock_last_name', $output);
     }
 }
