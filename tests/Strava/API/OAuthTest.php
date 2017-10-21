@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Test...
  *
@@ -8,32 +9,37 @@
  */
 class OAuthTest extends PHPUnit_Framework_TestCase
 {
-    private function getAccessTokenMock() {
+    private function getAccessTokenMock()
+    {
         $tokenMock = $this->getMockBuilder('League\OAuth2\Client\Token\AccessToken')
             ->disableOriginalConstructor()
             ->getMock();
         return $tokenMock;
     }
 
-    private function getResponseMock() {
+    private function getResponseMock()
+    {
         $json = '{"id": 12345, "firstname": "mock_first_name", "lastname": "mock_last_name", "email": "mock_email", "country": "NL", "sex": "M", "profile": "profile_url"}';
         $response = json_decode($json);
         return $response;
     }
 
-    public function testUrlAuthorize() {
+    public function testUrlAuthorize()
+    {
         $oauth = new Strava\API\OAuth(array());
         $url = $oauth->urlAuthorize();
         $this->assertNotEmpty($url);
     }
 
-    public function testUrlAccessToken() {
+    public function testUrlAccessToken()
+    {
         $oauth = new Strava\API\OAuth(array());
         $url = $oauth->urlAccessToken();
         $this->assertNotEmpty($url);
     }
 
-    public function testUrlUserDetails() {
+    public function testUrlUserDetails()
+    {
         $tokenMock = $this->getAccessTokenMock();
 
         $oauth = new Strava\API\OAuth(array());
@@ -41,7 +47,8 @@ class OAuthTest extends PHPUnit_Framework_TestCase
         $this->assertNotEmpty($url);
     }
 
-    public function testUserDetails() {
+    public function testUserDetails()
+    {
         $tokenMock = $this->getAccessTokenMock();
         $reponseMock = $this->getResponseMock();
 
@@ -50,7 +57,8 @@ class OAuthTest extends PHPUnit_Framework_TestCase
         $this->assertInstanceOf('stdClass', $output);
     }
 
-    public function testUserUid() {
+    public function testUserUid()
+    {
         $tokenMock = $this->getAccessTokenMock();
         $reponseMock = $this->getResponseMock();
 
@@ -59,7 +67,8 @@ class OAuthTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(12345, $output);
     }
 
-    public function testUserEmail() {
+    public function testUserEmail()
+    {
         $tokenMock = $this->getAccessTokenMock();
         $reponseMock = $this->getResponseMock();
 
@@ -68,7 +77,8 @@ class OAuthTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('mock_email', $output);
     }
 
-    public function testUserScreenName() {
+    public function testUserScreenName()
+    {
         $tokenMock = $this->getAccessTokenMock();
         $reponseMock = $this->getResponseMock();
 

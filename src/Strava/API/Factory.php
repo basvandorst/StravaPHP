@@ -9,7 +9,8 @@ use Pest;
  * @author Bas van Dorst
  * @package StravaPHP
  */
-class Factory {
+class Factory
+{
     /**
      * Strava V3 endpoint
      * @var string
@@ -24,11 +25,12 @@ class Factory {
      * @param string $redirect_uri
      * @return OAuth
      */
-    public function getOAuthClient($client_id, $client_secret, $redirect_uri) {
+    public function getOAuthClient($client_id, $client_secret, $redirect_uri)
+    {
         $options = [
-            'clientId'     => $client_id,
+            'clientId' => $client_id,
             'clientSecret' => $client_secret,
-            'redirectUri'  => $redirect_uri
+            'redirectUri' => $redirect_uri
         ];
         $OAuthClient = new OAuth($options);
 
@@ -41,7 +43,8 @@ class Factory {
      * @param string $token
      * @return Client
      */
-    public function getAPIClient($token) {
+    public function getAPIClient($token)
+    {
         $adapter = new Pest(self::$endpoint);
         $service = new Service\REST($token, $adapter);
 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Test...
  *
@@ -8,219 +9,255 @@
  */
 class StubTest extends PHPUnit_Framework_TestCase
 {
-    public function testGetAthlete() {
+    public function testGetAthlete()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getAthlete(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetAthleteStats() {
+    public function testGetAthleteStats()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getAthleteStats(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetAthleteClubs() {
+    public function testGetAthleteClubs()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getAthleteClubs();
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetAthleteActivities() {
+    public function testGetAthleteActivities()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getAthleteActivities();
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetAthleteFriends() {
+    public function testGetAthleteFriends()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getAthleteFriends();
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetAthleteFollowers() {
+    public function testGetAthleteFollowers()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getAthleteFollowers();
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetAthleteBothFollowing() {
+    public function testGetAthleteBothFollowing()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getAthleteBothFollowing(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetAthleteKom() {
+    public function testGetAthleteKom()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getAthleteKom(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetAthleteStarredSegments() {
+    public function testGetAthleteStarredSegments()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getAthleteStarredSegments();
         $this->assertTrue(is_array($output));
     }
 
-    public function testUpdateAthlete() {
+    public function testUpdateAthlete()
+    {
         $service = new Strava\API\Service\Stub();
-        $output = $service->updateAthlete('Xyz','ABC','The Netherlands','M',83.00);
+        $output = $service->updateAthlete('Xyz', 'ABC', 'The Netherlands', 'M', 83.00);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetActivity() {
+    public function testGetActivity()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getActivity(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetActivityComments() {
+    public function testGetActivityComments()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getActivityComments(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetActivityKudos() {
+    public function testGetActivityKudos()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getActivityKudos(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetActivityPhotos() {
+    public function testGetActivityPhotos()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getActivityPhotos(1234, 1024);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetActivityZones() {
+    public function testGetActivityZones()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getActivityZones(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetActivityLaps() {
+    public function testGetActivityLaps()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getActivityLaps(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetActivityUploadStatus() {
+    public function testGetActivityUploadStatus()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getActivityUploadStatus(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testCreateActivity() {
+    public function testCreateActivity()
+    {
         $service = new Strava\API\Service\Stub();
-        $output = $service->createActivity('cycling ride','cycling','20140101',100);
+        $output = $service->createActivity('cycling ride', 'cycling', '20140101', 100);
         $this->assertTrue(is_array($output));
     }
 
-    public function testUploadActivity() {
+    public function testUploadActivity()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->uploadActivity("abc23487fsdfds");
         $this->assertTrue(is_array($output));
     }
 
-    public function testUpdateActivity() {
+    public function testUpdateActivity()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->updateActivity('test');
         $this->assertTrue(is_array($output));
     }
 
-    public function testDeleteActivity() {
+    public function testDeleteActivity()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->deleteActivity(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetGear() {
+    public function testGetGear()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getGear(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetClub() {
+    public function testGetClub()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getClub(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetClubMembers() {
+    public function testGetClubMembers()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getClubMembers(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetClubActivities() {
+    public function testGetClubActivities()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getClubActivities(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetClubAnnouncements() {
+    public function testGetClubAnnouncements()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getClubAnnouncements(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetClubGroupEvents() {
+    public function testGetClubGroupEvents()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getClubGroupEvents(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testJoinClub() {
+    public function testJoinClub()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->joinClub(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testLeaveClub() {
+    public function testLeaveClub()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->leaveClub(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetSegment() {
+    public function testGetSegment()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getSegment(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetSegmentLeaderboard() {
+    public function testGetSegmentLeaderboard()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getSegmentLeaderboard(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetSegmentExplorer() {
+    public function testGetSegmentExplorer()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getSegmentExplorer("lng.lat");
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetSegmentEffort() {
+    public function testGetSegmentEffort()
+    {
         $service = new Strava\API\Service\Stub();
         $output = $service->getSegmentEffort(1234);
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetStreamsActivity() {
+    public function testGetStreamsActivity()
+    {
         $service = new Strava\API\Service\Stub();
-        $output = $service->getStreamsActivity(1234,'abc');
+        $output = $service->getStreamsActivity(1234, 'abc');
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetStreamsEffort() {
+    public function testGetStreamsEffort()
+    {
         $service = new Strava\API\Service\Stub();
-        $output = $service->getStreamsEffort(1234,'abc');
+        $output = $service->getStreamsEffort(1234, 'abc');
         $this->assertTrue(is_array($output));
     }
 
-    public function testGetStreamsSegment() {
+    public function testGetStreamsSegment()
+    {
         $service = new Strava\API\Service\Stub();
-        $output = $service->getStreamsSegment(1234,'abc');
+        $output = $service->getStreamsSegment(1234, 'abc');
         $this->assertTrue(is_array($output));
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Test...
  *
@@ -8,12 +9,14 @@
  */
 class ExceptionTest extends PHPUnit_Framework_TestCase
 {
-    public function testIsException() {
+    public function testIsException()
+    {
         $this->setExpectedException('Strava\API\Exception');
         throw new Strava\API\Exception();
     }
 
-    public function testInstanceOfException() {
+    public function testInstanceOfException()
+    {
         try {
             throw new Strava\API\Exception();
         } catch (Exception $ex) {
@@ -22,7 +25,8 @@ class ExceptionTest extends PHPUnit_Framework_TestCase
         }
     }
 
-    public function testExceptionMessageAndCode() {
+    public function testExceptionMessageAndCode()
+    {
         try {
             throw new Strava\API\Exception('test', 100);
         } catch (Exception $ex) {

@@ -9,7 +9,8 @@ use Pest;
  * @author Bas van Dorst
  * @package StravaPHP
  */
-class REST implements ServiceInterface {
+class REST implements ServiceInterface
+{
     /**
      * REST adapter
      * @var Pest
@@ -29,37 +30,43 @@ class REST implements ServiceInterface {
      * @param string $token
      * @param Pest $adapter
      */
-    public function __construct($token, Pest $adapter) {
+    public function __construct($token, Pest $adapter)
+    {
         $this->token = $token;
         $this->adapter = $adapter;
     }
 
-    private function getHeaders() {
-        return array('Authorization: Bearer '.$this->token);
+    private function getHeaders()
+    {
+        return array('Authorization: Bearer ' . $this->token);
     }
 
-    public function getAthlete($id = null) {
+    public function getAthlete($id = null)
+    {
         $path = '/athlete';
         if (isset($id) && $id !== null) {
-            $path = '/athletes/'.$id;
+            $path = '/athletes/' . $id;
         }
         $result = $this->adapter->get($path, array(), $this->getHeaders());
         return $this->format($result);
     }
 
-    public function getAthleteStats($id) {
-        $path = '/athletes/'.$id.'/stats';
+    public function getAthleteStats($id)
+    {
+        $path = '/athletes/' . $id . '/stats';
         $result = $this->adapter->get($path, array(), $this->getHeaders());
         return $this->format($result);
     }
 
-    public function getAthleteClubs() {
+    public function getAthleteClubs()
+    {
         $path = '/athlete/clubs';
         $result = $this->adapter->get($path, array(), $this->getHeaders());
         return $this->format($result);
     }
 
-    public function getAthleteActivities($before = null, $after = null, $page = null, $per_page = null) {
+    public function getAthleteActivities($before = null, $after = null, $page = null, $per_page = null)
+    {
         $path = '/athlete/activities';
         $parameters = array(
             'before' => $before,
@@ -71,10 +78,11 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
 
-    public function getAthleteFriends($id = null, $page = null, $per_page = null) {
+    public function getAthleteFriends($id = null, $page = null, $per_page = null)
+    {
         $path = '/athlete/friends';
         if (isset($id) && $id !== null) {
-            $path = '/athletes/'.$id.'/friends';
+            $path = '/athletes/' . $id . '/friends';
         }
 
         $parameters = array(
@@ -85,10 +93,11 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
 
-    public function getAthleteFollowers($id = null, $page = null, $per_page = null) {
+    public function getAthleteFollowers($id = null, $page = null, $per_page = null)
+    {
         $path = '/athlete/followers';
         if (isset($id) && $id !== null) {
-            $path = '/athletes/'.$id.'/followers';
+            $path = '/athletes/' . $id . '/followers';
         }
 
         $parameters = array(
@@ -99,8 +108,9 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
 
-    public function getAthleteBothFollowing($id, $page = null, $per_page = null) {
-        $path = '/athletes/'.$id.'/both-following';
+    public function getAthleteBothFollowing($id, $page = null, $per_page = null)
+    {
+        $path = '/athletes/' . $id . '/both-following';
 
         $parameters = array(
             'page' => $page,
@@ -110,8 +120,9 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
 
-    public function getAthleteKom($id, $page = null, $per_page = null) {
-        $path = '/athletes/'.$id.'/koms';
+    public function getAthleteKom($id, $page = null, $per_page = null)
+    {
+        $path = '/athletes/' . $id . '/koms';
 
         $parameters = array(
             'page' => $page,
@@ -121,10 +132,11 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
 
-    public function getAthleteStarredSegments($id = null, $page = null, $per_page = null) {
+    public function getAthleteStarredSegments($id = null, $page = null, $per_page = null)
+    {
         $path = '/segments/starred';
         if (isset($id) && $id !== null) {
-            $path = '/athletes/'.$id.'/segments/starred';
+            $path = '/athletes/' . $id . '/segments/starred';
             // ...wrong in Strava documentation
         }
 
@@ -136,7 +148,8 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
 
-    public function updateAthlete($city, $state, $country, $sex, $weight) {
+    public function updateAthlete($city, $state, $country, $sex, $weight)
+    {
         $path = '/athlete';
         $parameters = array(
             'city' => $city,
@@ -148,8 +161,9 @@ class REST implements ServiceInterface {
         $result = $this->adapter->put($path, $parameters, $this->getHeaders());
         return $this->format($result);
     }
-    
-    public function getActivityFollowing($before = null, $page = null, $per_page = null) {
+
+    public function getActivityFollowing($before = null, $page = null, $per_page = null)
+    {
         $path = '/activities/following';
         $parameters = array(
             'before' => $before,
@@ -157,20 +171,22 @@ class REST implements ServiceInterface {
             'per_page' => $per_page
         );
         $result = $this->adapter->get($path, $parameters, $this->getHeaders());
-        return $this->format($result);        
+        return $this->format($result);
     }
    
-    public function getActivity($id, $include_all_efforts = null) {
-        $path = '/activities/'.$id;
+    public function getActivity($id, $include_all_efforts = null)
+    {
+        $path = '/activities/' . $id;
         $parameters = array(
             'include_all_efforts' => $include_all_efforts,
         );
         $result = $this->adapter->get($path, $parameters, $this->getHeaders());
         return $this->format($result);
     }
-  
-    public function getActivityComments($id, $markdown = null, $page = null, $per_page = null) {
-        $path = '/activities/'.$id.'/comments';
+
+    public function getActivityComments($id, $markdown = null, $page = null, $per_page = null)
+    {
+        $path = '/activities/' . $id . '/comments';
         $parameters = array(
             'markdown' => $markdown,
             'page' => $page,
@@ -180,8 +196,9 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
 
-    public function getActivityKudos($id, $page = null, $per_page = null) {
-        $path = '/activities/'.$id.'/kudos';
+    public function getActivityKudos($id, $page = null, $per_page = null)
+    {
+        $path = '/activities/' . $id . '/kudos';
         $parameters = array(
             'page' => $page,
             'per_page' => $per_page
@@ -190,8 +207,9 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
 
-    public function getActivityPhotos($id, $size = 2048, $photo_sources = 'true') {
-        $path = '/activities/'.$id.'/photos';
+    public function getActivityPhotos($id, $size = 2048, $photo_sources = 'true')
+    {
+        $path = '/activities/' . $id . '/photos';
         $parameters = array(
             'size' => $size,
             'photo_sources' => $photo_sources,
@@ -200,25 +218,29 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
 
-    public function getActivityZones($id) {
-        $path = '/activities/'.$id.'/zones';
+    public function getActivityZones($id)
+    {
+        $path = '/activities/' . $id . '/zones';
         $result = $this->adapter->get($path, array(), $this->getHeaders());
         return $this->format($result);
     }
 
-    public function getActivityLaps($id) {
-        $path = '/activities/'.$id.'/laps';
+    public function getActivityLaps($id)
+    {
+        $path = '/activities/' . $id . '/laps';
         $result = $this->adapter->get($path, array(), $this->getHeaders());
         return $this->format($result);
     }
 
-    public function getActivityUploadStatus($id) {
-        $path = '/uploads/'.$id;
+    public function getActivityUploadStatus($id)
+    {
+        $path = '/uploads/' . $id;
         $result = $this->adapter->get($path, array(), $this->getHeaders());
         return $this->format($result);
     }
-    
-    public function createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null, $private = null, $trainer = null) {
+
+    public function createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null, $private = null, $trainer = null)
+    {
         $path = '/activities';
         $parameters = array(
             'name' => $name,
@@ -234,7 +256,8 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
 
-    public function uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $commute = null, $data_type = null, $external_id = null) {
+    public function uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $commute = null, $data_type = null, $external_id = null)
+    {
         $path = '/uploads';
         $parameters = array(
             'activity_type' => $activity_type,
@@ -246,14 +269,15 @@ class REST implements ServiceInterface {
             'data_type' => $data_type,
             'external_id' => $external_id,
             'file' => curl_file_create($file),
-            'file_hack' => '@'.ltrim($file, '@'),
+            'file_hack' => '@' . ltrim($file, '@'),
         );
         $result = $this->adapter->post($path, $parameters, $this->getHeaders());
         return $this->format($result);
     }
 
-    public function updateActivity($id, $name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null) {
-        $path = '/activities/'.$id;
+    public function updateActivity($id, $name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null)
+    {
+        $path = '/activities/' . $id;
         $parameters = array(
             'name' => $name,
             'type' => $type,
@@ -267,26 +291,30 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
 
-    public function deleteActivity($id) {
-        $path = '/activities/'.$id;
+    public function deleteActivity($id)
+    {
+        $path = '/activities/' . $id;
         $result = $this->adapter->delete($path, $this->getHeaders());
         return $this->format($result);
     }
 
-    public function getGear($id) {
-        $path = '/gear/'.$id;
+    public function getGear($id)
+    {
+        $path = '/gear/' . $id;
         $result = $this->adapter->get($path, array(), $this->getHeaders());
         return $this->format($result);
     }
 
-    public function getClub($id) {
-        $path = '/clubs/'.$id;
+    public function getClub($id)
+    {
+        $path = '/clubs/' . $id;
         $result = $this->adapter->get($path, array(), $this->getHeaders());
         return $this->format($result);
     }
 
-    public function getClubMembers($id, $page = null, $per_page = null) {
-        $path = '/clubs/'.$id.'/members';
+    public function getClubMembers($id, $page = null, $per_page = null)
+    {
+        $path = '/clubs/' . $id . '/members';
         $parameters = array(
             'page' => $page,
             'per_page' => $per_page,
@@ -295,8 +323,9 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
 
-    public function getClubActivities($id, $page = null, $per_page = null) {
-        $path = '/clubs/'.$id.'/activities';
+    public function getClubActivities($id, $page = null, $per_page = null)
+    {
+        $path = '/clubs/' . $id . '/activities';
         $parameters = array(
             'page' => $page,
             'per_page' => $per_page,
@@ -305,38 +334,44 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
 
-    public function getClubAnnouncements($id) {
-        $path = '/clubs/'.$id.'/announcements';
+    public function getClubAnnouncements($id)
+    {
+        $path = '/clubs/' . $id . '/announcements';
         $result = $this->adapter->get($path, array(), $this->getHeaders());
         return $this->format($result);
     }
 
-    public function getClubGroupEvents($id) {
-        $path = '/clubs/'.$id.'/group_events';
+    public function getClubGroupEvents($id)
+    {
+        $path = '/clubs/' . $id . '/group_events';
         $result = $this->adapter->get($path, array(), $this->getHeaders());
         return $this->format($result);
     }
 
-    public function joinClub($id) {
-        $path = '/clubs/'.$id.'/join';
+    public function joinClub($id)
+    {
+        $path = '/clubs/' . $id . '/join';
         $result = $this->adapter->post($path, array(), $this->getHeaders());
         return $this->format($result);
     }
 
-    public function leaveClub($id) {
-        $path = '/clubs/'.$id.'/leave';
+    public function leaveClub($id)
+    {
+        $path = '/clubs/' . $id . '/leave';
         $result = $this->adapter->post($path, array(), $this->getHeaders());
         return $this->format($result);
     }
 
-    public function getSegment($id) {
-        $path = '/segments/'.$id;
+    public function getSegment($id)
+    {
+        $path = '/segments/' . $id;
         $result = $this->adapter->get($path, array(), $this->getHeaders());
         return $this->format($result);
     }
 
-    public function getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $context_entries = null, $page = null, $per_page = null) {
-        $path = '/segments/'.$id.'/leaderboard';
+    public function getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $context_entries = null, $page = null, $per_page = null)
+    {
+        $path = '/segments/' . $id . '/leaderboard';
         $parameters = array(
             'id' => $gender,
             'age_group' => $age_group,
@@ -353,7 +388,8 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
 
-    public function getSegmentExplorer($bounds, $activity_type = 'riding', $min_cat = null, $max_cat = null) {
+    public function getSegmentExplorer($bounds, $activity_type = 'riding', $min_cat = null, $max_cat = null)
+    {
         $path = '/segments/explore';
         $parameters = array(
             'bounds' => $bounds,
@@ -366,8 +402,9 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
 
-    public function getSegmentEffort($id, $athlete_id = null, $start_date_local = null, $end_date_local = null, $page = null, $per_page = null) {
-        $path = '/segments/'.$id.'/all_efforts';
+    public function getSegmentEffort($id, $athlete_id = null, $start_date_local = null, $end_date_local = null, $page = null, $per_page = null)
+    {
+        $path = '/segments/' . $id . '/all_efforts';
         $parameters = array(
             'athlete_id' => $athlete_id,
             'start_date_local' => $start_date_local,
@@ -380,8 +417,9 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
 
-    public function getStreamsActivity($id, $types, $resolution = null, $series_type = 'distance') {
-        $path = '/activities/'.$id.'/streams/'.$types;
+    public function getStreamsActivity($id, $types, $resolution = null, $series_type = 'distance')
+    {
+        $path = '/activities/' . $id . '/streams/' . $types;
         $parameters = array(
             'resolution' => $resolution,
             'series_type' => $series_type
@@ -391,8 +429,9 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
 
-    public function getStreamsEffort($id, $types, $resolution = null, $series_type = 'distance') {
-        $path = '/segment_efforts/'.$id.'/streams/'.$types;
+    public function getStreamsEffort($id, $types, $resolution = null, $series_type = 'distance')
+    {
+        $path = '/segment_efforts/' . $id . '/streams/' . $types;
         $parameters = array(
             'resolution' => $resolution,
             'series_type' => $series_type
@@ -402,8 +441,9 @@ class REST implements ServiceInterface {
         return $this->format($result);
     }
 
-    public function getStreamsSegment($id, $types, $resolution = null, $series_type = 'distance') {
-        $path = '/segments/'.$id.'/streams/'.$types;
+    public function getStreamsSegment($id, $types, $resolution = null, $series_type = 'distance')
+    {
+        $path = '/segments/' . $id . '/streams/' . $types;
         $parameters = array(
             'resolution' => $resolution,
             'series_type' => $series_type
@@ -417,7 +457,8 @@ class REST implements ServiceInterface {
      * Convert the JSON output to an array
      * @param string $result
      */
-    private function format($result) {
+    private function format($result)
+    {
         return json_decode($result, true);
     }
 }

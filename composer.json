@@ -1,26 +1,32 @@
 {
-    "name": "basvandorst/stravaphp",
-    "description": "Strava V3 API PHP client with OAuth authentication",
-    "keywords": ["Strava", "API", "OAuth", "PHP", "StravaPHP"],
-    "require": {
-        "php": ">=5.5.0",
-        "educoder/pest": "~1.0",
-        "league/oauth2-client": "~1.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "~4.0"
-    },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Bas van Dorst",
-            "email": "basvandorst@gmail.com"
-        }
-    ],
-    "minimum-stability": "stable",
-    "autoload": {
-        "psr-0": {
-            "Strava": "src/"
-        }
+  "name": "basvandorst/stravaphp",
+  "description": "Strava V3 API PHP client with OAuth authentication",
+  "keywords": [
+    "Strava",
+    "API",
+    "OAuth",
+    "PHP",
+    "StravaPHP"
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "educoder/pest": "~1.0",
+    "league/oauth2-client": "~1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Bas van Dorst",
+      "email": "basvandorst@gmail.com"
     }
+  ],
+  "minimum-stability": "stable",
+  "autoload": {
+    "psr-0": {
+      "Strava": "src/"
+    }
+  }
 }

@@ -14,7 +14,8 @@ use Psr\Http\Message\ResponseInterface;
  * @see: https://github.com/thephpleague/oauth2-client
  * @author Bas van Dorst
  */
-class OAuth extends AbstractProvider {
+class OAuth extends AbstractProvider
+{
     use BearerAuthorizationTrait;
 
     public $scopes = ['write'];

@@ -9,7 +9,8 @@ namespace Strava\API\Service;
  * @author Bas van Dorst
  * @package StravaPHP
  */
-interface ServiceInterface {
+interface ServiceInterface
+{
     /**
      * @param integer $id
      */
@@ -80,21 +81,21 @@ interface ServiceInterface {
      * @param double $weight
      */
     public function updateAthlete($city, $state, $country, $sex, $weight);
-    
+
     /**
-     * 
+     *
      * @param type $before
      * @param type $page
      * @param type $per_page
      */
     public function getActivityFollowing($before = null, $page = null, $per_page = null);
-        
+
     /**
      * @param integer $id
      * @param boolean $include_all_efforts
      */
     public function getActivity($id, $include_all_efforts = null);
-    
+
     /**
      * @param integer $id
      * @param boolean $markdown

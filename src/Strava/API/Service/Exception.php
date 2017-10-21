@@ -7,4 +7,6 @@ namespace Strava\API\Service;
  * @author Bas van Dorst
  * @package StravaPHP
  */
-class Exception extends \Exception {}
+class Exception extends \Exception
+{
+}
