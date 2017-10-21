@@ -1,3 +1,4 @@
-/vendor
 .project
+/vendor/
+composer.lock
 example.php

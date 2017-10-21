@@ -7,9 +7,9 @@ StravaPHP
 **TLDR;** Strava V3 API PHP client with OAuth authentication
 
 The Strava V3 API is a publicly available interface allowing developers access
-to the rich [Strava](http://www.strava.com/) dataset. The interface is stable and currently used by the
+to the rich [Strava](https://www.strava.com/) dataset. The interface is stable and currently used by the
 Strava mobile applications. However, changes are occasionally made to improve
-performance and enhance features. See the [changelog](http://strava.github.io/api/v3/changelog/) for more details.
+performance and enhance features. See the [changelog](https://strava.github.io/api/v3/changelog/) for more details.
 
 In this GitHub repository you can find the PHP implementation of the
 Strava V3 API. The current version of StravaPHP combines the V3 API
@@ -19,7 +19,7 @@ with a proper OAuth authentication.
 ### Get your API key
 All calls to the Strava API require an access token defining the athlete and
 application making the call. Any registered Strava user can obtain an access
-token by first creating an application at [strava.com/developers](http://www.strava.com/developers)
+token by first creating an application at [labs.strava.com/developers](http://labs.strava.com/developers/)
 
 ### Composer package
 Use composer to install this StravaPHP package.
@@ -32,7 +32,6 @@ Use composer to install this StravaPHP package.
 }
 ```
 
-
 ### StravaPHP usage
 #### First, authorisation and authentication
 ```php
@@ -43,20 +42,27 @@ use Strava\API\OAuth;
 use Strava\API\Exception;
 
 try {
-    $options = array(
+    $options = [
         'clientId'     => 1234,
         'clientSecret' => 'APP-TOKEN',
         'redirectUri'  => 'http://my-app/callback.php'
-    );
+    ];
     $oauth = new OAuth($options);
 
     if (!isset($_GET['code'])) {
-        print '<a href="'.$oauth->getAuthorizationUrl().'">connect</a>';
+        print '<a href="'.$oauth->getAuthorizationUrl([
+            // Uncomment required scopes.
+            'scope' => [
+                'public',
+                // 'write',
+                // 'view_private',
+            ]
+        ]).'">Connect</a>';
     } else {
-        $token = $oauth->getAccessToken('authorization_code', array(
+        $token = $oauth->getAccessToken('authorization_code', [
             'code' => $_GET['code']
-        ));
-        print $token;
+        ]);
+        print $token->getToken();
     }
 } catch(Exception $e) {
     print $e->getMessage();
@@ -67,14 +73,13 @@ try {
 <?php
 include 'vendor/autoload.php';
 
-use Pest;
 use Strava\API\Client;
 use Strava\API\Exception;
 use Strava\API\Service\REST;
 
 try {
     $adapter = new Pest('https://www.strava.com/api/v3');
-    $service = new REST($token, $adapter);  // Define your user token here..
+    $service = new REST($token, $adapter);  // Define your user token here.
     $client = new Client($service);
 
     $athlete = $client->getAthlete();
@@ -108,26 +113,35 @@ $factory->getAPIClient($token);
 ### Strava\API\OAuth
 #### Usage
 ```php
-// Parameter information: http://strava.github.io/api/v3/oauth/#get-authorize
-$options = array(
+// Parameter information: https://strava.github.io/api/v3/oauth/#get-authorize
+$options = [
     'clientId'     => 1234,
     'clientSecret' => 'APP-TOKEN',
     'redirectUri'  => 'http://my-app/callback.php'
-);
+];
 $oauth = new OAuth($options);
 
 // The OAuth authorization procces (1st; let the user approve, 2nd; token exchange with Strava)
 if (!isset($_GET['code'])) {
-    print '<a href="'.$oauth->getAuthorizationUrl().'">connect</a>';
+    print '<a href="'.$oauth->getAuthorizationUrl([
+        // Uncomment required scopes.
+        'scope' => [
+            'public',
+            // 'write',
+            // 'view_private',
+        ]
+    ]).'">Connect</a>';
 } else {
-    $token = $oauth->getAccessToken('authorization_code', array('code' => $_GET['code']));
-    print $token;
+    $token = $oauth->getAccessToken('authorization_code', [
+        'code' => $_GET['code']
+    ]);
+    print $token->getToken();
 }
 ```
 #### Methods
 ```php
-$oauth->getAuthorizationUrl($options = array());
-$oauth->getAccessToken($grant = 'authorization_code', $params = array());
+$oauth->getAuthorizationUrl($options = []);
+$oauth->getAccessToken($grant = 'authorization_code', $params = []);
 ```
 ### Strava\API\Client
 #### Usage
@@ -162,13 +176,13 @@ $client->getActivityZones($id);
 $client->getActivityLaps($id);
 $client->getActivityUploadStatus($id);
 $client->createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null);
-$client->uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $data_type = null, $external_id = null);
+$client->uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $commute = null, $trainer = null, $data_type = null, $external_id = null);
 $client->updateActivity($id, $name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null);
 $client->deleteActivity($id);
 $client->getGear($id);
 $client->getClub($id);
-$client->getClubMembers($id, $page = null, $per_page  = null);
-$client->getClubActivities($id, $page = null, $per_page  = null);
+$client->getClubMembers($id, $page = null, $per_page = null);
+$client->getClubActivities($id, $page = null, $per_page = null);
 $client->getSegment($id);
 $client->getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $page = null, $per_page = null);
 $client->getSegmentExplorer($bounds, $activity_type = 'riding', $min_cat = null, $max_cat = null);
@@ -186,7 +200,7 @@ $client->getStreamsSegment($id, $types, $resolution = null, $series_type = 'dist
 
 ## About StravaPHP
 ### Used libraries
-- [Strava API](http://strava.github.io/api/)
+- [Strava API](https://strava.github.io/api/)
 - [thephpleague/oauth2-client](https://github.com/thephpleague/oauth2-client/)
 - [educoder/pest](https://github.com/educoder/pest)
 
@@ -198,4 +212,3 @@ All issues and pull requests should be filled on the basvandorst/StravaPHP repos
 
 ### License
 The StravaPHP library is open-source software licensed under MIT license.
-

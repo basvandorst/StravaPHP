@@ -2,15 +2,14 @@
 namespace Strava\API\Service;
 
 /**
- * Service interace. 
- * Just to make sure we can trust the method signatures of all the 
+ * Service interace.
+ * Just to make sure we can trust the method signatures of all the
  * service classes.
- * 
+ *
  * @author Bas van Dorst
  * @package StravaPHP
  */
 interface ServiceInterface {
-
     /**
      * @param integer $id
      */
@@ -21,7 +20,7 @@ interface ServiceInterface {
      *
      * Only available for the authenticated athlete.
      *
-     * @link    http://strava.github.io/api/v3/athlete/#stats
+     * @link    https://strava.github.io/api/v3/athlete/#stats
      * @param   int $id
      * @return  array
      * @throws  ClientException
@@ -105,6 +104,8 @@ interface ServiceInterface {
 
     /**
      * @param integer $id
+     * @param integer $size
+     * @param string $photo_sources
      */
     public function getActivityPhotos($id, $size = 2048, $photo_sources = 'true');
 
@@ -173,14 +174,14 @@ interface ServiceInterface {
      * @param integer $page
      * @param integer $per_page
      */
-    public function getClubMembers($id, $page = null, $per_page  = null);
+    public function getClubMembers($id, $page = null, $per_page = null);
 
     /**
      * @param integer $id
      * @param integer $page
      * @param integer $per_page
      */
-    public function getClubActivities($id, $page = null, $per_page  = null);
+    public function getClubActivities($id, $page = null, $per_page = null);
 
     /**
      * @param integer $id
