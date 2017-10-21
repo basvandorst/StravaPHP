@@ -21,7 +21,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/athlete'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getAthlete();
         $this->assertArrayHasKey('response', $output);
     }
@@ -32,7 +32,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/athletes/1234'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getAthlete(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -54,7 +54,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/athlete/clubs'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getAthleteClubs();
         $this->assertArrayHasKey('response', $output);
     }
@@ -65,7 +65,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/athlete/activities'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getAthleteActivities();
         $this->assertArrayHasKey('response', $output);
     }
@@ -76,7 +76,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/athlete/friends'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getAthleteFriends();
         $this->assertArrayHasKey('response', $output);
     }
@@ -87,7 +87,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/athletes/1234/friends'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getAthleteFriends(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -98,7 +98,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/athlete/followers'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getAthleteFollowers();
         $this->assertArrayHasKey('response', $output);
     }
@@ -109,7 +109,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/athletes/1234/followers'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getAthleteFollowers(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -120,7 +120,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/athletes/1234/both-following'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getAthleteBothFollowing(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -131,7 +131,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/athletes/1234/koms'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getAthleteKom(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -142,7 +142,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/segments/starred'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getAthleteStarredSegments();
         $this->assertArrayHasKey('response', $output);
     }
@@ -153,7 +153,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/athletes/1234/segments/starred'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getAthleteStarredSegments(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -169,10 +169,10 @@ class RESTTest extends PHPUnit_Framework_TestCase
 
         $pestMock = $this->getPestMock();
         $pestMock->expects($this->once())->method('put')
-           ->with($this->equalTo('/athlete'),$this->equalTo($parameters))
+           ->with($this->equalTo('/athlete'), $this->equalTo($parameters))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->updateAthlete('Xyz','ABC','The Netherlands','M',83.00);
         $this->assertArrayHasKey('response', $output);
     }
@@ -183,7 +183,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/activities/1234'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getActivity(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -194,7 +194,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/activities/1234/comments'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getActivityComments(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -205,7 +205,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/activities/1234/kudos'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getActivityKudos(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -216,7 +216,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/activities/1234/photos'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getActivityPhotos(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -227,7 +227,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/activities/1234/zones'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getActivityZones(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -238,7 +238,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/activities/1234/laps'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getActivityLaps(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -249,7 +249,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/uploads/1234'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getActivityUploadStatus(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -260,7 +260,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/activities'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->createActivity('test','test','20130101',100);
         $this->assertArrayHasKey('response', $output);
     }
@@ -271,7 +271,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/uploads'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->uploadActivity('file');
         $this->assertArrayHasKey('response', $output);
     }
@@ -282,7 +282,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/activities/1234'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->updateActivity(1234,'test');
         $this->assertArrayHasKey('response', $output);
     }
@@ -293,7 +293,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/activities/1234'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->deleteActivity(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -304,7 +304,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/gear/1234'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getGear(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -315,7 +315,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/clubs/1234'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getClub(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -326,7 +326,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/clubs/1234/members'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getClubMembers(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -337,7 +337,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/clubs/1234/activities'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getClubActivities(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -348,7 +348,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
           ->with($this->equalTo('/clubs/1234/announcements'))
           ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getClubAnnouncements(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -359,7 +359,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
           ->with($this->equalTo('/clubs/1234/group_events'))
           ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getClubGroupEvents(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -370,7 +370,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
           ->with($this->equalTo('/clubs/1234/join'))
           ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->joinClub(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -381,7 +381,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
           ->with($this->equalTo('/clubs/1234/leave'))
           ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->leaveClub(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -392,7 +392,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/segments/1234'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getSegment(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -403,7 +403,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/segments/1234/leaderboard'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getSegmentLeaderboard(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -414,7 +414,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/segments/explore'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getSegmentExplorer('37.821362,-122.505373,37.842038,-122.465977');
         $this->assertArrayHasKey('response', $output);
     }
@@ -425,7 +425,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/segments/1234/all_efforts'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getSegmentEffort(1234);
         $this->assertArrayHasKey('response', $output);
     }
@@ -436,7 +436,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/activities/1234/streams/latlng'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getStreamsActivity(1234,'latlng');
         $this->assertArrayHasKey('response', $output);
     }
@@ -447,7 +447,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/segment_efforts/1234/streams/latlng'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getStreamsEffort(1234,'latlng');
         $this->assertArrayHasKey('response', $output);
     }
@@ -458,7 +458,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
            ->with($this->equalTo('/segments/1234/streams/latlng'))
            ->will($this->returnValue('{"response": 1}'));
 
-        $service = new Strava\API\Service\REST('TOKEN',  $pestMock);
+        $service = new Strava\API\Service\REST('TOKEN', $pestMock);
         $output = $service->getStreamsSegment(1234,'latlng');
         $this->assertArrayHasKey('response', $output);
     }

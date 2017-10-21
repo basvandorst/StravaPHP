@@ -25,12 +25,12 @@ class Factory {
      * @return OAuth
      */
     public function getOAuthClient($client_id, $client_secret, $redirect_uri) {
-        $parameters = array(
+        $options = [
             'clientId'     => $client_id,
             'clientSecret' => $client_secret,
             'redirectUri'  => $redirect_uri
-        );
-        $OAuthClient = new OAuth($parameters);
+        ];
+        $OAuthClient = new OAuth($options);
 
         return $OAuthClient;
     }

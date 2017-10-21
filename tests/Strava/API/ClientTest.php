@@ -160,7 +160,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $output = $client->getAthleteBothFollowing(1234);
     }
 
-
     public function testGetAthleteKom() {
         $serviceMock = $this->getServiceMock();
         $serviceMock->expects($this->once())->method('getAthleteKom')
@@ -182,7 +181,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $client = new Strava\API\Client($serviceMock);
         $output = $client->getAthleteKom(1234);
     }
-
 
     public function testGetAthleteStarredSegments() {
         $serviceMock = $this->getServiceMock();
@@ -469,7 +467,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $client = new Strava\API\Client($serviceMock);
         $output = $client->deleteActivity(1234);
     }
-
 
     public function testGetGear() {
         $serviceMock = $this->getServiceMock();
