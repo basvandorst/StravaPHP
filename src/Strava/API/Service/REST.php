@@ -400,7 +400,7 @@ class REST implements ServiceInterface
     {
         $path = '/segments/' . $id . '/leaderboard';
         $parameters = array(
-            'id' => $gender,
+            'gender' => $gender,
             'age_group' => $age_group,
             'weight_class' => $weight_class,
             'following' => $following,
