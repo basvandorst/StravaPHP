@@ -637,7 +637,7 @@ class Client
     /**
      * Get route details
      *
-     * @link    https://strava.github.io/api/v3/routes/#list
+     * @link    https://strava.github.io/api/v3/routes/#retreive
      * @param   int $id
      * @return  array
      * @throws  Exception
@@ -646,6 +646,23 @@ class Client
     {
         try {
             return $this->service->getRoute($id);
+        } catch (ServiceException $e) {
+            throw new ClientException('[SERVICE] ' . $e->getMessage());
+        }
+    }
+    
+     /**
+     * Get route list
+     *
+     * @link    https://strava.github.io/api/v3/routes/#list
+     * @param   int $id
+     * @return  array
+     * @throws  Exception
+     */
+    public function getRoutes()
+    {
+        try {
+            return $this->service->getRoutes();
         } catch (ServiceException $e) {
             throw new ClientException('[SERVICE] ' . $e->getMessage());
         }

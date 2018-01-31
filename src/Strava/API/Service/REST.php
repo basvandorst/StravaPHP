@@ -388,6 +388,13 @@ class REST implements ServiceInterface
         $result = $this->adapter->get($path, array(), $this->getHeaders());
         return $this->format($result);
     }
+    
+    public function getRoutes()
+    {
+        $path   = '/athlete/routes';
+        $result = $this->adapter->get($path, array(), $this->getHeaders());
+        return $this->format($result);
+    }
 
     public function getSegment($id)
     {

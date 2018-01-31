@@ -187,6 +187,7 @@ $client->getClub($id);
 $client->getClubMembers($id, $page = null, $per_page = null);
 $client->getClubActivities($id, $page = null, $per_page = null);
 $client->getRoute($id);
+$client->getRoutes();
 $client->getSegment($id);
 $client->getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $page = null, $per_page = null);
 $client->getSegmentExplorer($bounds, $activity_type = 'riding', $min_cat = null, $max_cat = null);
