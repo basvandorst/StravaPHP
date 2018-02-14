@@ -482,7 +482,7 @@ class REST implements ServiceInterface
 
     public function getStreamsRoute($id)
     {
-        $path = '/routes/' . $id . '/streams/';
+        $path = '/routes/' . $id . '/streams';
 
         $result = $this->adapter->get($path, array(), $this->getHeaders());
         return $this->format($result);
