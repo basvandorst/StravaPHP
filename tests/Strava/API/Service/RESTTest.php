@@ -545,7 +545,7 @@ class RESTTest extends PHPUnit_Framework_TestCase
     {
         $pestMock = $this->getPestMock();
         $pestMock->expects($this->once())->method('get')
-            ->with($this->equalTo('/routes/1234/streams/'))
+            ->with($this->equalTo('/routes/1234/streams'))
             ->will($this->returnValue('{"response": 1}'));
 
         $service = new Strava\API\Service\REST('TOKEN', $pestMock);
