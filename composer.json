@@ -11,7 +11,7 @@
   "require": {
     "php": ">=5.5.0",
     "educoder/pest": "~1.0",
-    "league/oauth2-client": "~1.0"
+    "league/oauth2-client": "~2.3"
   },
   "require-dev": {
     "phpunit/phpunit": "~4.0"
