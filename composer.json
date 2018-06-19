@@ -9,7 +9,7 @@
     "StravaPHP"
   ],
   "require": {
-    "php": ">=7.0",
+    "php": ">=5.6",
     "educoder/pest": "~1.0",
     "league/oauth2-client": "~2.3"
   },
