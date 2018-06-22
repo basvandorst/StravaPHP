@@ -1,8 +1,6 @@
 <?php
 namespace Strava\API;
 
-use Pest;
-
 /**
  * Factory class
  *
@@ -45,7 +43,7 @@ class Factory
      */
     public function getAPIClient($token)
     {
-        $adapter = new Pest(self::$endpoint);
+        $adapter = new \GuzzleHttp\Client(['base_uri' => self::$endpoint]);
         $service = new Service\REST($token, $adapter);
 
         $APIClient = new Client($service);
