@@ -60,9 +60,9 @@ class REST implements ServiceInterface
 
     public function getAthlete($id = null)
     {
-        $path = '/athlete';
+        $path = 'athlete';
         if (isset($id) && $id !== null) {
-            $path = '/athletes/' . $id;
+            $path = 'athletes/' . $id;
         }
         $parameters = ['access_token' => $this->getToken()];
         $response = $this->adapter->request('GET', $path, $parameters);
@@ -71,7 +71,7 @@ class REST implements ServiceInterface
 
     public function getAthleteStats($id)
     {
-        $path = '/athletes/' . $id . '/stats';
+        $path = 'athletes/' . $id . '/stats';
         $parameters = ['access_token' => $this->getToken()];
         $response = $this->adapter->request('GET', $path, $parameters);
         return $this->getResult($response);
@@ -79,7 +79,7 @@ class REST implements ServiceInterface
 
     public function getAthleteRoutes($id, $type = null, $after = null, $page = null, $per_page = null)
     {
-        $path = '/athletes/' . $id . '/routes';
+        $path = 'athletes/' . $id . '/routes';
         $parameters = [
             'type' => $type,
             'after' => $after,
@@ -93,7 +93,7 @@ class REST implements ServiceInterface
 
     public function getAthleteClubs()
     {
-        $path = '/athlete/clubs';
+        $path = 'athlete/clubs';
         $parameters = ['access_token' => $this->getToken()];
         $response = $this->adapter->request('GET', $path, $parameters);
         return $this->getResult($response);
@@ -101,7 +101,7 @@ class REST implements ServiceInterface
 
     public function getAthleteActivities($before = null, $after = null, $page = null, $per_page = null)
     {
-        $path = '/athlete/activities';
+        $path = 'athlete/activities';
         $parameters = [
             'before' => $before,
             'after' => $after,
@@ -115,9 +115,9 @@ class REST implements ServiceInterface
 
     public function getAthleteFriends($id = null, $page = null, $per_page = null)
     {
-        $path = '/athlete/friends';
+        $path = 'athlete/friends';
         if (isset($id) && $id !== null) {
-            $path = '/athletes/' . $id . '/friends';
+            $path = 'athletes/' . $id . '/friends';
         }
         $parameters = [
             'page' => $page,
@@ -130,9 +130,9 @@ class REST implements ServiceInterface
 
     public function getAthleteFollowers($id = null, $page = null, $per_page = null)
     {
-        $path = '/athlete/followers';
+        $path = 'athlete/followers';
         if (isset($id) && $id !== null) {
-            $path = '/athletes/' . $id . '/followers';
+            $path = 'athletes/' . $id . '/followers';
         }
         $parameters = [
             'page' => $page,
@@ -145,7 +145,7 @@ class REST implements ServiceInterface
 
     public function getAthleteBothFollowing($id, $page = null, $per_page = null)
     {
-        $path = '/athletes/' . $id . '/both-following';
+        $path = 'athletes/' . $id . '/both-following';
         $parameters = [
             'page' => $page,
             'per_page' => $per_page,
@@ -157,7 +157,7 @@ class REST implements ServiceInterface
 
     public function getAthleteKom($id, $page = null, $per_page = null)
     {
-        $path = '/athletes/' . $id . '/koms';
+        $path = 'athletes/' . $id . '/koms';
         $parameters = [
             'page' => $page,
             'per_page' => $per_page,
@@ -169,7 +169,7 @@ class REST implements ServiceInterface
 
     public function getAthleteZones()
     {
-        $path = '/athlete/zones';
+        $path = 'athlete/zones';
         $parameters = ['access_token' => $this->getToken()];
         $response = $this->adapter->request('GET', $path, $parameters);
         return $this->getResult($response);
@@ -177,9 +177,9 @@ class REST implements ServiceInterface
 
     public function getAthleteStarredSegments($id = null, $page = null, $per_page = null)
     {
-        $path = '/segments/starred';
+        $path = 'segments/starred';
         if (isset($id) && $id !== null) {
-            $path = '/athletes/' . $id . '/segments/starred';
+            $path = 'athletes/' . $id . '/segments/starred';
             // ...wrong in Strava documentation
         }
         $parameters = [
@@ -193,7 +193,7 @@ class REST implements ServiceInterface
 
     public function updateAthlete($city, $state, $country, $sex, $weight)
     {
-        $path = '/athlete';
+        $path = 'athlete';
         $parameters = [
             'city' => $city,
             'state' => $state,
@@ -208,7 +208,7 @@ class REST implements ServiceInterface
 
     public function getActivityFollowing($before = null, $page = null, $per_page = null)
     {
-        $path = '/activities/following';
+        $path = 'activities/following';
         $parameters = [
             'before' => $before,
             'page' => $page,
@@ -221,7 +221,7 @@ class REST implements ServiceInterface
 
     public function getActivity($id, $include_all_efforts = null)
     {
-        $path = '/activities/' . $id;
+        $path = 'activities/' . $id;
         $parameters = [
             'include_all_efforts' => $include_all_efforts,
             'access_token' => $this->getToken(),
@@ -232,7 +232,7 @@ class REST implements ServiceInterface
 
     public function getActivityComments($id, $markdown = null, $page = null, $per_page = null)
     {
-        $path = '/activities/' . $id . '/comments';
+        $path = 'activities/' . $id . '/comments';
         $parameters = [
             'markdown' => $markdown,
             'page' => $page,
@@ -245,7 +245,7 @@ class REST implements ServiceInterface
 
     public function getActivityKudos($id, $page = null, $per_page = null)
     {
-        $path = '/activities/' . $id . '/kudos';
+        $path = 'activities/' . $id . '/kudos';
         $parameters = [
             'page' => $page,
             'per_page' => $per_page,
@@ -257,7 +257,7 @@ class REST implements ServiceInterface
 
     public function getActivityPhotos($id, $size = 2048, $photo_sources = 'true')
     {
-        $path = '/activities/' . $id . '/photos';
+        $path = 'activities/' . $id . '/photos';
         $parameters = [
             'size' => $size,
             'photo_sources' => $photo_sources,
@@ -269,7 +269,7 @@ class REST implements ServiceInterface
 
     public function getActivityZones($id)
     {
-        $path = '/activities/' . $id . '/zones';
+        $path = 'activities/' . $id . '/zones';
         $parameters = ['access_token' => $this->getToken()];
         $response = $this->adapter->request('GET', $path, $parameters);
         return $this->getResult($response);
@@ -277,7 +277,7 @@ class REST implements ServiceInterface
 
     public function getActivityLaps($id)
     {
-        $path = '/activities/' . $id . '/laps';
+        $path = 'activities/' . $id . '/laps';
         $parameters = ['access_token' => $this->getToken()];
         $response = $this->adapter->request('GET', $path, $parameters);
         return $this->getResult($response);
@@ -285,7 +285,7 @@ class REST implements ServiceInterface
 
     public function getActivityUploadStatus($id)
     {
-        $path = '/uploads/' . $id;
+        $path = 'uploads/' . $id;
         $parameters = ['access_token' => $this->getToken()];
         $response = $this->adapter->request('GET', $path, $parameters);
         return $this->getResult($response);
@@ -293,7 +293,7 @@ class REST implements ServiceInterface
 
     public function createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null, $private = null, $trainer = null)
     {
-        $path = '/activities';
+        $path = 'activities';
         $parameters = [
             'name' => $name,
             'type' => $type,
@@ -311,7 +311,7 @@ class REST implements ServiceInterface
 
     public function uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $commute = null, $data_type = null, $external_id = null)
     {
-        $path = '/uploads';
+        $path = 'uploads';
         $parameters = [
             'activity_type' => $activity_type,
             'name' => $name,
@@ -331,7 +331,7 @@ class REST implements ServiceInterface
 
     public function updateActivity($id, $name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null)
     {
-        $path = '/activities/' . $id;
+        $path = 'activities/' . $id;
         $parameters = [
             'name' => $name,
             'type' => $type,
@@ -348,7 +348,7 @@ class REST implements ServiceInterface
 
     public function deleteActivity($id)
     {
-        $path = '/activities/' . $id;
+        $path = 'activities/' . $id;
         $parameters = ['access_token' => $this->getToken()];
         $response = $this->adapter->request('DELETE', $path, $parameters);
         return $this->getResult($response);
@@ -356,7 +356,7 @@ class REST implements ServiceInterface
 
     public function getGear($id)
     {
-        $path = '/gear/' . $id;
+        $path = 'gear/' . $id;
         $parameters = ['access_token' => $this->getToken()];
         $response = $this->adapter->request('GET', $path, $parameters);
         return $this->getResult($response);
@@ -364,7 +364,7 @@ class REST implements ServiceInterface
 
     public function getClub($id)
     {
-        $path = '/clubs/' . $id;
+        $path = 'clubs/' . $id;
         $parameters = ['access_token' => $this->getToken()];
         $response = $this->adapter->request('GET', $path, $parameters);
         return $this->getResult($response);
@@ -372,7 +372,7 @@ class REST implements ServiceInterface
 
     public function getClubMembers($id, $page = null, $per_page = null)
     {
-        $path = '/clubs/' . $id . '/members';
+        $path = 'clubs/' . $id . '/members';
         $parameters = [
             'page' => $page,
             'per_page' => $per_page,
@@ -384,7 +384,7 @@ class REST implements ServiceInterface
 
     public function getClubActivities($id, $page = null, $per_page = null)
     {
-        $path = '/clubs/' . $id . '/activities';
+        $path = 'clubs/' . $id . '/activities';
         $parameters = [
             'page' => $page,
             'per_page' => $per_page,
@@ -396,7 +396,7 @@ class REST implements ServiceInterface
 
     public function getClubAnnouncements($id)
     {
-        $path = '/clubs/' . $id . '/announcements';
+        $path = 'clubs/' . $id . '/announcements';
         $parameters = ['access_token' => $this->getToken()];
         $response = $this->adapter->request('GET', $path, $parameters);
         return $this->getResult($response);
@@ -404,7 +404,7 @@ class REST implements ServiceInterface
 
     public function getClubGroupEvents($id)
     {
-        $path = '/clubs/' . $id . '/group_events';
+        $path = 'clubs/' . $id . '/group_events';
         $parameters = ['access_token' => $this->getToken()];
         $response = $this->adapter->request('GET', $path, $parameters);
         return $this->getResult($response);
@@ -412,7 +412,7 @@ class REST implements ServiceInterface
 
     public function joinClub($id)
     {
-        $path = '/clubs/' . $id . '/join';
+        $path = 'clubs/' . $id . '/join';
         $parameters = ['access_token' => $this->getToken()];
         $response = $this->adapter->request('POST', $path, $parameters);
         return $this->getResult($response);
@@ -420,7 +420,7 @@ class REST implements ServiceInterface
 
     public function leaveClub($id)
     {
-        $path = '/clubs/' . $id . '/leave';
+        $path = 'clubs/' . $id . '/leave';
         $parameters = ['access_token' => $this->getToken()];
         $response = $this->adapter->request('POST', $path, $parameters);
         return $this->getResult($response);
@@ -428,7 +428,7 @@ class REST implements ServiceInterface
 
     public function getRoute($id)
     {
-        $path = '/routes/' . $id;
+        $path = 'routes/' . $id;
         $parameters = ['access_token' => $this->getToken()];
         $response = $this->adapter->request('GET', $path, $parameters);
         return $this->getResult($response);
@@ -436,7 +436,7 @@ class REST implements ServiceInterface
 
     public function getSegment($id)
     {
-        $path = '/segments/' . $id;
+        $path = 'segments/' . $id;
         $parameters = ['access_token' => $this->getToken()];
         $response = $this->adapter->request('GET', $path, $parameters);
         return $this->getResult($response);
@@ -444,7 +444,7 @@ class REST implements ServiceInterface
 
     public function getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $context_entries = null, $page = null, $per_page = null)
     {
-        $path = '/segments/' . $id . '/leaderboard';
+        $path = 'segments/' . $id . '/leaderboard';
         $parameters = [
             'gender' => $gender,
             'age_group' => $age_group,
@@ -463,7 +463,7 @@ class REST implements ServiceInterface
 
     public function getSegmentExplorer($bounds, $activity_type = 'riding', $min_cat = null, $max_cat = null)
     {
-        $path = '/segments/explore';
+        $path = 'segments/explore';
         $parameters = [
             'bounds' => $bounds,
             'activity_type' => $activity_type,
@@ -477,7 +477,7 @@ class REST implements ServiceInterface
 
     public function getSegmentEffort($id, $athlete_id = null, $start_date_local = null, $end_date_local = null, $page = null, $per_page = null)
     {
-        $path = '/segments/' . $id . '/all_efforts';
+        $path = 'segments/' . $id . '/all_efforts';
         $parameters = [
             'athlete_id' => $athlete_id,
             'start_date_local' => $start_date_local,
@@ -492,7 +492,7 @@ class REST implements ServiceInterface
 
     public function getStreamsActivity($id, $types, $resolution = null, $series_type = 'distance')
     {
-        $path = '/activities/' . $id . '/streams/' . $types;
+        $path = 'activities/' . $id . '/streams/' . $types;
         $parameters = [
             'resolution' => $resolution,
             'series_type' => $series_type,
@@ -504,7 +504,7 @@ class REST implements ServiceInterface
 
     public function getStreamsEffort($id, $types, $resolution = null, $series_type = 'distance')
     {
-        $path = '/segment_efforts/' . $id . '/streams/' . $types;
+        $path = 'segment_efforts/' . $id . '/streams/' . $types;
         $parameters = [
             'resolution' => $resolution,
             'series_type' => $series_type,
@@ -516,7 +516,7 @@ class REST implements ServiceInterface
 
     public function getStreamsSegment($id, $types, $resolution = null, $series_type = 'distance')
     {
-        $path = '/segments/' . $id . '/streams/' . $types;
+        $path = 'segments/' . $id . '/streams/' . $types;
         $parameters = [
             'resolution' => $resolution,
             'series_type' => $series_type,
@@ -528,7 +528,7 @@ class REST implements ServiceInterface
 
     public function getStreamsRoute($id)
     {
-        $path = '/routes/' . $id . '/streams';
+        $path = 'routes/' . $id . '/streams';
         $parameters = ['access_token' => $this->getToken()];
         $response = $this->adapter->request('GET', $path, $parameters);
         return $this->getResult($response);
