@@ -50,7 +50,7 @@ class REST implements ServiceInterface
      */
     public function getResult($response)
     {
-        $status = $response->getStatusCode;
+        $status = $response->getStatusCode();
         if ($status == 200) {
             return json_decode($response->getBody());
         } else {
