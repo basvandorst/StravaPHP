@@ -78,7 +78,7 @@ use Strava\API\Exception;
 use Strava\API\Service\REST;
 
 try {
-    $adapter = new Pest('https://www.strava.com/api/v3');
+    $adapter = new \GuzzleHttp\Client(['base_uri' => 'https://www.strava.com/api/v3']);
     $service = new REST($token, $adapter);  // Define your user token here.
     $client = new Client($service);
 
@@ -146,8 +146,8 @@ $oauth->getAccessToken($grant = 'authorization_code', $params = []);
 ### Strava\API\Client
 #### Usage
 ```php
-// REST adapter (We use `Pest` in this project)
-$adapter = new Pest('https://www.strava.com/api/v3');
+// REST adapter (We use `Guzzle` in this project)
+$adapter = new \GuzzleHttp\Client(['base_uri' => 'https://www.strava.com/api/v3']);
 // Service to use (Service\Stub is also available for test purposes)
 $service = new Service\REST('RECEIVED-TOKEN', $adapter);
 
@@ -207,7 +207,7 @@ $client->getStreamsRoute($id);
 ### Used libraries
 - [Strava API](https://strava.github.io/api/)
 - [thephpleague/oauth2-client](https://github.com/thephpleague/oauth2-client/)
-- [educoder/pest](https://github.com/educoder/pest)
+- [guzzlehttp/guzzle](https://github.com/guzzle/guzzle)
 
 ### Development
 The StravaPHP library was created by Bas van Dorst, [software engineer](https://www.linkedin.com/in/basvandorst) and cyclist enthusiast.
