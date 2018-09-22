@@ -40,7 +40,7 @@ class REST implements ServiceInterface
 
     private function getToken()
     {
-        return $this->token;
+        return $this->token->getToken();
     }
 
     /**
