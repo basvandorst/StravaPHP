@@ -47,16 +47,23 @@ class REST implements ServiceInterface
      * Get a request result.
      * Returns an array with a response body or and error code => reason.
      * @param \GuzzleHttp\Psr7\Response $response
-     * @return array|mixed
+     * @return array|mixed|string
      */
     private function getResult($response)
     {
         $status = $response->getStatusCode();
-        if ($status == 200) {
-            return json_decode($response->getBody(), JSON_PRETTY_PRINT);
-        } else {
+
+        if ($status !== 200) {
             return [$status => $response->getReasonPhrase()];
         }
+
+        $contentType = $response->getHeader('Content-Type');
+
+        if (false !== strpos(current($contentType), 'application/json')) {
+            return json_decode($response->getBody(), JSON_PRETTY_PRINT);
+        }
+
+        return (string) $response->getBody();
     }
 
   /**
@@ -418,6 +425,20 @@ class REST implements ServiceInterface
     public function getRoute($id)
     {
         $path = 'routes/' . $id;
+        $parameters['query'] = ['access_token' => $this->getToken()];
+        return $this->getResponse('GET', $path, $parameters);
+    }
+
+    public function getRouteAsGPX($id)
+    {
+        $path = 'routes/' . $id . '/export_gpx';
+        $parameters['query'] = ['access_token' => $this->getToken()];
+        return $this->getResponse('GET', $path, $parameters);
+    }
+
+    public function getRouteAsTCX($id)
+    {
+        $path = 'routes/' . $id . '/export_tcx';
         $parameters['query'] = ['access_token' => $this->getToken()];
         return $this->getResponse('GET', $path, $parameters);
     }

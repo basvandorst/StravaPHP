@@ -2,7 +2,7 @@
 namespace Strava\API\Service;
 
 /**
- * Service interace.
+ * Service interface.
  * Just to make sure we can trust the method signatures of all the
  * service classes.
  *
@@ -227,6 +227,16 @@ interface ServiceInterface
      * @param integer $id
      */
     public function getRoute($id);
+
+    /**
+     * @param $id
+     */
+    public function getRouteAsGPX($id);
+
+    /**
+     * @param $id
+     */
+    public function getRouteAsTCX($id);
 
     /**
      * @param integer $id
