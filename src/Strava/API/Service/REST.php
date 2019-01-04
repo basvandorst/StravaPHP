@@ -34,13 +34,16 @@ class REST implements ServiceInterface
      */
     public function __construct($token, Client $adapter)
     {
+        if (!is_object($token) && method_exists($token, 'getToken')) {
+            $token = $token->getToken();
+        }
         $this->token = $token;
         $this->adapter = $adapter;
     }
 
     private function getToken()
     {
-        return $this->token->getToken();
+        return $this->token;
     }
 
     /**
