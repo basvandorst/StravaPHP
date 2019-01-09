@@ -107,7 +107,7 @@ class OAuth extends AbstractProvider
     /**
      * @see AbstractProvider::getResourceOwnerDetailsUrl
      */
-    public function getResourceOwnerDetailsUrl()
+    public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
         return '';
     }
@@ -130,7 +130,7 @@ class OAuth extends AbstractProvider
     /**
      * @see AbstractProvider::createResourceOwner
      */
-    protected function createResourceOwner(array $response)
+    protected function createResourceOwner(array $response, AccessToken $token)
     {
     }
 }
