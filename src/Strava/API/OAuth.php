@@ -40,7 +40,7 @@ class OAuth extends AbstractProvider
     /**
      * @see AbstractProvider::urlUserDetails
      */
-    public function urlUserDetails(AccessToken $token)
+    public function urlUserDetails()
     {
         return 'https://www.strava.com/api/v3/athlete';
     }
@@ -48,7 +48,7 @@ class OAuth extends AbstractProvider
     /**
      * @see AbstractProvider::userDetails
      */
-    public function userDetails($response, AccessToken $token)
+    public function userDetails($response)
     {
         $user = new \stdClass;
 
@@ -67,7 +67,7 @@ class OAuth extends AbstractProvider
     /**
      * @see AbstractProvider::userUid
      */
-    public function userUid($response, AccessToken $token)
+    public function userUid($response)
     {
         return $response->id;
     }
@@ -75,7 +75,7 @@ class OAuth extends AbstractProvider
     /**
      * @see AbstractProvider::userEmail
      */
-    public function userEmail($response, AccessToken $token)
+    public function userEmail($response)
     {
         return isset($response->email) && $response->email ? $response->email : null;
     }
@@ -83,7 +83,7 @@ class OAuth extends AbstractProvider
     /**
      * @see AbstractProvider::userScreenName
      */
-    public function userScreenName($response, AccessToken $token)
+    public function userScreenName($response)
     {
         return implode(' ', [$response->firstname, $response->lastname]);
     }
@@ -107,7 +107,7 @@ class OAuth extends AbstractProvider
     /**
      * @see AbstractProvider::getResourceOwnerDetailsUrl
      */
-    public function getResourceOwnerDetailsUrl(AccessToken $token)
+    public function getResourceOwnerDetailsUrl()
     {
         return '';
     }
@@ -130,7 +130,7 @@ class OAuth extends AbstractProvider
     /**
      * @see AbstractProvider::createResourceOwner
      */
-    protected function createResourceOwner(array $response, AccessToken $token)
+    protected function createResourceOwner(array $response)
     {
     }
 }
