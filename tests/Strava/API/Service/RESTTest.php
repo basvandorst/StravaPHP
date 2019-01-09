@@ -9,6 +9,9 @@
  */
 class RESTTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @return PHPUnit_Framework_MockObject_MockObject|\GuzzleHttp\Client
+     */
     private function getRestMock()
     {
         $restMock = $this->getMockBuilder('\GuzzleHttp\Client')

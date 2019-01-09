@@ -1,7 +1,6 @@
 <?php
 namespace Strava\API;
 
-use League\OAuth2\Client\Entity\User;
 use League\OAuth2\Client\Token\AccessToken as AccessToken;
 use League\OAuth2\Client\Tool\BearerAuthorizationTrait as BearerAuthorizationTrait;
 use League\OAuth2\Client\Provider\AbstractProvider as AbstractProvider;

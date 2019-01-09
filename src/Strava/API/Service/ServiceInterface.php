@@ -1,6 +1,8 @@
 <?php
 namespace Strava\API\Service;
 
+use GuzzleHttp\Exception\ClientException;
+
 /**
  * Service interace.
  * Just to make sure we can trust the method signatures of all the
