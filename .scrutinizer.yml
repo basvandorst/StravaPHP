@@ -2,13 +2,14 @@ checks:
     php:
         code_rating: true
         duplication: true
-tests:
-    override:
-        -
-            command: 'vendor/bin/phpunit -c /home/scrutinizer/build/phpunit.xml --coverage-clover=clover-file'
-            coverage:
-                file: 'clover-file'
-                format: 'clover'
+build:
+    tests:
+        override:
+            -
+                command: 'vendor/bin/phpunit -c /home/scrutinizer/build/phpunit.xml --coverage-clover=clover-file'
+                coverage:
+                    file: 'clover-file'
+                    format: 'clover'
 filter:
     excluded_paths: [vendor/*, tests/*]
 before_commands:
