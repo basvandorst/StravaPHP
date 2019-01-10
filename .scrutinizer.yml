@@ -4,6 +4,8 @@ checks:
         duplication: true
 build:
     tests:
+        before:
+            - 'composer install --dev --prefer-source'
         override:
             -
                 command: 'vendor/bin/phpunit -c /home/scrutinizer/build/phpunit.xml --coverage-clover=clover-file'
