@@ -2,7 +2,7 @@ checks:
     php:
         code_rating: true
         duplication: true
- tests:
+tests:
     override:
         -
             command: 'vendor/bin/phpunit -c /home/scrutinizer/build/phpunit.xml --coverage-clover=clover-file'
