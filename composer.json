@@ -9,7 +9,7 @@
     "StravaPHP"
   ],
   "require": {
-    "php": ">=5.6",
+    "php": ">=7.1",
     "league/oauth2-client": "~2.3",
     "guzzlehttp/guzzle": "~6.3"
   },
