@@ -52,7 +52,7 @@ class REST implements ServiceInterface
     private function getResult($response)
     {
         $status = $response->getStatusCode();
-        if ($status == 200) {
+        if ($status == 200 || $status == 201) {
             return json_decode($response->getBody(), JSON_PRETTY_PRINT);
         } else {
             return [$status => $response->getReasonPhrase()];
