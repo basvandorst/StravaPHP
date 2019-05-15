@@ -79,7 +79,7 @@ use Strava\API\Service\REST;
 
 try {
     $adapter = new \GuzzleHttp\Client(['base_uri' => 'https://www.strava.com/api/v3']);
-    $service = new REST($token, $adapter);  // Define your user token here.
+    $service = new REST($token->getToken(), $adapter);  // Define your user token here.
     $client = new Client($service);
 
     $athlete = $client->getAthlete();
