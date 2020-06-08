@@ -27,7 +27,7 @@ Use composer to install this StravaPHP package.
 ```
 {
     "require": {
-        "vredeling/StravaPHP": "^1.2.1"
+        "vredeling/StravaPHP": "^1.2.0"
     }
 }
 ```
