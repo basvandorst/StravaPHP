@@ -1,4 +1,5 @@
 <?php
+
 use Strava\API\Service\Exception as ServiceException;
 
 /**

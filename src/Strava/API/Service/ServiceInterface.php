@@ -1,4 +1,5 @@
 <?php
+
 namespace Strava\API\Service;
 
 /**
@@ -22,7 +23,7 @@ interface ServiceInterface
      * Only available for the authenticated athlete.
      *
      * @link    https://strava.github.io/api/v3/athlete/#stats
-     * @param   int $id
+     * @param int $id
      * @return  array
      * @throws  ClientException
      */

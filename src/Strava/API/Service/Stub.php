@@ -1,4 +1,5 @@
 <?php
+
 namespace Strava\API\Service;
 
 /**
@@ -206,7 +207,7 @@ class Stub implements ServiceInterface
         $json = '{"response": 1}';
         return $this->format($json);
     }
-    
+
     public function getSegment($id)
     {
         $json = '{"response": 1}';
