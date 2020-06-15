@@ -258,6 +258,7 @@ class Stub implements ServiceInterface
 
     /**
      * @param string $result
+     * @return mixed
      */
     private function format($result)
     {
