@@ -35,7 +35,7 @@ class REST implements ServiceInterface
      */
     public function __construct($token, Client $adapter)
     {
-        if (!is_object($token) && method_exists($token, 'getToken')) {
+        if (is_object($token) && method_exists($token, 'getToken')) {
             $token = $token->getToken();
         }
         $this->token = $token;
