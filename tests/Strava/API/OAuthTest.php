@@ -9,14 +9,6 @@
  */
 class OAuthTest extends PHPUnit_Framework_TestCase
 {
-    private function getAccessTokenMock()
-    {
-        $tokenMock = $this->getMockBuilder('League\OAuth2\Client\Token\AccessToken')
-            ->disableOriginalConstructor()
-            ->getMock();
-        return $tokenMock;
-    }
-
     private function getResponseMock()
     {
         $json = '{"id": 12345, "firstname": "mock_first_name", "lastname": "mock_last_name", "email": "mock_email", "country": "NL", "sex": "M", "profile": "profile_url"}';
@@ -40,50 +32,44 @@ class OAuthTest extends PHPUnit_Framework_TestCase
 
     public function testUrlUserDetails()
     {
-        $tokenMock = $this->getAccessTokenMock();
-
         $oauth = new Strava\API\OAuth(array());
-        $url = $oauth->urlUserDetails($tokenMock);
+        $url = $oauth->urlUserDetails();
         $this->assertNotEmpty($url);
     }
 
     public function testUserDetails()
     {
-        $tokenMock = $this->getAccessTokenMock();
         $reponseMock = $this->getResponseMock();
 
         $oauth = new Strava\API\OAuth(array());
-        $output = $oauth->userDetails($reponseMock, $tokenMock);
+        $output = $oauth->userDetails($reponseMock);
         $this->assertInstanceOf('stdClass', $output);
     }
 
     public function testUserUid()
     {
-        $tokenMock = $this->getAccessTokenMock();
         $reponseMock = $this->getResponseMock();
 
         $oauth = new Strava\API\OAuth(array());
-        $output = $oauth->userUid($reponseMock, $tokenMock);
+        $output = $oauth->userUid($reponseMock);
         $this->assertEquals(12345, $output);
     }
 
     public function testUserEmail()
     {
-        $tokenMock = $this->getAccessTokenMock();
         $reponseMock = $this->getResponseMock();
 
         $oauth = new Strava\API\OAuth(array());
-        $output = $oauth->userEmail($reponseMock, $tokenMock);
+        $output = $oauth->userEmail($reponseMock);
         $this->assertEquals('mock_email', $output);
     }
 
     public function testUserScreenName()
     {
-        $tokenMock = $this->getAccessTokenMock();
         $reponseMock = $this->getResponseMock();
 
         $oauth = new Strava\API\OAuth(array());
-        $output = $oauth->userScreenName($reponseMock, $tokenMock);
+        $output = $oauth->userScreenName($reponseMock);
         $this->assertEquals('mock_first_name mock_last_name', $output);
     }
 }

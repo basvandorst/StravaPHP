@@ -3,6 +3,7 @@
 namespace Strava\API\Service;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Response;
 
 
 /**
@@ -23,7 +24,7 @@ class REST implements ServiceInterface
      * Application token
      * @var string
      */
-    private $token = null;
+    private $token;
 
     /**
      * Initiate this REST service with the application token and a instance
@@ -34,7 +35,7 @@ class REST implements ServiceInterface
      */
     public function __construct($token, Client $adapter)
     {
-        if (!is_object($token) && method_exists($token, 'getToken')) {
+        if (is_object($token) && method_exists($token, 'getToken')) {
             $token = $token->getToken();
         }
         $this->token = $token;
@@ -49,28 +50,30 @@ class REST implements ServiceInterface
     /**
      * Get a request result.
      * Returns an array with a response body or and error code => reason.
-     * @param \GuzzleHttp\Psr7\Response $response
+     * @param Response $response
      * @return array|mixed
      */
     private function getResult($response)
     {
         $status = $response->getStatusCode();
-        if ($status == 200) {
+        if ($status == 200 || $status == 201) {
             return json_decode($response->getBody(), JSON_PRETTY_PRINT);
         } else {
             return [$status => $response->getReasonPhrase()];
         }
     }
 
-  /**
-   * Get an API request response and handle possible exceptions.
-   *
-   * @param string $method
-   * @param string $path
-   * @param array $parameters
-   *
-   * @return array|mixed|string
-   */
+    /**
+     * Get an API request response and handle possible exceptions.
+     *
+     * @param string $method
+     * @param string $path
+     * @param array $parameters
+     *
+     * @return array|mixed|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     private function getResponse($method, $path, $parameters)
     {
         try {
@@ -216,18 +219,6 @@ class REST implements ServiceInterface
             'access_token' => $this->getToken(),
         ];
         return $this->getResponse('PUT', $path, $parameters);
-    }
-
-    public function getActivityFollowing($before = null, $page = null, $per_page = null)
-    {
-        $path = 'activities/following';
-        $parameters['query'] = [
-            'before' => $before,
-            'page' => $page,
-            'per_page' => $per_page,
-            'access_token' => $this->getToken(),
-        ];
-        return $this->getResponse('GET', $path, $parameters);
     }
 
     public function getActivity($id, $include_all_efforts = null)

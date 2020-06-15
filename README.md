@@ -27,7 +27,7 @@ Use composer to install this StravaPHP package.
 ```
 {
     "require": {
-        "vredeling/StravaPHP": "^1.2.0"
+        "vredeling/stravaphp": "^1.2.0"
     }
 }
 ```
@@ -100,6 +100,8 @@ try {
 ### Strava\API\Factory
 #### Usage
 ```php
+use Strava\API\Factory;
+
 // Configure your app ID, app token and callback uri
 $factory = new Factory();
 $OAuthClient = $factory->getOAuthClient(1234, 'APP-TOKEN', 'http://my-app/callback.php');
@@ -113,6 +115,8 @@ $factory->getAPIClient($token);
 ### Strava\API\OAuth
 #### Usage
 ```php
+use Strava\API\OAuth;
+
 // Parameter information: https://strava.github.io/api/v3/oauth/#get-authorize
 $options = [
     'clientId'     => 1234,
@@ -147,9 +151,13 @@ $oauth->getAccessToken($grant = 'authorization_code', $params = []);
 #### Usage
 ```php
 // REST adapter (We use `Guzzle` in this project)
-$adapter = new \GuzzleHttp\Client(['base_uri' => 'https://www.strava.com/api/v3/']);
+use GuzzleHttp\Client as GuzzleClient;
+use Strava\API\Service\REST;
+use Strava\API\Client;
+
+$adapter = new GuzzleClient(['base_uri' => 'https://www.strava.com/api/v3/']);
 // Service to use (Service\Stub is also available for test purposes)
-$service = new Service\REST('RECEIVED-TOKEN', $adapter);
+$service = new REST('RECEIVED-TOKEN', $adapter);
 
 // Receive the athlete!
 $client = new Client($service);
@@ -170,7 +178,7 @@ $client->getAthleteKom($id, $page = null, $per_page = null);
 $client->getAthleteZones();
 $client->getAthleteStarredSegments($id = null, $page = null, $per_page = null);
 $client->updateAthlete($city, $state, $country, $sex, $weight);
-$client->getActivityFollowing($before = null, $page = null, $per_page = null) 
+$client->getActivityFollowing($before = null, $page = null, $per_page = null); 
 $client->getActivity($id, $include_all_efforts = null);
 $client->getActivityComments($id, $markdown = null, $page = null, $per_page = null);
 $client->getActivityKudos($id, $page = null, $per_page = null);
