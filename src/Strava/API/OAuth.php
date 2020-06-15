@@ -6,6 +6,7 @@ use League\OAuth2\Client\Token\AccessToken as AccessToken;
 use League\OAuth2\Client\Tool\BearerAuthorizationTrait as BearerAuthorizationTrait;
 use League\OAuth2\Client\Provider\AbstractProvider as AbstractProvider;
 use Psr\Http\Message\ResponseInterface;
+use stdClass;
 
 /**
  * Strava OAuth
@@ -50,7 +51,7 @@ class OAuth extends AbstractProvider
      */
     public function userDetails($response, AccessToken $token)
     {
-        $user = new \stdClass;
+        $user = new stdClass;
 
         $user->uid = $response->id;
         $user->name = implode(' ', [$response->firstname, $response->lastname]);

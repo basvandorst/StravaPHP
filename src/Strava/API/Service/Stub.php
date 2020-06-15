@@ -130,13 +130,13 @@ class Stub implements ServiceInterface
         return $this->format($json);
     }
 
-    public function createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null)
+    public function createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null, $private = null, $trainer = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);
     }
 
-    public function uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $data_type = null, $external_id = null)
+    public function uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $commute = null, $data_type = null, $external_id = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);

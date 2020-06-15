@@ -3,6 +3,7 @@
 namespace Strava\API\Service;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Response;
 
 
 /**
@@ -23,7 +24,7 @@ class REST implements ServiceInterface
      * Application token
      * @var string
      */
-    private $token = null;
+    private $token;
 
     /**
      * Initiate this REST service with the application token and a instance
@@ -49,7 +50,7 @@ class REST implements ServiceInterface
     /**
      * Get a request result.
      * Returns an array with a response body or and error code => reason.
-     * @param \GuzzleHttp\Psr7\Response $response
+     * @param Response $response
      * @return array|mixed
      */
     private function getResult($response)
@@ -62,15 +63,17 @@ class REST implements ServiceInterface
         }
     }
 
-  /**
-   * Get an API request response and handle possible exceptions.
-   *
-   * @param string $method
-   * @param string $path
-   * @param array $parameters
-   *
-   * @return array|mixed|string
-   */
+    /**
+     * Get an API request response and handle possible exceptions.
+     *
+     * @param string $method
+     * @param string $path
+     * @param array $parameters
+     *
+     * @return array|mixed|string
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     private function getResponse($method, $path, $parameters)
     {
         try {
@@ -216,18 +219,6 @@ class REST implements ServiceInterface
             'access_token' => $this->getToken(),
         ];
         return $this->getResponse('PUT', $path, $parameters);
-    }
-
-    public function getActivityFollowing($before = null, $page = null, $per_page = null)
-    {
-        $path = 'activities/following';
-        $parameters['query'] = [
-            'before' => $before,
-            'page' => $page,
-            'per_page' => $per_page,
-            'access_token' => $this->getToken(),
-        ];
-        return $this->getResponse('GET', $path, $parameters);
     }
 
     public function getActivity($id, $include_all_efforts = null)
