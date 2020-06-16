@@ -1,5 +1,5 @@
 {
-  "name": "vredeling/stravaphp",
+  "name": "basvandorst/stravaphp",
   "description": "Strava V3 API PHP client with OAuth authentication",
   "keywords": [
     "Strava",
