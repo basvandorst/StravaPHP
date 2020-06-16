@@ -631,6 +631,40 @@ class Client
     }
 
     /**
+     * Get route as GPX.
+     *
+     * @link    https://developers.strava.com/docs/reference/#api-Routes-getRouteAsGPX
+     * @param   int $id
+     * @return  string
+     * @throws  Exception
+     */
+    public function getRouteAsGPX($id)
+    {
+        try {
+            return $this->service->getRouteAsGPX($id);
+        } catch (ServerException $e) {
+            throw new ClientException('[SERVICE] ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Get route as TCX.
+     *
+     * @link    https://developers.strava.com/docs/reference/#api-Routes-getRouteAsTCX
+     * @param   int $id
+     * @return  string
+     * @throws  Exception
+     */
+    public function getRouteAsTCX($id)
+    {
+        try {
+            return $this->service->getRouteAsTCX($id);
+        } catch (ServerException $e) {
+            throw new ClientException('[SERVICE] ' . $e->getMessage());
+        }
+    }
+
+    /**
      * Retrieve a segment
      *
      * @link    https://strava.github.io/api/v3/segments/#retrieve

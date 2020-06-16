@@ -5,7 +5,7 @@ namespace Strava\API\Service;
 use GuzzleHttp\Exception\ClientException;
 
 /**
- * Service interace.
+ * Service interface.
  * Just to make sure we can trust the method signatures of all the
  * service classes.
  *
@@ -229,6 +229,16 @@ interface ServiceInterface
      * @param int $id
      */
     public function getRoute($id);
+
+    /**
+     * @param $id
+     */
+    public function getRouteAsGPX($id);
+
+    /**
+     * @param $id
+     */
+    public function getRouteAsTCX($id);
 
     /**
      * @param int $id

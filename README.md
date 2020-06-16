@@ -27,7 +27,7 @@ Use composer to install this StravaPHP package.
 ```
 {
     "require": {
-        "basvandorst/stravaphp": "1.3.1"
+        "basvandorst/stravaphp": "1.4.0"
     }
 }
 ```
@@ -195,6 +195,8 @@ $client->getClub($id);
 $client->getClubMembers($id, $page = null, $per_page = null);
 $client->getClubActivities($id, $page = null, $per_page = null);
 $client->getRoute($id);
+$client->getRouteAsGPX($id);
+$client->getRouteAsTCX($id);
 $client->getSegment($id);
 $client->getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $page = null, $per_page = null);
 $client->getSegmentExplorer($bounds, $activity_type = 'riding', $min_cat = null, $max_cat = null);
