@@ -11,7 +11,7 @@ class ServiceExceptionTest extends PHPUnit_Framework_TestCase
 {
     public function testIsException()
     {
-        $this->setExpectedException('Strava\API\Service\Exception');
+        $this->expectException('Strava\API\Service\Exception');
         throw new Strava\API\Service\Exception();
     }
 

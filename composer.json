@@ -1,5 +1,5 @@
 {
-  "name": "basvandorst/stravaphp",
+  "name": "vredeling/stravaphp",
   "description": "Strava V3 API PHP client with OAuth authentication",
   "keywords": [
     "Strava",
@@ -9,9 +9,11 @@
     "StravaPHP"
   ],
   "require": {
-    "php": ">=5.6",
+    "php": ">=7.1",
     "league/oauth2-client": "~2.3",
-    "guzzlehttp/guzzle": "~6.3"
+    "guzzlehttp/guzzle": "~6.3",
+    "ext-json": "*",
+    "ext-curl": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "^5"
@@ -21,6 +23,10 @@
     {
       "name": "Bas van Dorst",
       "email": "basvandorst@gmail.com"
+    },
+    {
+      "name": "Bas Vredeling",
+      "email": "bas@vredeling.nl"
     }
   ],
   "minimum-stability": "stable",
