@@ -207,6 +207,18 @@ class Stub implements ServiceInterface
         $json = '{"response": 1}';
         return $this->format($json);
     }
+    
+    public function getRouteAsGPX($id)
+    {
+        $gpx = '<?xml version="1.0" encoding="UTF-8"?><gpx creator="StravaGPX"/>';
+        return $gpx;
+    }
+
+    public function getRouteAsTCX($id)
+    {
+        $tcx = '<?xml version="1.0" encoding="UTF-8"?><TrainingCenterDatabase/>';
+        return $tcx;
+    }
 
     public function getSegment($id)
     {

@@ -233,6 +233,19 @@ class StubTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(is_array($output));
     }
 
+    public function testGetRouteAsGPX()
+    {
+        $service = new Strava\API\Service\Stub();
+        $output = $service->getRouteAsGPX(1234);
+        $this->assertTrue(is_string($output));
+    }
+
+    public function testGetRouteAsTCX()
+    {
+        $service = new Strava\API\Service\Stub();
+        $output = $service->getRouteAsTCX(1234);
+        $this->assertTrue(is_string($output));
+    }
 
     public function testGetSegment()
     {

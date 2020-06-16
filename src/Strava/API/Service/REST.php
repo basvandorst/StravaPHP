@@ -5,7 +5,6 @@ namespace Strava\API\Service;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 
-
 /**
  * Strava REST Service
  *
@@ -56,6 +55,7 @@ class REST implements ServiceInterface
     private function getResult($response)
     {
         $status = $response->getStatusCode();
+
         if ($status == 200 || $status == 201) {
             return json_decode($response->getBody(), JSON_PRETTY_PRINT);
         } else {
@@ -412,6 +412,20 @@ class REST implements ServiceInterface
     public function getRoute($id)
     {
         $path = 'routes/' . $id;
+        $parameters['query'] = ['access_token' => $this->getToken()];
+        return $this->getResponse('GET', $path, $parameters);
+    }
+
+    public function getRouteAsGPX($id)
+    {
+        $path = 'routes/' . $id . '/export_gpx';
+        $parameters['query'] = ['access_token' => $this->getToken()];
+        return $this->getResponse('GET', $path, $parameters);
+    }
+
+    public function getRouteAsTCX($id)
+    {
+        $path = 'routes/' . $id . '/export_tcx';
         $parameters['query'] = ['access_token' => $this->getToken()];
         return $this->getResponse('GET', $path, $parameters);
     }
