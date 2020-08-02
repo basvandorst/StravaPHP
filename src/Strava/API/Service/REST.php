@@ -23,7 +23,7 @@ class REST implements ServiceInterface
      * Application token
      * @var string
      */
-    private $token;
+    protected $token;
 
     /**
      * Initiate this REST service with the application token and a instance
@@ -41,7 +41,7 @@ class REST implements ServiceInterface
         $this->adapter = $adapter;
     }
 
-    private function getToken()
+    protected function getToken()
     {
         return $this->token;
     }
@@ -52,7 +52,7 @@ class REST implements ServiceInterface
      * @param Response $response
      * @return array|mixed
      */
-    private function getResult($response)
+    protected function getResult($response)
     {
         $status = $response->getStatusCode();
 
@@ -74,7 +74,7 @@ class REST implements ServiceInterface
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    private function getResponse($method, $path, $parameters)
+    protected function getResponse($method, $path, $parameters)
     {
         try {
             $response = $this->adapter->request($method, $path, $parameters);
