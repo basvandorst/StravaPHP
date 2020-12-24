@@ -64,6 +64,11 @@ class REST implements ServiceInterface
      */
     protected function getResult($response)
     {
+        // Workaround for export methods getRouteAsGPX, getRouteAsTCX:
+        if (is_string($response)) {
+            return $response;
+        }
+
         $status = $response->getStatusCode();
 
         $expandedResponse = [];
@@ -565,8 +570,6 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
-            return $response['body'];
         return $response;
     }
 
@@ -576,8 +579,6 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
-            return $response['body'];
         return $response;
     }
 
