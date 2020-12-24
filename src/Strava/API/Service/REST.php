@@ -34,11 +34,12 @@ class REST implements ServiceInterface
     protected $responseVerbosity;
 
     /**
-     * Initiate this REST service with the application token and a instance
-     * of the REST adapter (Guzzle).
+     * Initiate this REST service with the application token, a instance
+     * of the REST adapter (Guzzle) and a level of verbosity for the response.
      *
      * @param string $token
      * @param Client $adapter
+     * @param integer $responseVerbosity
      */
     public function __construct($token, Client $adapter, $responseVerbosity = 0)
     {
