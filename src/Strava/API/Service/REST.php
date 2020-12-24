@@ -29,7 +29,7 @@ class REST implements ServiceInterface
      * Specifies the verbosity of the HTTP response
      * 0 = basic, just body
      * 1 = enhanced, [body, headers, status]
-     * @var int|mixed
+     * @var int
      */
     protected $responseVerbosity;
 
@@ -39,7 +39,7 @@ class REST implements ServiceInterface
      *
      * @param string $token
      * @param Client $adapter
-     * @param integer $responseVerbosity
+     * @param int $responseVerbosity
      */
     public function __construct($token, Client $adapter, $responseVerbosity = 0)
     {
