@@ -502,8 +502,8 @@ namespace Strava\API\Service {
         public function testGetRouteAsGPX()
         {
             $restMock = $this->getRestMock();
-            $restMock->expects($this->once())->method('get')
-                ->with($this->equalTo('routes/1234/export_gpx'))
+            $restMock->expects($this->once())->method('request')
+                ->with($this->equalTo('GET'), $this->equalTo('routes/1234/export_gpx'))
                 ->will($this->returnValue('<?xml version="1.0" encoding="UTF-8"?><gpx creator="StravaGPX"/>'));
 
             $service = new \Strava\API\Service\REST('TOKEN', $restMock);
@@ -514,8 +514,8 @@ namespace Strava\API\Service {
         public function testGetRouteAsTCX()
         {
             $restMock = $this->getRestMock();
-            $restMock->expects($this->once())->method('get')
-                ->with($this->equalTo('routes/1234/export_tcx'))
+            $restMock->expects($this->once())->method('request')
+                ->with($this->equalTo('GET'), $this->equalTo('routes/1234/export_tcx'))
                 ->will($this->returnValue('<?xml version="1.0" encoding="UTF-8"?><TrainingCenterDatabase/>'));
 
             $service = new \Strava\API\Service\REST('TOKEN', $restMock);

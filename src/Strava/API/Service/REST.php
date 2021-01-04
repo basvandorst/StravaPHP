@@ -54,6 +54,11 @@ class REST implements ServiceInterface
      */
     protected function getResult($response)
     {
+        // Workaround for export methods getRouteAsGPX, getRouteAsTCX:
+        if (is_string($response)) {
+            return $response;
+        }
+
         $status = $response->getStatusCode();
 
         if ($status == 200 || $status == 201) {
