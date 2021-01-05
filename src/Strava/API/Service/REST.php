@@ -64,6 +64,11 @@ class REST implements ServiceInterface
      */
     protected function getResult($response)
     {
+        // Workaround for export methods getRouteAsGPX, getRouteAsTCX:
+        if (is_string($response)) {
+            return $response;
+        }
+
         $status = $response->getStatusCode();
 
         $expandedResponse = [];
@@ -563,22 +568,14 @@ class REST implements ServiceInterface
     {
         $path = 'routes/' . $id . '/export_gpx';
         $parameters['query'] = ['access_token' => $this->getToken()];
-        $response = $this->getResponse('GET', $path, $parameters);
-
-        if ($this->responseVerbosity === 0)
-            return $response['body'];
-        return $response;
+        return $this->getResponse('GET', $path, $parameters);
     }
 
     public function getRouteAsTCX($id)
     {
         $path = 'routes/' . $id . '/export_tcx';
         $parameters['query'] = ['access_token' => $this->getToken()];
-        $response = $this->getResponse('GET', $path, $parameters);
-
-        if ($this->responseVerbosity === 0)
-            return $response['body'];
-        return $response;
+        return $this->getResponse('GET', $path, $parameters);
     }
 
     public function getSegment($id)
