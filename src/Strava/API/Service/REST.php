@@ -70,7 +70,7 @@ class REST implements ServiceInterface
 
         $expandedResponse['headers'] = $response->getHeaders();
         $expandedResponse['body'] = json_decode($response->getBody(), JSON_PRETTY_PRINT);
-        $expandedResponse['success'] = $status == 200 || $status == 201;
+        $expandedResponse['success'] = $status === 200 || $status === 201;
         $expandedResponse['status'] = $status;
 
         return $expandedResponse;
@@ -108,7 +108,7 @@ class REST implements ServiceInterface
 
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response["body"];
 
         return $response;
