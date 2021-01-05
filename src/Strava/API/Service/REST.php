@@ -120,7 +120,7 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -137,7 +137,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -148,7 +148,7 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -165,7 +165,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -183,7 +183,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -201,7 +201,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -216,7 +216,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -231,7 +231,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -242,7 +242,7 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -261,7 +261,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -279,7 +279,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('PUT', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -293,7 +293,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -309,7 +309,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -324,7 +324,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -339,7 +339,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -350,7 +350,7 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -361,7 +361,7 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -372,7 +372,7 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -393,7 +393,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('POST', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -416,7 +416,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('POST', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -436,7 +436,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('PUT', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -447,7 +447,7 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('DELETE', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -458,7 +458,7 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -469,7 +469,7 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -484,7 +484,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -499,7 +499,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -510,7 +510,7 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -521,7 +521,7 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -532,7 +532,7 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('POST', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -543,7 +543,7 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('POST', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -554,7 +554,7 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -565,7 +565,7 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -576,7 +576,7 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -587,7 +587,7 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -609,7 +609,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -626,7 +626,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -644,7 +644,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -659,7 +659,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -674,7 +674,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -689,7 +689,7 @@ class REST implements ServiceInterface
         ];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
@@ -700,7 +700,7 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
         $response = $this->getResponse('GET', $path, $parameters);
 
-        if ($this->responseVerbosity == 0)
+        if ($this->responseVerbosity === 0)
             return $response['body'];
         return $response;
     }
