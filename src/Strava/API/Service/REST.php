@@ -103,7 +103,7 @@ class REST implements ServiceInterface
             return $result;
         }
         catch (\Exception $e) {
-            return $e->getMessage();
+            throw new Exception('[SERVICE] ' . $e->getMessage());
         }
     }
 
