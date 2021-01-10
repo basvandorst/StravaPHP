@@ -26,19 +26,29 @@ class REST implements ServiceInterface
     protected $token;
 
     /**
-     * Initiate this REST service with the application token and a instance
-     * of the REST adapter (Guzzle).
+     * Specifies the verbosity of the HTTP response
+     * 0 = basic, just body
+     * 1 = enhanced, [body, headers, status]
+     * @var int
+     */
+    protected $responseVerbosity;
+
+    /**
+     * Initiate this REST service with the application token, a instance
+     * of the REST adapter (Guzzle) and a level of verbosity for the response.
      *
      * @param string $token
      * @param Client $adapter
+     * @param int $responseVerbosity
      */
-    public function __construct($token, Client $adapter)
+    public function __construct($token, Client $adapter, $responseVerbosity = 0)
     {
         if (is_object($token) && method_exists($token, 'getToken')) {
             $token = $token->getToken();
         }
         $this->token = $token;
         $this->adapter = $adapter;
+        $this->responseVerbosity = $responseVerbosity;
     }
 
     protected function getToken()
@@ -61,11 +71,14 @@ class REST implements ServiceInterface
 
         $status = $response->getStatusCode();
 
-        if ($status == 200 || $status == 201) {
-            return json_decode($response->getBody(), JSON_PRETTY_PRINT);
-        } else {
-            return [$status => $response->getReasonPhrase()];
-        }
+        $expandedResponse = [];
+
+        $expandedResponse['headers'] = $response->getHeaders();
+        $expandedResponse['body'] = json_decode($response->getBody(), JSON_PRETTY_PRINT);
+        $expandedResponse['success'] = $status === 200 || $status === 201;
+        $expandedResponse['status'] = $status;
+
+        return $expandedResponse;
     }
 
     /**
@@ -97,14 +110,24 @@ class REST implements ServiceInterface
             $path = 'athletes/' . $id;
         }
         $parameters['query'] = ['access_token' => $this->getToken()];
-        return $this->getResponse('GET', $path, $parameters);
+
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response["body"];
+
+        return $response;
     }
 
     public function getAthleteStats($id)
     {
         $path = 'athletes/' . $id . '/stats';
         $parameters['query'] = ['access_token' => $this->getToken()];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getAthleteRoutes($id, $type = null, $after = null, $page = null, $per_page = null)
@@ -117,14 +140,22 @@ class REST implements ServiceInterface
             'per_page' => $per_page,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getAthleteClubs()
     {
         $path = 'athlete/clubs';
         $parameters['query'] = ['access_token' => $this->getToken()];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getAthleteActivities($before = null, $after = null, $page = null, $per_page = null)
@@ -137,7 +168,11 @@ class REST implements ServiceInterface
             'per_page' => $per_page,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getAthleteFriends($id = null, $page = null, $per_page = null)
@@ -151,7 +186,11 @@ class REST implements ServiceInterface
             'per_page' => $per_page,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getAthleteFollowers($id = null, $page = null, $per_page = null)
@@ -165,7 +204,11 @@ class REST implements ServiceInterface
             'per_page' => $per_page,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getAthleteBothFollowing($id, $page = null, $per_page = null)
@@ -176,7 +219,11 @@ class REST implements ServiceInterface
             'per_page' => $per_page,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getAthleteKom($id, $page = null, $per_page = null)
@@ -187,14 +234,22 @@ class REST implements ServiceInterface
             'per_page' => $per_page,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getAthleteZones()
     {
         $path = 'athlete/zones';
         $parameters['query'] = ['access_token' => $this->getToken()];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getAthleteStarredSegments($id = null, $page = null, $per_page = null)
@@ -209,7 +264,11 @@ class REST implements ServiceInterface
             'per_page' => $per_page,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function updateAthlete($city, $state, $country, $sex, $weight)
@@ -223,7 +282,11 @@ class REST implements ServiceInterface
             'weight' => $weight,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('PUT', $path, $parameters);
+        $response = $this->getResponse('PUT', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getActivity($id, $include_all_efforts = null)
@@ -233,7 +296,11 @@ class REST implements ServiceInterface
             'include_all_efforts' => $include_all_efforts,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getActivityComments($id, $markdown = null, $page = null, $per_page = null)
@@ -245,7 +312,11 @@ class REST implements ServiceInterface
             'per_page' => $per_page,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getActivityKudos($id, $page = null, $per_page = null)
@@ -256,7 +327,11 @@ class REST implements ServiceInterface
             'per_page' => $per_page,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getActivityPhotos($id, $size = 2048, $photo_sources = 'true')
@@ -267,28 +342,44 @@ class REST implements ServiceInterface
             'photo_sources' => $photo_sources,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getActivityZones($id)
     {
         $path = 'activities/' . $id . '/zones';
         $parameters['query'] = ['access_token' => $this->getToken()];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getActivityLaps($id)
     {
         $path = 'activities/' . $id . '/laps';
         $parameters['query'] = ['access_token' => $this->getToken()];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getActivityUploadStatus($id)
     {
         $path = 'uploads/' . $id;
         $parameters['query'] = ['access_token' => $this->getToken()];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function createActivity($name, $type, $start_date_local, $elapsed_time, $description = null, $distance = null, $private = null, $trainer = null)
@@ -305,7 +396,11 @@ class REST implements ServiceInterface
             'trainer' => $trainer,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('POST', $path, $parameters);
+        $response = $this->getResponse('POST', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function uploadActivity($file, $activity_type = null, $name = null, $description = null, $private = null, $trainer = null, $commute = null, $data_type = null, $external_id = null)
@@ -324,7 +419,11 @@ class REST implements ServiceInterface
             'file_hack' => '@' . ltrim($file, '@'),
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('POST', $path, $parameters);
+        $response = $this->getResponse('POST', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function updateActivity($id, $name = null, $type = null, $private = false, $commute = false, $trainer = false, $gear_id = null, $description = null)
@@ -340,28 +439,44 @@ class REST implements ServiceInterface
             'description' => $description,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('PUT', $path, $parameters);
+        $response = $this->getResponse('PUT', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function deleteActivity($id)
     {
         $path = 'activities/' . $id;
         $parameters['query'] = ['access_token' => $this->getToken()];
-        return $this->getResponse('DELETE', $path, $parameters);
+        $response = $this->getResponse('DELETE', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getGear($id)
     {
         $path = 'gear/' . $id;
         $parameters['query'] = ['access_token' => $this->getToken()];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getClub($id)
     {
         $path = 'clubs/' . $id;
         $parameters['query'] = ['access_token' => $this->getToken()];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getClubMembers($id, $page = null, $per_page = null)
@@ -372,7 +487,11 @@ class REST implements ServiceInterface
             'per_page' => $per_page,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getClubActivities($id, $page = null, $per_page = null)
@@ -383,42 +502,66 @@ class REST implements ServiceInterface
             'per_page' => $per_page,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getClubAnnouncements($id)
     {
         $path = 'clubs/' . $id . '/announcements';
         $parameters['query'] = ['access_token' => $this->getToken()];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getClubGroupEvents($id)
     {
         $path = 'clubs/' . $id . '/group_events';
         $parameters['query'] = ['access_token' => $this->getToken()];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function joinClub($id)
     {
         $path = 'clubs/' . $id . '/join';
         $parameters['query'] = ['access_token' => $this->getToken()];
-        return $this->getResponse('POST', $path, $parameters);
+        $response = $this->getResponse('POST', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function leaveClub($id)
     {
         $path = 'clubs/' . $id . '/leave';
         $parameters['query'] = ['access_token' => $this->getToken()];
-        return $this->getResponse('POST', $path, $parameters);
+        $response = $this->getResponse('POST', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getRoute($id)
     {
         $path = 'routes/' . $id;
         $parameters['query'] = ['access_token' => $this->getToken()];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getRouteAsGPX($id)
@@ -439,7 +582,11 @@ class REST implements ServiceInterface
     {
         $path = 'segments/' . $id;
         $parameters['query'] = ['access_token' => $this->getToken()];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getSegmentLeaderboard($id, $gender = null, $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $context_entries = null, $page = null, $per_page = null)
@@ -457,7 +604,11 @@ class REST implements ServiceInterface
             'per_page' => $per_page,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getSegmentExplorer($bounds, $activity_type = 'riding', $min_cat = null, $max_cat = null)
@@ -470,7 +621,11 @@ class REST implements ServiceInterface
             'max_cat' => $max_cat,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getSegmentEffort($id, $athlete_id = null, $start_date_local = null, $end_date_local = null, $page = null, $per_page = null)
@@ -484,7 +639,11 @@ class REST implements ServiceInterface
             'per_page' => $per_page,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getStreamsActivity($id, $types, $resolution = null, $series_type = 'distance')
@@ -495,7 +654,11 @@ class REST implements ServiceInterface
             'series_type' => $series_type,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getStreamsEffort($id, $types, $resolution = null, $series_type = 'distance')
@@ -506,7 +669,11 @@ class REST implements ServiceInterface
             'series_type' => $series_type,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getStreamsSegment($id, $types, $resolution = null, $series_type = 'distance')
@@ -517,14 +684,22 @@ class REST implements ServiceInterface
             'series_type' => $series_type,
             'access_token' => $this->getToken(),
         ];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
     public function getStreamsRoute($id)
     {
         $path = 'routes/' . $id . '/streams';
         $parameters['query'] = ['access_token' => $this->getToken()];
-        return $this->getResponse('GET', $path, $parameters);
+        $response = $this->getResponse('GET', $path, $parameters);
+
+        if ($this->responseVerbosity === 0)
+            return $response['body'];
+        return $response;
     }
 
 }
