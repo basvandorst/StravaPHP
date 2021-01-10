@@ -97,7 +97,7 @@ class REST implements ServiceInterface
             $response = $this->adapter->request($method, $path, $parameters);
             $result = $this->getResult($response);
 
-            if ($this->responseVerbosity === 0)
+            if ($this->responseVerbosity === 0 && !is_string($result))
                 return $result["body"];
 
             return $result;
