@@ -53,9 +53,13 @@ try {
         print '<a href="'.$oauth->getAuthorizationUrl([
             // Uncomment required scopes.
             'scope' => [
-                'public',
-                // 'write',
-                // 'view_private',
+                'read',
+                // 'read_all',
+                // 'profile:read_all',
+                // 'profile:write',
+                // 'activity:read',
+                // 'activity:read_all',
+                // 'activity:write',
             ]
         ]).'">Connect</a>';
     } else {
