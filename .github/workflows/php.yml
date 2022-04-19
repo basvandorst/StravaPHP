@@ -10,28 +10,45 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: ['7.1', '7.4', '8.0', '8.1']
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+        tools: composer, phpunit
+        extensions: intl, json, mbstring, xdebug
+        coverage: xdebug
+      env:
+        COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Validate composer.json and composer.lock
       run: composer validate
 
     - name: Cache Composer packages
       id: composer-cache
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.json') }}
         restore-keys: |
           ${{ runner.os }}-php-
 
     - name: Install dependencies
       if: steps.composer-cache.outputs.cache-hit != 'true'
-      run: composer install --prefer-dist --no-progress --no-suggest
+      run: composer update --prefer-dist --no-progress --no-suggest
 
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
+    - name: Run static analysis
+      run: vendor/bin/phpstan analyze
+      env:
+        TERM: xterm-256color
 
-    # - name: Run test suite
-    #   run: composer run-script test
+    - name: Run test suite
+      run: vendor/bin/phpunit --verbose
+      env:
+        TERM: xterm-256color
