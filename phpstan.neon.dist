@@ -1,0 +1,11 @@
+parameters:
+	tmpDir: build/phpstan
+	level: 5
+	paths:
+		- src/
+		- tests/
+	excludePaths:
+	ignoreErrors:
+	universalObjectCratesClasses:
+		- Faker\Generator
+	scanDirectories:
