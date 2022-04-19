@@ -1,4 +1,6 @@
 .project
 /vendor/
+/build/
 composer.lock
 example.php
+*.cache

@@ -16,7 +16,7 @@
     "ext-curl": "*"
   },
   "require-dev": {
-    "phpunit/phpunit": "^5"
+    "phpunit/phpunit": "^9"
   },
   "license": "MIT",
   "authors": [
@@ -33,6 +33,11 @@
   "autoload": {
     "psr-0": {
       "Strava": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\Support\\": "tests/_support"
     }
   }
 }
