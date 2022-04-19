@@ -510,7 +510,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
             ->will($this->returnValue('output'));
 
         $client = new Strava\API\Client($serviceMock);
-        $output = $client->updateActivity('test');
+        $output = $client->updateActivity(123);
 
         $this->assertEquals('output', $output);
     }
@@ -524,7 +524,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
             ->will($this->throwException(new ServiceException));
 
         $client = new Strava\API\Client($serviceMock);
-        $client->updateActivity('test');
+        $client->updateActivity(123);
     }
 
     public function testDeleteActivity()

@@ -3,7 +3,8 @@
 namespace Strava\API\Service;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Response;
+use Psr\Http\Message\ResponseInterface;
+use League\OAuth2\Client\Token\AccessTokenInterface;
 
 /**
  * Strava REST Service
@@ -37,7 +38,7 @@ class REST implements ServiceInterface
      * Initiate this REST service with the application token, a instance
      * of the REST adapter (Guzzle) and a level of verbosity for the response.
      *
-     * @param string $token
+     * @param string|AccessTokenInterface $token
      * @param Client $adapter
      * @param int $responseVerbosity
      */
@@ -59,12 +60,13 @@ class REST implements ServiceInterface
     /**
      * Get a request result.
      * Returns an array with a response body or and error code => reason.
-     * @param Response $response
+     * @param ResponseInterface $response
      * @return array|mixed
      */
     protected function getResult($response)
     {
         // Workaround for export methods getRouteAsGPX, getRouteAsTCX:
+        // @phpstan-ignore-next-line
         if (is_string($response)) {
             return $response;
         }
@@ -74,7 +76,7 @@ class REST implements ServiceInterface
         $expandedResponse = [];
 
         $expandedResponse['headers'] = $response->getHeaders();
-        $expandedResponse['body'] = json_decode($response->getBody(), JSON_PRETTY_PRINT);
+        $expandedResponse['body'] = json_decode($response->getBody(), true);
         $expandedResponse['success'] = $status === 200 || $status === 201;
         $expandedResponse['status'] = $status;
 

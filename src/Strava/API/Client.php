@@ -642,7 +642,7 @@ class Client
     {
         try {
             return $this->service->getRouteAsGPX($id);
-        } catch (ServerException $e) {
+        } catch (ServiceException $e) {
             throw new ClientException('[SERVICE] ' . $e->getMessage());
         }
     }
@@ -659,7 +659,7 @@ class Client
     {
         try {
             return $this->service->getRouteAsTCX($id);
-        } catch (ServerException $e) {
+        } catch (ServiceException $e) {
             throw new ClientException('[SERVICE] ' . $e->getMessage());
         }
     }
