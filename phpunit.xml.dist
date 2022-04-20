@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
+        bootstrap="./vendor/autoload.php"
+        backupGlobals="false"
+        backupStaticAttributes="false"
+        beStrictAboutCoversAnnotation="true"
+        beStrictAboutOutputDuringTests="true"
+        beStrictAboutTodoAnnotatedTests="true"
+        colors="true"
+        convertErrorsToExceptions="true"
+        convertNoticesToExceptions="true"
+        convertWarningsToExceptions="true"
+        executionOrder="random"
+        failOnRisky="true"
+        failOnWarning="true"
+        processIsolation="false"
+        stopOnError="false"
+        stopOnFailure="false"
+        stopOnIncomplete="false"
+        stopOnSkipped="false"
+        verbose="true">
+    <coverage includeUncoveredFiles="true" processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">./src/</directory>
+        </include>
+        <report>
+            <clover outputFile="build/phpunit/clover.xml"/>
+            <html outputDirectory="build/phpunit/html"/>
+            <php outputFile="build/phpunit/coverage.serialized"/>
+            <text outputFile="php://stdout" showUncoveredFiles="false"/>
+            <xml outputDirectory="build/phpunit/xml-coverage"/>
+        </report>
+    </coverage>
+    <logging>
+        <testdoxHtml outputFile="build/phpunit/testdox.html"/>
+        <testdoxText outputFile="build/phpunit/testdox.txt"/>
+        <junit outputFile="build/phpunit/junit.xml"/>
+    </logging>
+    <testsuites>
+        <testsuite name="Application Test Suite">
+            <directory>./tests/</directory>
+        </testsuite>
+    </testsuites>
+    <php>
+        <env name="XDEBUG_MODE" value="coverage"/>
+    </php>
+</phpunit>

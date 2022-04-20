@@ -1,5 +1,7 @@
 <?php
 
+use Tests\Support\TestCase;
+
 /**
  * Test...
  *
@@ -7,7 +9,7 @@
  * @author Bas van Dorst
  * @package StravaPHP
  */
-class StubTest extends PHPUnit_Framework_TestCase
+class StubTest extends TestCase
 {
     public function testGetAthlete()
     {
