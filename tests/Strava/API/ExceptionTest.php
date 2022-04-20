@@ -1,5 +1,7 @@
 <?php
 
+use Tests\Support\TestCase;
+
 /**
  * Test...
  *
@@ -7,7 +9,7 @@
  * @author Bas van Dorst
  * @package StravaPHP
  */
-class ExceptionTest extends PHPUnit_Framework_TestCase
+class ExceptionTest extends TestCase
 {
     public function testIsException()
     {
