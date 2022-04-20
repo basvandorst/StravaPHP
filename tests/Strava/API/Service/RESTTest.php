@@ -2,6 +2,8 @@
 
 namespace Strava\API\Service {
 
+    use Tests\Support\TestCase;
+
     function curl_file_create()
     {
         return 'toto';
@@ -15,7 +17,7 @@ namespace Strava\API\Service {
      * @author Bas van Dorst
      * @package StravaPHP
      */
-    class RESTTest extends \PHPUnit_Framework_TestCase
+    class RESTTest extends TestCase
     {
         const TOKEN = 'TOKEN';
 
@@ -833,7 +835,7 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
 
             $service = new \Strava\API\Service\REST('TOKEN', $restMock);
             $output = $service->getRouteAsGPX(1234);
-            $this->assertInternalType('string', $output);
+            $this->assertIsString($output);
         }
 
         public function testGetRouteAsTCX()
@@ -845,7 +847,7 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
 
             $service = new \Strava\API\Service\REST('TOKEN', $restMock);
             $output = $service->getRouteAsTCX(1234);
-            $this->assertInternalType('string', $output);
+            $this->assertIsString($output);
         }
 
         public function testGetSegment()

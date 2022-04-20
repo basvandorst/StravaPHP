@@ -1,6 +1,7 @@
 <?php
 
 use Strava\API\Service\Exception as ServiceException;
+use Tests\Support\TestCase;
 
 /**
  * Test...
@@ -9,7 +10,7 @@ use Strava\API\Service\Exception as ServiceException;
  * @author Bas van Dorst
  * @package StravaPHP
  */
-class ClientTest extends PHPUnit_Framework_TestCase
+class ClientTest extends TestCase
 {
     /**
      * @return PHPUnit_Framework_MockObject_MockObject|\Strava\API\Service\Stub
