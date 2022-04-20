@@ -12,9 +12,6 @@ use Tests\Support\TestCase;
  */
 class ClientTest extends TestCase
 {
-    /**
-     * @return PHPUnit_Framework_MockObject_MockObject|\Strava\API\Service\Stub
-     */
     private function getServiceMock()
     {
         $serviceMock = $this->getMockBuilder('Strava\API\Service\Stub')
