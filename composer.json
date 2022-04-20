@@ -11,7 +11,7 @@
   "require": {
     "php": ">=7.1",
     "league/oauth2-client": "~2.3",
-    "guzzlehttp/guzzle": "^7.0.1",
+    "guzzlehttp/guzzle": "^6.3 || ^7.0.1",
     "ext-json": "*",
     "ext-curl": "*"
   },
