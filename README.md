@@ -1,8 +1,7 @@
 StravaPHP
 =========
-[![Build Status](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/badges/build.png?b=master)](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/build-status/master)
-[![Code Coverage](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/?branch=master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/basvandorst/StravaPHP/?branch=master)
+[![Build Status](https://github.com/basvandorst/StravaPHP/workflows/PHP/badge.svg)](https://github.com/basvandorst/StravaPHP/actions/workflows/php.yml)
+[![Code Coverage](https://coveralls.io/repos/github/basvandorst/StravaPHP/badge.svg?branch=develop)](https://coveralls.io/github/basvandorst/StravaPHP?branch=master)
 
 **TLDR;** Strava V3 API PHP client with OAuth authentication
 

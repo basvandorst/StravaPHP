@@ -1,4 +1,4 @@
-name: PHP Workflow
+name: PHP
 
 on:
   push:
