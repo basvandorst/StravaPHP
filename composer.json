@@ -27,6 +27,7 @@
     "league/oauth2-client": "~2.3"
   },
   "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.4",
     "phpstan/phpstan": "^1.5",
     "phpunit/phpunit": "^9"
   },
@@ -46,8 +47,10 @@
     "ci": [
       "Composer\\Config::disableProcessTimeout",
       "@analyze",
+      "@style",
       "@test"
     ],
+    "style": "php-cs-fixer fix --verbose --ansi --using-cache=no src/",
     "test": "phpunit"
   }
 }

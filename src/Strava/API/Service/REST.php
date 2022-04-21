@@ -99,12 +99,12 @@ class REST implements ServiceInterface
             $response = $this->adapter->request($method, $path, $parameters);
             $result = $this->getResult($response);
 
-            if ($this->responseVerbosity === 0 && !is_string($result))
+            if ($this->responseVerbosity === 0 && !is_string($result)) {
                 return $result["body"];
+            }
 
             return $result;
-        }
-        catch (\Exception $e) {
+        } catch (\Exception $e) {
             throw new Exception('[SERVICE] ' . $e->getMessage());
         }
     }
@@ -587,5 +587,4 @@ class REST implements ServiceInterface
 
         return $this->getResponse('GET', $path, $parameters);
     }
-
 }
