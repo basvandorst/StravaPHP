@@ -9,8 +9,20 @@ use Tests\Support\TestCase;
  * @author Bas van Dorst
  * @package StravaPHP
  */
-class OAuthTest extends TestCase
+final class OAuthTest extends TestCase
 {
+    /**
+     * @var Strava\API\OAuth
+     */
+    private $oauth;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->oauth = new Strava\API\OAuth(array());
+    }
+
     private function getResponseMock()
     {
         $json = '{"id": 12345, "firstname": "mock_first_name", "lastname": "mock_last_name", "email": "mock_email", "country": "NL", "sex": "M", "profile": "profile_url"}';
@@ -20,22 +32,19 @@ class OAuthTest extends TestCase
 
     public function testUrlAuthorize()
     {
-        $oauth = new Strava\API\OAuth(array());
-        $url = $oauth->urlAuthorize();
+        $url = $this->oauth->urlAuthorize();
         $this->assertNotEmpty($url);
     }
 
     public function testUrlAccessToken()
     {
-        $oauth = new Strava\API\OAuth(array());
-        $url = $oauth->urlAccessToken();
+        $url = $this->oauth->urlAccessToken();
         $this->assertNotEmpty($url);
     }
 
     public function testUrlUserDetails()
     {
-        $oauth = new Strava\API\OAuth(array());
-        $url = $oauth->urlUserDetails();
+        $url = $this->oauth->urlUserDetails();
         $this->assertNotEmpty($url);
     }
 
@@ -43,8 +52,7 @@ class OAuthTest extends TestCase
     {
         $reponseMock = $this->getResponseMock();
 
-        $oauth = new Strava\API\OAuth(array());
-        $output = $oauth->userDetails($reponseMock);
+        $output = $this->oauth->userDetails($reponseMock);
         $this->assertInstanceOf('stdClass', $output);
     }
 
@@ -52,8 +60,7 @@ class OAuthTest extends TestCase
     {
         $reponseMock = $this->getResponseMock();
 
-        $oauth = new Strava\API\OAuth(array());
-        $output = $oauth->userUid($reponseMock);
+        $output = $this->oauth->userUid($reponseMock);
         $this->assertEquals(12345, $output);
     }
 
@@ -61,8 +68,7 @@ class OAuthTest extends TestCase
     {
         $reponseMock = $this->getResponseMock();
 
-        $oauth = new Strava\API\OAuth(array());
-        $output = $oauth->userEmail($reponseMock);
+        $output = $this->oauth->userEmail($reponseMock);
         $this->assertEquals('mock_email', $output);
     }
 
@@ -70,8 +76,21 @@ class OAuthTest extends TestCase
     {
         $reponseMock = $this->getResponseMock();
 
-        $oauth = new Strava\API\OAuth(array());
-        $output = $oauth->userScreenName($reponseMock);
+        $output = $this->oauth->userScreenName($reponseMock);
         $this->assertEquals('mock_first_name mock_last_name', $output);
+    }
+
+    public function testBaseAuthorizationUrl()
+    {
+        $result = $this->oauth->getBaseAuthorizationUrl();
+
+        $this->assertSame('https://www.strava.com/oauth/authorize', $result);
+    }
+
+    public function testBaseAccessTokenUrl()
+    {
+        $result = $this->oauth->getBaseAccessTokenUrl(array());
+
+        $this->assertSame('https://www.strava.com/oauth/token', $result);
     }
 }
