@@ -1,54 +1,93 @@
-name: PHP Composer
+name: PHP
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - develop
+      - master
+    paths:
+      - '**.php'
+      - 'composer.*'
+      - 'php*'
+      - '.github/workflows/php.yml'
   pull_request:
-    branches: [ master ]
+    branches:
+      - develop
+      - master
+    paths:
+      - '**.php'
+      - 'composer.*'
+      - 'php*'
+      - '.github/workflows/php.yml'
 
 jobs:
   build:
-
+    name: PHP ${{ matrix.php-versions }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
         php-versions: ['7.3', '7.4', '8.0', '8.1']
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Set up PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php-versions }}
-        tools: composer, phpunit
-        extensions: intl, json, mbstring, xdebug
-        coverage: xdebug
-      env:
-        COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: composer, phpunit, phive
+          extensions: intl, json, mbstring, xdebug
+          coverage: xdebug
+        env:
+          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate
+      - name: Validate composer.json
+        run: composer validate
 
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.json') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+      - name: Cache Composer packages
+        id: composer-cache
+        run: |
+          echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - uses: actions/cache@v3
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
 
-    - name: Install dependencies
-      if: steps.composer-cache.outputs.cache-hit != 'true'
-      run: composer update --prefer-dist --no-progress --no-suggest
+      - name: Install dependencies
+        if: steps.composer-cache.outputs.cache-hit != 'true'
+        run: composer update --prefer-dist --no-progress --no-suggest
 
-    - name: Run static analysis
-      run: vendor/bin/phpstan analyze
-      env:
-        TERM: xterm-256color
+      - name: Run static analysis
+        run: vendor/bin/phpstan analyze
+        env:
+          TERM: xterm-256color
 
-    - name: Run test suite
-      run: vendor/bin/phpunit --verbose
-      env:
-        TERM: xterm-256color
+      - name: Run test suite
+        run: vendor/bin/phpunit --verbose
+        env:
+          TERM: xterm-256color
+
+      - if: matrix.php-versions == '8.1'
+        name: Run Coveralls
+        continue-on-error: true
+        run: |
+          sudo phive --no-progress install --global --trust-gpg-keys E82B2FB314E9906E php-coveralls
+          php-coveralls --verbose --coverage_clover=build/phpunit/clover.xml --json_path build/phpunit/coveralls-upload.json
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COVERALLS_PARALLEL: true
+          COVERALLS_FLAG_NAME: PHP ${{ matrix.php-versions }}
+
+  coveralls:
+    needs: [main]
+    name: Coveralls Finished
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload Coveralls results
+        uses: coverallsapp/github-action@master
+        continue-on-error: true
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel-finished: true
