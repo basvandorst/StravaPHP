@@ -15,7 +15,7 @@ use Strava\API\Service\Exception as ServiceException;
 class Client
 {
     /**
-     * @var ServiceInterface $service
+     * @var ServiceInterface
      */
     protected $service;
 
