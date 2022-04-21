@@ -22,9 +22,6 @@ namespace Strava\API\Service {
     {
         const TOKEN = 'TOKEN';
 
-        /**
-         * @return \PHPUnit_Framework_MockObject_MockObject|\GuzzleHttp\Client
-         */
         private function getRestMock()
         {
             $restMock = $this->getMockBuilder('\GuzzleHttp\Client')

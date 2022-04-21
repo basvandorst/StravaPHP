@@ -16,6 +16,7 @@
     "ext-curl": "*"
   },
   "require-dev": {
+    "phpstan/phpstan": "^1.5",
     "phpunit/phpunit": "^9"
   },
   "license": "MIT",
@@ -39,5 +40,14 @@
     "psr-4": {
       "Tests\\Support\\": "tests/_support"
     }
+  },
+  "scripts": {
+    "analyze": "phpstan analyze",
+      "ci": [
+        "Composer\\Config::disableProcessTimeout",
+        "@analyze",
+        "@test"
+      ],
+    "test": "phpunit"
   }
 }

@@ -12,9 +12,6 @@ use Tests\Support\TestCase;
  */
 class ClientTest extends TestCase
 {
-    /**
-     * @return PHPUnit_Framework_MockObject_MockObject|\Strava\API\Service\Stub
-     */
     private function getServiceMock()
     {
         $serviceMock = $this->getMockBuilder('Strava\API\Service\Stub')
@@ -511,7 +508,7 @@ class ClientTest extends TestCase
             ->will($this->returnValue('output'));
 
         $client = new Strava\API\Client($serviceMock);
-        $output = $client->updateActivity('test');
+        $output = $client->updateActivity(123);
 
         $this->assertEquals('output', $output);
     }
@@ -525,7 +522,7 @@ class ClientTest extends TestCase
             ->will($this->throwException(new ServiceException));
 
         $client = new Strava\API\Client($serviceMock);
-        $client->updateActivity('test');
+        $client->updateActivity(123);
     }
 
     public function testDeleteActivity()

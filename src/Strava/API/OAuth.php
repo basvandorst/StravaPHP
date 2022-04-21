@@ -5,6 +5,7 @@ use League\OAuth2\Client\Token\AccessToken as AccessToken;
 use League\OAuth2\Client\Tool\BearerAuthorizationTrait as BearerAuthorizationTrait;
 use League\OAuth2\Client\Provider\AbstractProvider as AbstractProvider;
 use Psr\Http\Message\ResponseInterface;
+use RuntimeException;
 use stdClass;
 
 /**
@@ -132,5 +133,6 @@ class OAuth extends AbstractProvider
      */
     protected function createResourceOwner(array $response, AccessToken $token)
     {
+        throw new RuntimeException('Not implemented');
     }
 }

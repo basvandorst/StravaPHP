@@ -14,7 +14,7 @@ class FactoryTest extends TestCase
     public function testGetOAuthInstance()
     {
         $factory = new Strava\API\Factory();
-        $client = $factory->getOAuthClient(123, 'TOKEN', 'URL');
+        $client = $factory->getOAuthClient('123', 'TOKEN', 'URL');
         $this->assertInstanceOf('Strava\API\OAuth', $client);
     }
 

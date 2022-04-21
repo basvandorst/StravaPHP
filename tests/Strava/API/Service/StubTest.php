@@ -161,7 +161,7 @@ class StubTest extends TestCase
     public function testUpdateActivity()
     {
         $service = new Strava\API\Service\Stub();
-        $output = $service->updateActivity('test');
+        $output = $service->updateActivity(123);
         $this->assertTrue(is_array($output));
     }
 
