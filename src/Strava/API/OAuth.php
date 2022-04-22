@@ -1,4 +1,5 @@
 <?php
+
 namespace Strava\API;
 
 use League\OAuth2\Client\Token\AccessToken as AccessToken;
@@ -51,7 +52,7 @@ class OAuth extends AbstractProvider
      */
     public function userDetails($response)
     {
-        $user = new stdClass;
+        $user = new stdClass();
 
         $user->uid = $response->id;
         $user->name = implode(' ', [$response->firstname, $response->lastname]);
