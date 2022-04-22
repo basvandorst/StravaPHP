@@ -15,9 +15,8 @@ use Strava\API\Service\Exception as ServiceException;
 class Client
 {
     /**
-     * @var ServiceInterface
      */
-    protected $service;
+    protected ServiceInterface $service;
 
     /**
      * Initiate this class with a subclass of ServiceInterface. There are two
@@ -25,7 +24,6 @@ class Client
      * - Service\REST: Service which makes calls to the live Strava API
      * - Service\Stub: Service stub for test purposes (unit tests)
      *
-     * @param ServiceInterface $service
      */
     public function __construct(ServiceInterface $service)
     {
@@ -411,7 +409,6 @@ class Client
      * Upload an activity
      *
      * @link    https://strava.github.io/api/v3/uploads/#post-file
-     * @param mixed $file
      * @param string $activity_type
      * @param string $name
      * @param string $description

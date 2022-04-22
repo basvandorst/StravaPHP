@@ -12,9 +12,8 @@ class Factory
 {
     /**
      * Strava V3 endpoint
-     * @var string
      */
-    private static $endpoint = 'https://www.strava.com/api/v3/';
+    private static string $endpoint = 'https://www.strava.com/api/v3/';
 
     /**
      * Return a new instance of the OAuth Client
