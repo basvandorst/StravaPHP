@@ -8,17 +8,6 @@
     "PHP",
     "StravaPHP"
   ],
-  "require": {
-    "php": ">=7.1",
-    "league/oauth2-client": "~2.3",
-    "guzzlehttp/guzzle": "^6.3 || ^7.0.1",
-    "ext-json": "*",
-    "ext-curl": "*"
-  },
-  "require-dev": {
-    "phpstan/phpstan": "^1.5",
-    "phpunit/phpunit": "^9"
-  },
   "license": "MIT",
   "authors": [
     {
@@ -30,7 +19,18 @@
       "email": "bas@vredeling.nl"
     }
   ],
-  "minimum-stability": "stable",
+  "require": {
+    "php": "^7.4 || ^8.0",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "guzzlehttp/guzzle": "^6.3 || ^7.0.1",
+    "league/oauth2-client": "~2.3"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.4",
+    "phpstan/phpstan": "^1.5",
+    "phpunit/phpunit": "^9"
+  },
   "autoload": {
     "psr-0": {
       "Strava": "src/"
@@ -41,13 +41,16 @@
       "Tests\\Support\\": "tests/_support"
     }
   },
+  "minimum-stability": "stable",
   "scripts": {
     "analyze": "phpstan analyze",
-      "ci": [
-        "Composer\\Config::disableProcessTimeout",
-        "@analyze",
-        "@test"
-      ],
+    "ci": [
+      "Composer\\Config::disableProcessTimeout",
+      "@analyze",
+      "@style",
+      "@test"
+    ],
+    "style": "php-cs-fixer fix --verbose --ansi --using-cache=no src/",
     "test": "phpunit"
   }
 }

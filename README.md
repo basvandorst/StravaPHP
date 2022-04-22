@@ -1,14 +1,13 @@
 StravaPHP
 =========
-[![Build Status](https://github.com/basvandorst/StravaPHP/workflows/PHP/badge.svg)](https://github.com/basvandorst/StravaPHP/actions/workflows/php.yml) [![Coverage Status](https://coveralls.io/repos/github/basvandorst/StravaPHP/badge.svg?branch=master)](https://coveralls.io/github/basvandorst/StravaPHP?branch=master)
-<!-- [![Code Coverage](https://coveralls.io/repos/github/basvandorst/StravaPHP/badge.svg?branch=develop)](https://coveralls.io/github/basvandorst/StravaPHP?branch=develop) -->
+[![Build Status](https://github.com/basvandorst/StravaPHP/workflows/PHP/badge.svg)](https://github.com/basvandorst/StravaPHP/actions/workflows/php.yml) [![Coverage Status](https://coveralls.io/repos/github/basvandorst/StravaPHP/badge.svg?branch=develop)](https://coveralls.io/github/basvandorst/StravaPHP?branch=develop)
 
 **TLDR;** Strava V3 API PHP client with OAuth authentication
 
 The Strava V3 API is a publicly available interface allowing developers access
 to the rich [Strava](https://www.strava.com/) dataset. The interface is stable and currently used by the
 Strava mobile applications. However, changes are occasionally made to improve
-performance and enhance features. See the [changelog](https://strava.github.io/api/v3/changelog/) for more details.
+performance and enhance features. See Strava's [changelog](https://strava.github.io/api/v3/changelog/) for more details.
 
 In this GitHub repository you can find the PHP implementation of the
 Strava V3 API. The current version of StravaPHP combines the V3 API
@@ -26,7 +25,7 @@ Use composer to install this StravaPHP package.
 ```
 {
     "require": {
-        "basvandorst/stravaphp": "1.5.0"
+        "basvandorst/stravaphp": "^1.5.0"
     }
 }
 ```

@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php-versions: ['7.3', '7.4', '8.0', '8.1']
+        php-versions: ['7.4', '8.0', '8.1']
 
     steps:
       - uses: actions/checkout@v3
@@ -63,6 +63,9 @@ jobs:
         run: vendor/bin/phpstan analyze
         env:
           TERM: xterm-256color
+
+      - name: Check code for standards compliance
+        run: vendor/bin/php-cs-fixer fix --verbose --ansi --dry-run --using-cache=no --diff src/
 
       - name: Run test suite
         run: vendor/bin/phpunit --verbose
