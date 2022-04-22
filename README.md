@@ -25,7 +25,7 @@ Use composer to install this StravaPHP package.
 ```
 {
     "require": {
-        "basvandorst/stravaphp": "^1.5.0"
+        "basvandorst/stravaphp": "^2.0.0"
     }
 }
 ```
