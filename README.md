@@ -17,7 +17,7 @@ with a proper OAuth authentication.
 ### Get your API key
 All calls to the Strava API require an access token defining the athlete and
 application making the call. Any registered Strava user can obtain an access
-token by first creating an application at [labs.strava.com/developers](http://labs.strava.com/developers/)
+token by first creating an application at [https://developers.strava.com](https://developers.strava.com/)
 
 ### Composer package
 Use composer to install this StravaPHP package.
