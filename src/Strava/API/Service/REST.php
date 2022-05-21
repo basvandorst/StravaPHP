@@ -64,7 +64,6 @@ class REST implements ServiceInterface
     {
         // Workaround for export methods getRouteAsGPX, getRouteAsTCX:
         if (is_string($response)) {
-            // @phpstan-ignore-next-line
             return $response;
         }
 
