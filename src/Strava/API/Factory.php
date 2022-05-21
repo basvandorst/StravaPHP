@@ -23,16 +23,14 @@ class Factory
      * @param string $redirect_uri
      * @return OAuth
      */
-    public function getOAuthClient($client_id, $client_secret, $redirect_uri)
+    public function getOAuthClient(string $client_id, string $client_secret, string $redirect_uri): OAuth
     {
         $options = [
             'clientId' => $client_id,
             'clientSecret' => $client_secret,
             'redirectUri' => $redirect_uri
         ];
-        $OAuthClient = new OAuth($options);
-
-        return $OAuthClient;
+        return new OAuth($options);
     }
 
     /**
@@ -41,13 +39,11 @@ class Factory
      * @param string $token
      * @return Client
      */
-    public function getAPIClient($token)
+    public function getAPIClient(string $token): Client
     {
         $adapter = new \GuzzleHttp\Client(['base_uri' => self::$endpoint]);
         $service = new Service\REST($token, $adapter);
 
-        $APIClient = new Client($service);
-
-        return $APIClient;
+        return new Client($service);
     }
 }

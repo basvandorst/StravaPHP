@@ -20,13 +20,12 @@ class OAuth extends AbstractProvider
 {
     use BearerAuthorizationTrait;
 
-    public $scopes = ['write'];
-    public $responseType = 'json';
+    public array $scopes = ['write'];
 
     /**
      * @see AbstractProvider::urlAuthorize
      */
-    public function urlAuthorize()
+    public function urlAuthorize(): string
     {
         return 'https://www.strava.com/oauth/authorize';
     }
@@ -34,7 +33,7 @@ class OAuth extends AbstractProvider
     /**
      * @see AbstractProvider::urlAccessToken
      */
-    public function urlAccessToken()
+    public function urlAccessToken(): string
     {
         return 'https://www.strava.com/oauth/token';
     }
@@ -42,7 +41,7 @@ class OAuth extends AbstractProvider
     /**
      * @see AbstractProvider::urlUserDetails
      */
-    public function urlUserDetails()
+    public function urlUserDetails(): string
     {
         return 'https://www.strava.com/api/v3/athlete';
     }
@@ -50,7 +49,7 @@ class OAuth extends AbstractProvider
     /**
      * @see AbstractProvider::userDetails
      */
-    public function userDetails($response)
+    public function userDetails($response): stdClass
     {
         $user = new stdClass();
 
@@ -85,7 +84,7 @@ class OAuth extends AbstractProvider
     /**
      * @see AbstractProvider::userScreenName
      */
-    public function userScreenName($response)
+    public function userScreenName($response): string
     {
         return implode(' ', [$response->firstname, $response->lastname]);
     }
@@ -93,7 +92,7 @@ class OAuth extends AbstractProvider
     /**
      * @see AbstractProvider::getBaseAuthorizationUrl
      */
-    public function getBaseAuthorizationUrl()
+    public function getBaseAuthorizationUrl(): string
     {
         return 'https://www.strava.com/oauth/authorize';
     }
@@ -101,7 +100,7 @@ class OAuth extends AbstractProvider
     /**
      * @see AbstractProvider::getBaseAccessTokenUrl
      */
-    public function getBaseAccessTokenUrl(array $params)
+    public function getBaseAccessTokenUrl(array $params): string
     {
         return 'https://www.strava.com/oauth/token';
     }
@@ -109,7 +108,7 @@ class OAuth extends AbstractProvider
     /**
      * @see AbstractProvider::getResourceOwnerDetailsUrl
      */
-    public function getResourceOwnerDetailsUrl(AccessToken $token)
+    public function getResourceOwnerDetailsUrl(AccessToken $token): string
     {
         return '';
     }
@@ -117,9 +116,9 @@ class OAuth extends AbstractProvider
     /**
      * @see AbstractProvider::getDefaultScopes
      */
-    protected function getDefaultScopes()
+    protected function getDefaultScopes(): array
     {
-        return ['write'];
+        return $this->scopes;
     }
 
     /**
