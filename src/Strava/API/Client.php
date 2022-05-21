@@ -414,7 +414,7 @@ class Client
      * Upload an activity
      *
      * @link    https://strava.github.io/api/v3/uploads/#post-file
-     * @param $file
+     * @param string $file Path to file
      * @param string|null $activity_type
      * @param string|null $name
      * @param string|null $description
@@ -426,7 +426,7 @@ class Client
      * @return  array
      * @throws Exception
      */
-    public function uploadActivity($file, string $activity_type = null, string $name = null, string $description = null, int $private = null, int $trainer = null, int $commute = null, string $data_type = null, string $external_id = null): array
+    public function uploadActivity(string $file, string $activity_type = null, string $name = null, string $description = null, int $private = null, int $trainer = null, int $commute = null, string $data_type = null, string $external_id = null): array
     {
         try {
             return $this->service->uploadActivity($file, $activity_type, $name, $description, $private, $trainer, $commute, $data_type, $external_id);
