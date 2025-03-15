@@ -5,11 +5,14 @@ namespace Strava\API\Service {
     use GuzzleHttp\Psr7\Response;
     use Tests\Support\TestCase;
 
-    function curl_file_create()
+    function fopen($filePath, $mode)
     {
-        return 'toto';
+        return $filePath;
     }
-
+    function basename($filePath)
+    {
+        return $filePath;
+    }
 
     /**
      * Test...
@@ -38,8 +41,8 @@ namespace Strava\API\Service {
                 ->with($this->equalTo('GET'), $this->equalTo('athlete'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getAthlete();
             $outputWithVerbosity = $serviceWithVerbosity->getAthlete();
@@ -59,8 +62,8 @@ namespace Strava\API\Service {
                 ->with($this->equalTo('GET'), $this->equalTo('athletes/1234'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getAthlete(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getAthlete(1234);
@@ -80,8 +83,8 @@ namespace Strava\API\Service {
                 ->with($this->equalTo('GET'), $this->equalTo('athletes/1234/stats'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getAthleteStats(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getAthleteStats(1234);
@@ -101,8 +104,8 @@ namespace Strava\API\Service {
                 ->with($this->equalTo('GET'), $this->equalTo('athletes/1234/routes'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getAthleteRoutes(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getAthleteRoutes(1234);
@@ -122,8 +125,8 @@ namespace Strava\API\Service {
                 ->with($this->equalTo('GET'), $this->equalTo('athlete/clubs'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getAthleteClubs();
             $outputWithVerbosity = $serviceWithVerbosity->getAthleteClubs();
@@ -143,8 +146,8 @@ namespace Strava\API\Service {
                 ->with($this->equalTo('GET'), $this->equalTo('athlete/activities'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getAthleteActivities();
             $outputWithVerbosity = $serviceWithVerbosity->getAthleteActivities();
@@ -164,8 +167,8 @@ namespace Strava\API\Service {
                 ->with($this->equalTo('GET'), $this->equalTo('athlete/friends'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getAthleteFriends();
             $outputWithVerbosity = $serviceWithVerbosity->getAthleteFriends();
@@ -185,8 +188,8 @@ namespace Strava\API\Service {
                 ->with($this->equalTo('GET'), $this->equalTo('athletes/1234/friends'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getAthleteFriends(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getAthleteFriends(1234);
@@ -206,8 +209,8 @@ namespace Strava\API\Service {
                 ->with($this->equalTo('GET'), $this->equalTo('athlete/followers'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getAthleteFollowers();
             $outputWithVerbosity = $serviceWithVerbosity->getAthleteFollowers();
@@ -227,8 +230,8 @@ namespace Strava\API\Service {
                 ->with($this->equalTo('GET'), $this->equalTo('athletes/1234/followers'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getAthleteFollowers(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getAthleteFollowers(1234);
@@ -248,8 +251,8 @@ namespace Strava\API\Service {
                 ->with($this->equalTo('GET'), $this->equalTo('athletes/1234/both-following'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getAthleteBothFollowing(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getAthleteBothFollowing(1234);
@@ -269,8 +272,8 @@ namespace Strava\API\Service {
                 ->with($this->equalTo('GET'), $this->equalTo('athletes/1234/koms'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getAthleteKom(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getAthleteKom(1234);
@@ -290,8 +293,8 @@ namespace Strava\API\Service {
                 ->with($this->equalTo('GET'), $this->equalTo('athlete/zones'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getAthleteZones();
             $outputWithVerbosity = $serviceWithVerbosity->getAthleteZones();
@@ -311,8 +314,8 @@ namespace Strava\API\Service {
                 ->with($this->equalTo('GET'), $this->equalTo('segments/starred'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getAthleteStarredSegments();
             $outputWithVerbosity = $serviceWithVerbosity->getAthleteStarredSegments();
@@ -332,8 +335,8 @@ namespace Strava\API\Service {
                 ->with($this->equalTo('GET'), $this->equalTo('athletes/1234/segments/starred'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getAthleteStarredSegments(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getAthleteStarredSegments(1234);
@@ -364,8 +367,8 @@ namespace Strava\API\Service {
                 ->with($this->equalTo('PUT'), $this->equalTo('athlete'), $this->equalTo($parameters))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->updateAthlete('Xyz', 'ABC', 'The Netherlands', 'M', 83.00);
 $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The Netherlands', 'M', 83.00);
@@ -386,8 +389,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('activities/1234'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getActivity(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getActivity(1234);
@@ -407,8 +410,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('activities/1234/comments'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getActivityComments(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getActivityComments(1234);
@@ -428,8 +431,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('activities/1234/kudos'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getActivityKudos(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getActivityKudos(1234);
@@ -449,8 +452,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('activities/1234/photos'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getActivityPhotos(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getActivityPhotos(1234);
@@ -470,8 +473,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('activities/1234/zones'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getActivityZones(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getActivityZones(1234);
@@ -491,8 +494,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('activities/1234/laps'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getActivityLaps(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getActivityLaps(1234);
@@ -512,8 +515,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('uploads/1234'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getActivityUploadStatus(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getActivityUploadStatus(1234);
@@ -544,8 +547,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('POST'), $this->equalTo('activities'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->createActivity('test', 'test', '20130101', 100);
             $outputWithVerbosity = $serviceWithVerbosity->createActivity('test', 'test', '20130101', 100);
@@ -560,7 +563,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
 
         public function testUploadActivity()
         {
-            $parameters['query'] = [
+            $fileToUpload = 'file.gpx';
+            $data = [
                 'activity_type' => null,
                 'name' => null,
                 'description' => null,
@@ -569,10 +573,23 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 'commute' => null,
                 'data_type' => null,
                 'external_id' => null,
-                'file' => curl_file_create('file'),
-                'file_hack' => '@' . ltrim('file', '@'),
                 'access_token' => static::TOKEN,
             ];
+            $parameters = [
+                'multipart' => [
+                    [
+                        'name' => 'file',
+                        'contents' => fopen($fileToUpload, 'r'),
+                        'filename' => basename($fileToUpload),
+                    ],
+                ],
+            ];
+            foreach ($data as $key => $value) {
+                $parameters['multipart'][] = [
+                    'name' => $key,
+                    'contents' => $value,
+                ];
+            }
 
             $restMock = $this->getRestMock();
             $restMock->expects($this->exactly(2))->method('request')
@@ -580,10 +597,10 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
             $service = new REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
-            $output = $service->uploadActivity('file');
-            $outputWithVerbosity = $serviceWithVerbosity->uploadActivity('file');
+            $output = $service->uploadActivity($fileToUpload);
+            $outputWithVerbosity = $serviceWithVerbosity->uploadActivity($fileToUpload);
 
             $this->assertArrayHasKey('response', $output);
 
@@ -600,8 +617,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('PUT'), $this->equalTo('activities/1234'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->updateActivity(1234, 'test');
             $outputWithVerbosity = $serviceWithVerbosity->updateActivity(1234, 'test');
@@ -621,8 +638,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('DELETE'), $this->equalTo('activities/1234'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->deleteActivity(1234);
             $outputWithVerbosity = $serviceWithVerbosity->deleteActivity(1234);
@@ -642,8 +659,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('gear/1234'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getGear(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getGear(1234);
@@ -663,8 +680,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('clubs/1234'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getClub(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getClub(1234);
@@ -684,8 +701,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('clubs/1234/members'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getClubMembers(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getClubMembers(1234);
@@ -705,8 +722,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('clubs/1234/activities'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getClubActivities(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getClubActivities(1234);
@@ -726,8 +743,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('clubs/1234/announcements'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getClubAnnouncements(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getClubAnnouncements(1234);
@@ -747,8 +764,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('clubs/1234/group_events'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getClubGroupEvents(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getClubGroupEvents(1234);
@@ -768,8 +785,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('POST'), $this->equalTo('clubs/1234/join'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->joinClub(1234);
             $outputWithVerbosity = $serviceWithVerbosity->joinClub(1234);
@@ -789,8 +806,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('POST'), $this->equalTo('clubs/1234/leave'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->leaveClub(1234);
             $outputWithVerbosity = $serviceWithVerbosity->leaveClub(1234);
@@ -810,8 +827,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('routes/1234'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getRoute(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getRoute(1234);
@@ -860,8 +877,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('segments/1234'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getSegment(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getSegment(1234);
@@ -881,8 +898,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('segments/1234/leaderboard'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getSegmentLeaderboard(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getSegmentLeaderboard(1234);
@@ -902,8 +919,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('segments/explore'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getSegmentExplorer('37.821362,-122.505373,37.842038,-122.465977');
             $outputWithVerbosity = $serviceWithVerbosity->getSegmentExplorer('37.821362,-122.505373,37.842038,-122.465977');
@@ -923,8 +940,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('segments/1234/all_efforts'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getSegmentEffort(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getSegmentEffort(1234);
@@ -944,8 +961,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('activities/1234/streams/latlng'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getStreamsActivity(1234, 'latlng');
             $outputWithVerbosity = $serviceWithVerbosity->getStreamsActivity(1234, 'latlng');
@@ -965,8 +982,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('segment_efforts/1234/streams/latlng'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getStreamsEffort(1234, 'latlng');
             $outputWithVerbosity = $serviceWithVerbosity->getStreamsEffort(1234, 'latlng');
@@ -986,8 +1003,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('segments/1234/streams/latlng'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getStreamsSegment(1234, 'latlng');
             $outputWithVerbosity = $serviceWithVerbosity->getStreamsSegment(1234, 'latlng');
@@ -1007,8 +1024,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
                 ->with($this->equalTo('GET'), $this->equalTo('routes/1234/streams'))
                 ->will($this->returnValue(new Response(200, [], '{"response": 1}')));
 
-            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
-            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+            $service = new REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new REST(static::TOKEN, $restMock, 1);
 
             $output = $service->getStreamsRoute(1234);
             $outputWithVerbosity = $serviceWithVerbosity->getStreamsRoute(1234);

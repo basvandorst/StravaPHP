@@ -346,7 +346,8 @@ class REST implements ServiceInterface
     public function uploadActivity(string $file, string $activity_type = null, string $name = null, string $description = null, int $private = null, int $trainer = null, int $commute = null, string $data_type = null, string $external_id = null)
     {
         $path = 'uploads';
-        $parameters['query'] = [
+
+        $data = [
             'activity_type' => $activity_type,
             'name' => $name,
             'description' => $description,
@@ -355,10 +356,23 @@ class REST implements ServiceInterface
             'commute' => $commute,
             'data_type' => $data_type,
             'external_id' => $external_id,
-            'file' => curl_file_create($file),
-            'file_hack' => '@' . ltrim($file, '@'),
             'access_token' => $this->getToken(),
         ];
+        $parameters = [
+            'multipart' => [
+                [
+                    'name' => 'file',
+                    'contents' => fopen($file, 'r'),
+                    'filename' => basename($file),
+                ],
+            ],
+        ];
+        foreach ($data as $key => $value) {
+            $parameters['multipart'][] = [
+                'name' => $key,
+                'contents' => $value,
+            ];
+        }
 
         return $this->getResponse('POST', $path, $parameters);
     }
