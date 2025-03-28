@@ -1,5 +1,5 @@
 {
-  "name": "basvandorst/stravaphp",
+  "name": "absoftware/basvandorst-strava-php",
   "description": "Strava V3 API PHP client with OAuth authentication",
   "keywords": [
     "Strava",
