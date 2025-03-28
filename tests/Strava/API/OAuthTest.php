@@ -91,6 +91,6 @@ final class OAuthTest extends TestCase
     {
         $result = $this->oauth->getBaseAccessTokenUrl(array());
 
-        $this->assertSame('https://www.strava.com/oauth/token', $result);
+        $this->assertSame('https://www.strava.com/api/v3/oauth/token', $result);
     }
 }

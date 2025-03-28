@@ -35,7 +35,7 @@ class OAuth extends AbstractProvider
      */
     public function urlAccessToken(): string
     {
-        return 'https://www.strava.com/oauth/token';
+        return 'https://www.strava.com/api/v3/oauth/token';
     }
 
     /**
@@ -102,7 +102,7 @@ class OAuth extends AbstractProvider
      */
     public function getBaseAccessTokenUrl(array $params): string
     {
-        return 'https://www.strava.com/oauth/token';
+        return 'https://www.strava.com/api/v3/oauth/token';
     }
 
     /**
