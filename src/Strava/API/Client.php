@@ -827,4 +827,61 @@ class Client
             throw new ClientException('[SERVICE] ' . $e->getMessage());
         }
     }
+
+    /**
+     * Create a webhook subscription
+     *
+     * @link    https://developers.strava.com/docs/webhooks/#create-a-subscription
+     * @param int $clientId
+     * @param string $clientSecret
+     * @param string $callbackUrl
+     * @param string $verifyToken
+     * @return  array
+     * @throws  Exception
+     */
+    public function createWebhookSubscription(int $clientId, string $clientSecret, string $callbackUrl, string $verifyToken): array
+    {
+        try {
+            return $this->service->createWebhookSubscription($clientId, $clientSecret, $callbackUrl, $verifyToken);
+        } catch (ServiceException $e) {
+            throw new ClientException('[SERVICE] ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * List webhook subscriptions
+     *
+     * @link    https://developers.strava.com/docs/webhooks/#list-subscriptions
+     * @param int $clientId
+     * @param string $clientSecret
+     * @return  array
+     * @throws  Exception
+     */
+    public function listWebhookSubscriptions(int $clientId, string $clientSecret): array
+    {
+        try {
+            return $this->service->listWebhookSubscriptions($clientId, $clientSecret);
+        } catch (ServiceException $e) {
+            throw new ClientException('[SERVICE] ' . $e->getMessage());
+        }
+    }
+
+    /**
+     * Delete a webhook subscription
+     *
+     * @link    https://developers.strava.com/docs/webhooks/#delete-a-subscription
+     * @param int $clientId
+     * @param string $clientSecret
+     * @param int $subscriptionId
+     * @return  array
+     * @throws  Exception
+     */
+    public function deleteWebhookSubscription(int $clientId, string $clientSecret, int $subscriptionId): array
+    {
+        try {
+            return $this->service->deleteWebhookSubscription($clientId, $clientSecret, $subscriptionId);
+        } catch (ServiceException $e) {
+            throw new ClientException('[SERVICE] ' . $e->getMessage());
+        }
+    }
 }

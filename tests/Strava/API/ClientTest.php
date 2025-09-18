@@ -957,4 +957,79 @@ class ClientTest extends TestCase
         $client->getStreamsRoute(1234);
     }
 
+    public function testCreateWebhookSubscription()
+    {
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('createWebhookSubscription')
+            ->with(12345, 'secret', 'https://example.com/webhook', 'verify_token')
+            ->will($this->returnValue(['id' => 123, 'callback_url' => 'https://example.com/webhook']));
+
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->createWebhookSubscription(12345, 'secret', 'https://example.com/webhook', 'verify_token');
+
+        $this->assertEquals(['id' => 123, 'callback_url' => 'https://example.com/webhook'], $output);
+    }
+
+    public function testCreateWebhookSubscriptionException()
+    {
+        $this->expectException('Strava\API\Exception');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('createWebhookSubscription')
+            ->will($this->throwException(new ServiceException));
+
+        $client = new Strava\API\Client($serviceMock);
+        $client->createWebhookSubscription(12345, 'secret', 'https://example.com/webhook', 'verify_token');
+    }
+
+    public function testListWebhookSubscriptions()
+    {
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('listWebhookSubscriptions')
+            ->with(12345, 'secret')
+            ->will($this->returnValue([['id' => 123, 'callback_url' => 'https://example.com/webhook']]));
+
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->listWebhookSubscriptions(12345, 'secret');
+
+        $this->assertEquals([['id' => 123, 'callback_url' => 'https://example.com/webhook']], $output);
+    }
+
+    public function testListWebhookSubscriptionsException()
+    {
+        $this->expectException('Strava\API\Exception');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('listWebhookSubscriptions')
+            ->will($this->throwException(new ServiceException));
+
+        $client = new Strava\API\Client($serviceMock);
+        $client->listWebhookSubscriptions(12345, 'secret');
+    }
+
+    public function testDeleteWebhookSubscription()
+    {
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('deleteWebhookSubscription')
+            ->with(12345, 'secret', 123)
+            ->will($this->returnValue(['success' => true]));
+
+        $client = new Strava\API\Client($serviceMock);
+        $output = $client->deleteWebhookSubscription(12345, 'secret', 123);
+
+        $this->assertEquals(['success' => true], $output);
+    }
+
+    public function testDeleteWebhookSubscriptionException()
+    {
+        $this->expectException('Strava\API\Exception');
+
+        $serviceMock = $this->getServiceMock();
+        $serviceMock->expects($this->once())->method('deleteWebhookSubscription')
+            ->will($this->throwException(new ServiceException));
+
+        $client = new Strava\API\Client($serviceMock);
+        $client->deleteWebhookSubscription(12345, 'secret', 123);
+    }
+
 }

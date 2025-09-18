@@ -211,7 +211,151 @@ $client->getStreamsActivity($id, $types, $resolution = null, $series_type = 'dis
 $client->getStreamsEffort($id, $types, $resolution = null, $series_type = 'distance');
 $client->getStreamsSegment($id, $types, $resolution = null, $series_type = 'distance');
 $client->getStreamsRoute($id);
+$client->createWebhookSubscription($clientId, $clientSecret, $callbackUrl, $verifyToken);
+$client->listWebhookSubscriptions($clientId, $clientSecret);
+$client->deleteWebhookSubscription($clientId, $clientSecret, $subscriptionId);
 ```
+
+## Webhook Integration
+
+StravaPHP now includes comprehensive webhook support for real-time event notifications. This allows you to receive instant notifications when activities are created, updated, or deleted.
+
+### Webhook Subscription Management
+
+```php
+<?php
+include 'vendor/autoload.php';
+
+use Strava\API\Client;
+use Strava\API\Service\REST;
+use GuzzleHttp\Client as GuzzleClient;
+
+// Create API client
+$adapter = new GuzzleClient(['base_uri' => 'https://www.strava.com/api/v3/']);
+$service = new REST('YOUR_ACCESS_TOKEN', $adapter);
+$client = new Client($service);
+
+// Your Strava app credentials
+$clientId = 12345;
+$clientSecret = 'your_client_secret';
+$callbackUrl = 'https://yourdomain.com/webhook-endpoint.php';
+$verifyToken = 'your_random_verify_token';
+
+try {
+    // Create a webhook subscription
+    $subscription = $client->createWebhookSubscription(
+        $clientId,
+        $clientSecret,
+        $callbackUrl,
+        $verifyToken
+    );
+    
+    echo "Webhook subscription created: " . $subscription['id'] . "\n";
+    
+    // List existing subscriptions
+    $subscriptions = $client->listWebhookSubscriptions($clientId, $clientSecret);
+    echo "Active subscriptions: " . count($subscriptions) . "\n";
+    
+    // Delete a subscription
+    $client->deleteWebhookSubscription($clientId, $clientSecret, $subscription['id']);
+    echo "Subscription deleted\n";
+    
+} catch (Exception $e) {
+    echo "Error: " . $e->getMessage() . "\n";
+}
+```
+
+### Webhook Event Handling
+
+```php
+<?php
+// webhook-endpoint.php
+include 'vendor/autoload.php';
+
+use Strava\API\Webhook;
+
+// Handle subscription challenge (when creating webhook)
+$verifyToken = 'your_random_verify_token';
+$challengeResult = Webhook::handleSubscriptionChallenge($verifyToken);
+
+if ($challengeResult['success']) {
+    // Send challenge response to Strava
+    Webhook::sendChallengeResponse($challengeResult['challenge']);
+}
+
+// Process incoming webhook events
+$eventResult = Webhook::processEvent();
+
+if ($eventResult['success']) {
+    $event = $eventResult['event'];
+    
+    // Handle different event types
+    switch (Webhook::getEventType($event)) {
+        case 'activity.create':
+            echo "New activity: " . $event['object_id'] . "\n";
+            // Process new activity
+            break;
+            
+        case 'activity.update':
+            echo "Updated activity: " . $event['object_id'] . "\n";
+            // Process activity update
+            break;
+            
+        case 'activity.delete':
+            echo "Deleted activity: " . $event['object_id'] . "\n";
+            // Process activity deletion
+            break;
+            
+        case 'athlete.update':
+            echo "Updated athlete: " . $event['object_id'] . "\n";
+            // Process athlete update
+            break;
+    }
+    
+    // Send success response
+    http_response_code(200);
+    echo json_encode(['status' => 'success']);
+} else {
+    // Handle error
+    http_response_code(400);
+    echo json_encode(['error' => $eventResult['error']]);
+}
+```
+
+### Webhook Helper Methods
+
+The `Webhook` class provides several utility methods:
+
+```php
+// Get event type (e.g., 'activity.create')
+$eventType = Webhook::getEventType($event);
+
+// Check if event is for specific object type
+$isActivity = Webhook::isObjectType($event, 'activity');
+$isAthlete = Webhook::isObjectType($event, 'athlete');
+
+// Check if event is specific aspect type
+$isCreate = Webhook::isAspectType($event, 'create');
+$isUpdate = Webhook::isAspectType($event, 'update');
+$isDelete = Webhook::isAspectType($event, 'delete');
+
+// Verify webhook signature (if using signature verification)
+$isValid = Webhook::verifySignature($payload, $signature, $secret);
+```
+
+### Webhook Events
+
+Strava webhooks support the following event types:
+
+- **Activity Events:**
+  - `activity.create` - New activity created
+  - `activity.update` - Activity updated
+  - `activity.delete` - Activity deleted
+
+- **Athlete Events:**
+  - `athlete.update` - Athlete profile updated
+
+For more information about webhook events, see the [Strava Webhook Documentation](https://developers.strava.com/docs/webhooks/).
 
 ## UML diagrams
 ### Class diagram

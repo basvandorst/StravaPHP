@@ -268,6 +268,24 @@ class Stub implements ServiceInterface
         return $this->format($json);
     }
 
+    public function createWebhookSubscription(int $clientId, string $clientSecret, string $callbackUrl, string $verifyToken)
+    {
+        $json = '{"id": 123, "callback_url": "' . $callbackUrl . '", "created_at": "2023-01-01T00:00:00Z"}';
+        return $this->format($json);
+    }
+
+    public function listWebhookSubscriptions(int $clientId, string $clientSecret)
+    {
+        $json = '[{"id": 123, "callback_url": "https://example.com/webhook", "created_at": "2023-01-01T00:00:00Z"}]';
+        return $this->format($json);
+    }
+
+    public function deleteWebhookSubscription(int $clientId, string $clientSecret, int $subscriptionId)
+    {
+        $json = '{"success": true}';
+        return $this->format($json);
+    }
+
     /**
      * @param string $result
      */

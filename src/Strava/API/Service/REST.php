@@ -583,4 +583,39 @@ class REST implements ServiceInterface
 
         return $this->getResponse('GET', $path, $parameters);
     }
+
+    public function createWebhookSubscription(int $clientId, string $clientSecret, string $callbackUrl, string $verifyToken)
+    {
+        $path = 'push_subscriptions';
+        $parameters['form_params'] = [
+            'client_id' => $clientId,
+            'client_secret' => $clientSecret,
+            'callback_url' => $callbackUrl,
+            'verify_token' => $verifyToken,
+        ];
+
+        return $this->getResponse('POST', $path, $parameters);
+    }
+
+    public function listWebhookSubscriptions(int $clientId, string $clientSecret)
+    {
+        $path = 'push_subscriptions';
+        $parameters['query'] = [
+            'client_id' => $clientId,
+            'client_secret' => $clientSecret,
+        ];
+
+        return $this->getResponse('GET', $path, $parameters);
+    }
+
+    public function deleteWebhookSubscription(int $clientId, string $clientSecret, int $subscriptionId)
+    {
+        $path = 'push_subscriptions/' . $subscriptionId;
+        $parameters['form_params'] = [
+            'client_id' => $clientId,
+            'client_secret' => $clientSecret,
+        ];
+
+        return $this->getResponse('DELETE', $path, $parameters);
+    }
 }
