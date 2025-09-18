@@ -1105,7 +1105,8 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
             $output = $service->deleteWebhookSubscription(12345, 'secret', 123);
             $outputWithVerbosity = $serviceWithVerbosity->deleteWebhookSubscription(12345, 'secret', 123);
 
-            $this->assertArrayHasKey('success', $output);
+            // For 204 responses, the body is null but success should be true
+            $this->assertTrue($output['success']);
 
             $this->assertArrayHasKey('body', $outputWithVerbosity);
             $this->assertArrayHasKey('headers', $outputWithVerbosity);

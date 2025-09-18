@@ -40,7 +40,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function getAthlete(int $id = null): array
+    public function getAthlete(?int $id = null): array
     {
         try {
             return $this->service->getAthlete($id);
@@ -80,7 +80,7 @@ class Client
      * @return  array
      * @throws Exception
      */
-    public function getAthleteRoutes(int $id, string $type = null, int $after = null, int $page = null, int $per_page = null): array
+    public function getAthleteRoutes(int $id, ?string $type = null, ?int $after = null, ?int $page = null, ?int $per_page = null): array
     {
         try {
             return $this->service->getAthleteRoutes($id, $type, $after, $page, $per_page);
@@ -116,7 +116,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function getAthleteActivities(string $before = null, string $after = null, int $page = null, int $per_page = null): array
+    public function getAthleteActivities(?string $before = null, ?string $after = null, ?int $page = null, ?int $per_page = null): array
     {
         try {
             return $this->service->getAthleteActivities($before, $after, $page, $per_page);
@@ -135,7 +135,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function getAthleteFriends(int $id = null, int $page = null, int $per_page = null): array
+    public function getAthleteFriends(?int $id = null, ?int $page = null, ?int $per_page = null): array
     {
         try {
             return $this->service->getAthleteFriends($id, $page, $per_page);
@@ -154,7 +154,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function getAthleteFollowers(int $id = null, int $page = null, int $per_page = null): array
+    public function getAthleteFollowers(?int $id = null, ?int $page = null, ?int $per_page = null): array
     {
         try {
             return $this->service->getAthleteFollowers($id, $page, $per_page);
@@ -173,7 +173,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function getAthleteBothFollowing($id, int $page = null, int $per_page = null): array
+    public function getAthleteBothFollowing($id, ?int $page = null, ?int $per_page = null): array
     {
         try {
             return $this->service->getAthleteBothFollowing($id, $page, $per_page);
@@ -192,7 +192,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function getAthleteKom(int $id, int $page = null, int $per_page = null): array
+    public function getAthleteKom(int $id, ?int $page = null, ?int $per_page = null): array
     {
         try {
             return $this->service->getAthleteKom($id, $page, $per_page);
@@ -228,7 +228,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function getAthleteStarredSegments(int $id = null, int $page = null, int $per_page = null): array
+    public function getAthleteStarredSegments(?int $id = null, ?int $page = null, ?int $per_page = null): array
     {
         try {
             return $this->service->getAthleteStarredSegments($id, $page, $per_page);
@@ -268,7 +268,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function getActivity(int $id, bool $include_all_efforts = null): array
+    public function getActivity(int $id, ?bool $include_all_efforts = null): array
     {
         try {
             return $this->service->getActivity($id, $include_all_efforts);
@@ -288,7 +288,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function getActivityComments(int $id, bool $markdown = null, int $page = null, int $per_page = null): array
+    public function getActivityComments(int $id, ?bool $markdown = null, ?int $page = null, ?int $per_page = null): array
     {
         try {
             return $this->service->getActivityComments($id, $markdown, $page, $per_page);
@@ -307,7 +307,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function getActivityKudos(int $id, int $page = null, int $per_page = null): array
+    public function getActivityKudos(int $id, ?int $page = null, ?int $per_page = null): array
     {
         try {
             return $this->service->getActivityKudos($id, $page, $per_page);
@@ -401,7 +401,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function createActivity(string $name, string $type, string $start_date_local, int $elapsed_time, string $description = null, float $distance = null, int $private = null, int $trainer = null): array
+    public function createActivity(string $name, string $type, string $start_date_local, int $elapsed_time, ?string $description = null, ?float $distance = null, ?int $private = null, ?int $trainer = null): array
     {
         try {
             return $this->service->createActivity($name, $type, $start_date_local, $elapsed_time, $description, $distance, $private, $trainer);
@@ -426,7 +426,7 @@ class Client
      * @return  array
      * @throws Exception
      */
-    public function uploadActivity(string $file, string $activity_type = null, string $name = null, string $description = null, int $private = null, int $trainer = null, int $commute = null, string $data_type = null, string $external_id = null): array
+    public function uploadActivity(string $file, ?string $activity_type = null, ?string $name = null, ?string $description = null, ?int $private = null, ?int $trainer = null, ?int $commute = null, ?string $data_type = null, ?string $external_id = null): array
     {
         try {
             return $this->service->uploadActivity($file, $activity_type, $name, $description, $private, $trainer, $commute, $data_type, $external_id);
@@ -450,7 +450,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function updateActivity(int $id, string $name = null, string $type = null, bool $private = false, bool $commute = false, bool $trainer = false, string $gear_id = null, string $description = null): array
+    public function updateActivity(int $id, ?string $name = null, ?string $type = null, bool $private = false, bool $commute = false, bool $trainer = false, ?string $gear_id = null, ?string $description = null): array
     {
         try {
             return $this->service->updateActivity($id, $name, $type, $private, $commute, $trainer, $gear_id, $description);
@@ -520,7 +520,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function getClubMembers(int $id, int $page = null, int $per_page = null): array
+    public function getClubMembers(int $id, ?int $page = null, ?int $per_page = null): array
     {
         try {
             return $this->service->getClubMembers($id, $page, $per_page);
@@ -539,7 +539,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function getClubActivities(int $id, int $page = null, int $per_page = null): array
+    public function getClubActivities(int $id, ?int $page = null, ?int $per_page = null): array
     {
         try {
             return $this->service->getClubActivities($id, $page, $per_page);
@@ -701,7 +701,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function getSegmentLeaderboard(int $id, string $gender = null, string $age_group = null, string $weight_class = null, bool $following = null, int $club_id = null, string $date_range = null, int $context_entries = null, int $page = null, int $per_page = null): array
+    public function getSegmentLeaderboard(int $id, ?string $gender = null, ?string $age_group = null, ?string $weight_class = null, ?bool $following = null, ?int $club_id = null, ?string $date_range = null, ?int $context_entries = null, ?int $page = null, ?int $per_page = null): array
     {
         try {
             return $this->service->getSegmentLeaderboard($id, $gender, $age_group, $weight_class, $following, $club_id, $date_range, $context_entries, $page, $per_page);
@@ -721,7 +721,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function getSegmentExplorer(string $bounds, string $activity_type = 'riding', int $min_cat = null, int $max_cat = null): array
+    public function getSegmentExplorer(string $bounds, string $activity_type = 'riding', ?int $min_cat = null, ?int $max_cat = null): array
     {
         try {
             return $this->service->getSegmentExplorer($bounds, $activity_type, $min_cat, $max_cat);
@@ -743,7 +743,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function getSegmentEffort(int $id, int $athlete_id = null, string $start_date_local = null, string $end_date_local = null, int $page = null, int $per_page = null): array
+    public function getSegmentEffort(int $id, ?int $athlete_id = null, ?string $start_date_local = null, ?string $end_date_local = null, ?int $page = null, ?int $per_page = null): array
     {
         try {
             return $this->service->getSegmentEffort($id, $athlete_id, $start_date_local, $end_date_local, $page, $per_page);
@@ -763,7 +763,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function getStreamsActivity(int $id, string $types, string $resolution = null, string $series_type = 'distance'): array
+    public function getStreamsActivity(int $id, string $types, ?string $resolution = null, string $series_type = 'distance'): array
     {
         try {
             return $this->service->getStreamsActivity($id, $types, $resolution, $series_type);
@@ -783,7 +783,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function getStreamsEffort(int $id, string $types, string $resolution = null, string $series_type = 'distance'): array
+    public function getStreamsEffort(int $id, string $types, ?string $resolution = null, string $series_type = 'distance'): array
     {
         try {
             return $this->service->getStreamsEffort($id, $types, $resolution, $series_type);
@@ -802,7 +802,7 @@ class Client
      * @return  array
      * @throws  Exception
      */
-    public function getStreamsSegment(int $id, string $types, string $resolution = null, string $series_type = 'distance'): array
+    public function getStreamsSegment(int $id, string $types, ?string $resolution = null, string $series_type = 'distance'): array
     {
         try {
             return $this->service->getStreamsSegment($id, $types, $resolution, $series_type);
