@@ -1014,5 +1014,98 @@ $outputWithVerbosity = $serviceWithVerbosity->updateAthlete('Xyz', 'ABC', 'The N
             $this->assertArrayHasKey('status', $outputWithVerbosity);
             $this->assertArrayHasKey('success', $outputWithVerbosity);
         }
+
+        public function testCreateWebhookSubscription()
+        {
+            $restMock = $this->getRestMock();
+            $restMock->expects($this->exactly(2))->method('request')
+                ->with(
+                    $this->equalTo('POST'),
+                    $this->equalTo('push_subscriptions'),
+                    $this->callback(function ($params) {
+                        return isset($params['form_params']) &&
+                               $params['form_params']['client_id'] === 12345 &&
+                               $params['form_params']['client_secret'] === 'secret' &&
+                               $params['form_params']['callback_url'] === 'https://example.com/webhook' &&
+                               $params['form_params']['verify_token'] === 'verify_token';
+                    })
+                )
+                ->will($this->returnValue(new Response(201, [], '{"id": 123, "callback_url": "https://example.com/webhook"}')));
+
+            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+
+            $output = $service->createWebhookSubscription(12345, 'secret', 'https://example.com/webhook', 'verify_token');
+            $outputWithVerbosity = $serviceWithVerbosity->createWebhookSubscription(12345, 'secret', 'https://example.com/webhook', 'verify_token');
+
+            $this->assertArrayHasKey('id', $output);
+            $this->assertArrayHasKey('callback_url', $output);
+
+            $this->assertArrayHasKey('body', $outputWithVerbosity);
+            $this->assertArrayHasKey('headers', $outputWithVerbosity);
+            $this->assertArrayHasKey('status', $outputWithVerbosity);
+            $this->assertArrayHasKey('success', $outputWithVerbosity);
+        }
+
+        public function testListWebhookSubscriptions()
+        {
+            $restMock = $this->getRestMock();
+            $restMock->expects($this->exactly(2))->method('request')
+                ->with(
+                    $this->equalTo('GET'),
+                    $this->equalTo('push_subscriptions'),
+                    $this->callback(function ($params) {
+                        return isset($params['query']) &&
+                               $params['query']['client_id'] === 12345 &&
+                               $params['query']['client_secret'] === 'secret';
+                    })
+                )
+                ->will($this->returnValue(new Response(200, [], '[{"id": 123, "callback_url": "https://example.com/webhook"}]')));
+
+            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+
+            $output = $service->listWebhookSubscriptions(12345, 'secret');
+            $outputWithVerbosity = $serviceWithVerbosity->listWebhookSubscriptions(12345, 'secret');
+
+            $this->assertIsArray($output);
+            $this->assertArrayHasKey(0, $output);
+            $this->assertArrayHasKey('id', $output[0]);
+
+            $this->assertArrayHasKey('body', $outputWithVerbosity);
+            $this->assertArrayHasKey('headers', $outputWithVerbosity);
+            $this->assertArrayHasKey('status', $outputWithVerbosity);
+            $this->assertArrayHasKey('success', $outputWithVerbosity);
+        }
+
+        public function testDeleteWebhookSubscription()
+        {
+            $restMock = $this->getRestMock();
+            $restMock->expects($this->exactly(2))->method('request')
+                ->with(
+                    $this->equalTo('DELETE'),
+                    $this->equalTo('push_subscriptions/123'),
+                    $this->callback(function ($params) {
+                        return isset($params['form_params']) &&
+                               $params['form_params']['client_id'] === 12345 &&
+                               $params['form_params']['client_secret'] === 'secret';
+                    })
+                )
+                ->will($this->returnValue(new Response(204, [], '')));
+
+            $service = new \Strava\API\Service\REST(static::TOKEN, $restMock);
+            $serviceWithVerbosity = new \Strava\API\Service\REST(static::TOKEN, $restMock, 1);
+
+            $output = $service->deleteWebhookSubscription(12345, 'secret', 123);
+            $outputWithVerbosity = $serviceWithVerbosity->deleteWebhookSubscription(12345, 'secret', 123);
+
+            // For 204 responses, the body is null but success should be true
+            $this->assertTrue($output['success']);
+
+            $this->assertArrayHasKey('body', $outputWithVerbosity);
+            $this->assertArrayHasKey('headers', $outputWithVerbosity);
+            $this->assertArrayHasKey('status', $outputWithVerbosity);
+            $this->assertArrayHasKey('success', $outputWithVerbosity);
+        }
     }
 }

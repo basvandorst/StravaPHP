@@ -10,7 +10,7 @@ namespace Strava\API\Service;
  */
 class Stub implements ServiceInterface
 {
-    public function getAthlete(int $id = null)
+    public function getAthlete(?int $id = null)
     {
         $json = '{ "id": 227615, "resource_state": 2, "firstname": "John", "lastname": "Applestrava", "profile_medium": "http://pics.com/227615/medium.jpg", "profile": "http://pics.com/227615/large.jpg", "city": "San Francisco", "state": "CA", "country": "United States", "sex": "M", "friend": null, "follower": "accepted", "premium": true, "created_at": "2011-03-19T21:59:57Z", "updated_at": "2013-09-05T16:46:54Z", "approve_followers": false }';
         return $this->format($json);
@@ -22,7 +22,7 @@ class Stub implements ServiceInterface
         return $this->format($json);
     }
 
-    public function getAthleteRoutes(int $id, string $type = null, int $after = null, int $page = null, int $per_page = null)
+    public function getAthleteRoutes(int $id, ?string $type = null, ?int $after = null, ?int $page = null, ?int $per_page = null)
     {
         $json = '[{"athlete":{"id":19,"resource_state":2},"id":743064,"resource_state":2,"description":"","distance":17781.6,"elevation_gain":207.8}]';
         return $this->format($json);
@@ -34,31 +34,31 @@ class Stub implements ServiceInterface
         return $this->format($json);
     }
 
-    public function getAthleteActivities(string $before = null, string $after = null, int $page = null, int $per_page = null)
+    public function getAthleteActivities(?string $before = null, ?string $after = null, ?int $page = null, ?int $per_page = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);
     }
 
-    public function getAthleteFriends(int $id = null, int $page = null, int $per_page = null)
+    public function getAthleteFriends(?int $id = null, ?int $page = null, ?int $per_page = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);
     }
 
-    public function getAthleteFollowers(int $id = null, int $page = null, int $per_page = null)
+    public function getAthleteFollowers(?int $id = null, ?int $page = null, ?int $per_page = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);
     }
 
-    public function getAthleteBothFollowing(int $id, int $page = null, int $per_page = null)
+    public function getAthleteBothFollowing(int $id, ?int $page = null, ?int $per_page = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);
     }
 
-    public function getAthleteKom(int $id, int $page = null, int $per_page = null)
+    public function getAthleteKom(int $id, ?int $page = null, ?int $per_page = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);
@@ -70,7 +70,7 @@ class Stub implements ServiceInterface
         return $this->format($json);
     }
 
-    public function getAthleteStarredSegments(int $id = null, int $page = null, int $per_page = null)
+    public function getAthleteStarredSegments(?int $id = null, ?int $page = null, ?int $per_page = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);
@@ -88,19 +88,19 @@ class Stub implements ServiceInterface
         return $this->format($json);
     }
 
-    public function getActivity(int $id, bool $include_all_efforts = null)
+    public function getActivity(int $id, ?bool $include_all_efforts = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);
     }
 
-    public function getActivityComments(int $id, bool $markdown = null, int $page = null, int $per_page = null)
+    public function getActivityComments(int $id, ?bool $markdown = null, ?int $page = null, ?int $per_page = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);
     }
 
-    public function getActivityKudos(int $id, int $page = null, int $per_page = null)
+    public function getActivityKudos(int $id, ?int $page = null, ?int $per_page = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);
@@ -130,19 +130,19 @@ class Stub implements ServiceInterface
         return $this->format($json);
     }
 
-    public function createActivity(string $name, string $type, string $start_date_local, int $elapsed_time, string $description = null, float $distance = null, int $private = null, int $trainer = null)
+    public function createActivity(string $name, string $type, string $start_date_local, int $elapsed_time, ?string $description = null, ?float $distance = null, ?int $private = null, ?int $trainer = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);
     }
 
-    public function uploadActivity(string $file, string $activity_type = null, string $name = null, string $description = null, int $private = null, int $trainer = null, int $commute = null, string $data_type = null, string $external_id = null)
+    public function uploadActivity(string $file, ?string $activity_type = null, ?string $name = null, ?string $description = null, ?int $private = null, ?int $trainer = null, ?int $commute = null, ?string $data_type = null, ?string $external_id = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);
     }
 
-    public function updateActivity(int $id, string $name = null, string $type = null, bool $private = false, bool $commute = false, bool $trainer = false, string $gear_id = null, string $description = null)
+    public function updateActivity(int $id, ?string $name = null, ?string $type = null, bool $private = false, bool $commute = false, bool $trainer = false, ?string $gear_id = null, ?string $description = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);
@@ -166,13 +166,13 @@ class Stub implements ServiceInterface
         return $this->format($json);
     }
 
-    public function getClubMembers(int $id, int $page = null, int $per_page = null)
+    public function getClubMembers(int $id, ?int $page = null, ?int $per_page = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);
     }
 
-    public function getClubActivities(int $id, int $page = null, int $per_page = null)
+    public function getClubActivities(int $id, ?int $page = null, ?int $per_page = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);
@@ -226,19 +226,19 @@ class Stub implements ServiceInterface
         return $this->format($json);
     }
 
-    public function getSegmentLeaderboard(int $id, string $gender = null, string $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $context_entries = null, $page = null, $per_page = null)
+    public function getSegmentLeaderboard(int $id, ?string $gender = null, ?string $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $context_entries = null, $page = null, $per_page = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);
     }
 
-    public function getSegmentExplorer(string $bounds, string $activity_type = 'riding', int $min_cat = null, int $max_cat = null)
+    public function getSegmentExplorer(string $bounds, string $activity_type = 'riding', ?int $min_cat = null, ?int $max_cat = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);
     }
 
-    public function getSegmentEffort(int $id, int $athlete_id = null, string $start_date_local = null, string $end_date_local = null, int $page = null, int $per_page = null)
+    public function getSegmentEffort(int $id, ?int $athlete_id = null, ?string $start_date_local = null, ?string $end_date_local = null, ?int $page = null, ?int $per_page = null)
     {
         $json = '{"response": 1}';
         return $this->format($json);
@@ -265,6 +265,24 @@ class Stub implements ServiceInterface
     public function getStreamsRoute(int $id)
     {
         $json = '{"response": 1}';
+        return $this->format($json);
+    }
+
+    public function createWebhookSubscription(int $clientId, string $clientSecret, string $callbackUrl, string $verifyToken)
+    {
+        $json = '{"id": 123, "callback_url": "' . $callbackUrl . '", "created_at": "2023-01-01T00:00:00Z"}';
+        return $this->format($json);
+    }
+
+    public function listWebhookSubscriptions(int $clientId, string $clientSecret)
+    {
+        $json = '[{"id": 123, "callback_url": "https://example.com/webhook", "created_at": "2023-01-01T00:00:00Z"}]';
+        return $this->format($json);
+    }
+
+    public function deleteWebhookSubscription(int $clientId, string $clientSecret, int $subscriptionId)
+    {
+        $json = '{"success": true}';
         return $this->format($json);
     }
 

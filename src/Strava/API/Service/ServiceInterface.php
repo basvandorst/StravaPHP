@@ -15,7 +15,7 @@ interface ServiceInterface
     /**
      * @param int|null $id
      */
-    public function getAthlete(int $id = null);
+    public function getAthlete(?int $id = null);
 
     /**
      * Retrieve athlete stats
@@ -35,7 +35,7 @@ interface ServiceInterface
      * @param int|null $page
      * @param int|null $per_page
      */
-    public function getAthleteRoutes(int $id, string $type = null, int $after = null, int $page = null, int $per_page = null);
+    public function getAthleteRoutes(int $id, ?string $type = null, ?int $after = null, ?int $page = null, ?int $per_page = null);
 
     public function getAthleteClubs();
 
@@ -45,35 +45,35 @@ interface ServiceInterface
      * @param int|null $page
      * @param int|null $per_page
      */
-    public function getAthleteActivities(string $before = null, string $after = null, int $page = null, int $per_page = null);
+    public function getAthleteActivities(?string $before = null, ?string $after = null, ?int $page = null, ?int $per_page = null);
 
     /**
      * @param int|null $id
      * @param int|null $page
      * @param int|null $per_page
      */
-    public function getAthleteFriends(int $id = null, int $page = null, int $per_page = null);
+    public function getAthleteFriends(?int $id = null, ?int $page = null, ?int $per_page = null);
 
     /**
      * @param int|null $id
      * @param int|null $page
      * @param int|null $per_page
      */
-    public function getAthleteFollowers(int $id = null, int $page = null, int $per_page = null);
+    public function getAthleteFollowers(?int $id = null, ?int $page = null, ?int $per_page = null);
 
     /**
      * @param int $id
      * @param int|null $page
      * @param int|null $per_page
      */
-    public function getAthleteBothFollowing(int $id, int $page = null, int $per_page = null);
+    public function getAthleteBothFollowing(int $id, ?int $page = null, ?int $per_page = null);
 
     /**
      * @param int $id
      * @param int|null $page
      * @param int|null $per_page
      */
-    public function getAthleteKom(int $id, int $page = null, int $per_page = null);
+    public function getAthleteKom(int $id, ?int $page = null, ?int $per_page = null);
 
     public function getAthleteZones();
 
@@ -82,7 +82,7 @@ interface ServiceInterface
      * @param int|null $page
      * @param int|null $per_page
      */
-    public function getAthleteStarredSegments(int $id = null, int $page = null, int $per_page = null);
+    public function getAthleteStarredSegments(?int $id = null, ?int $page = null, ?int $per_page = null);
 
     /**
      * @param string $city
@@ -97,7 +97,7 @@ interface ServiceInterface
      * @param int $id
      * @param boolean|null $include_all_efforts
      */
-    public function getActivity(int $id, bool $include_all_efforts = null);
+    public function getActivity(int $id, ?bool $include_all_efforts = null);
 
     /**
      * @param int $id
@@ -105,14 +105,14 @@ interface ServiceInterface
      * @param int|null $page
      * @param int|null $per_page
      */
-    public function getActivityComments(int $id, bool $markdown = null, int $page = null, int $per_page = null);
+    public function getActivityComments(int $id, ?bool $markdown = null, ?int $page = null, ?int $per_page = null);
 
     /**
      * @param int $id
      * @param int|null $page
      * @param int|null $per_page
      */
-    public function getActivityKudos(int $id, int $page = null, int $per_page = null);
+    public function getActivityKudos(int $id, ?int $page = null, ?int $per_page = null);
 
     /**
      * @param int $id
@@ -146,7 +146,7 @@ interface ServiceInterface
      * @param int|null $private
      * @param int|null $trainer
      */
-    public function createActivity(string $name, string $type, string $start_date_local, int $elapsed_time, string $description = null, float $distance = null, int $private = null, int $trainer = null);
+    public function createActivity(string $name, string $type, string $start_date_local, int $elapsed_time, ?string $description = null, ?float $distance = null, ?int $private = null, ?int $trainer = null);
 
     /**
      * @param string $file
@@ -159,7 +159,7 @@ interface ServiceInterface
      * @param string|null $data_type
      * @param string|null $external_id
      */
-    public function uploadActivity(string $file, string $activity_type = null, string $name = null, string $description = null, int $private = null, int $trainer = null, int $commute = null, string $data_type = null, string $external_id = null);
+    public function uploadActivity(string $file, ?string $activity_type = null, ?string $name = null, ?string $description = null, ?int $private = null, ?int $trainer = null, ?int $commute = null, ?string $data_type = null, ?string $external_id = null);
 
     /**
      * @param int $id
@@ -171,7 +171,7 @@ interface ServiceInterface
      * @param string|null $gear_id
      * @param string|null $description
      */
-    public function updateActivity(int $id, string $name = null, string $type = null, bool $private = false, bool $commute = false, bool $trainer = false, string $gear_id = null, string $description = null);
+    public function updateActivity(int $id, ?string $name = null, ?string $type = null, bool $private = false, bool $commute = false, bool $trainer = false, ?string $gear_id = null, ?string $description = null);
 
     /**
      * @param int $id
@@ -193,14 +193,14 @@ interface ServiceInterface
      * @param int|null $page
      * @param int|null $per_page
      */
-    public function getClubMembers(int $id, int $page = null, int $per_page = null);
+    public function getClubMembers(int $id, ?int $page = null, ?int $per_page = null);
 
     /**
      * @param int $id
      * @param int|null $page
      * @param int|null $per_page
      */
-    public function getClubActivities(int $id, int $page = null, int $per_page = null);
+    public function getClubActivities(int $id, ?int $page = null, ?int $per_page = null);
 
     /**
      * @param int $id
@@ -256,7 +256,7 @@ interface ServiceInterface
      * @param null $page
      * @param null $per_page
      */
-    public function getSegmentLeaderboard(int $id, string $gender = null, string $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $context_entries = null, $page = null, $per_page = null);
+    public function getSegmentLeaderboard(int $id, ?string $gender = null, ?string $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $context_entries = null, $page = null, $per_page = null);
 
     /**
      * @param string $bounds
@@ -264,7 +264,7 @@ interface ServiceInterface
      * @param int|null $min_cat
      * @param int|null $max_cat
      */
-    public function getSegmentExplorer(string $bounds, string $activity_type = 'riding', int $min_cat = null, int $max_cat = null);
+    public function getSegmentExplorer(string $bounds, string $activity_type = 'riding', ?int $min_cat = null, ?int $max_cat = null);
 
     /**
      * @param int $id
@@ -274,7 +274,7 @@ interface ServiceInterface
      * @param int|null $page
      * @param int|null $per_page
      */
-    public function getSegmentEffort(int $id, int $athlete_id = null, string $start_date_local = null, string $end_date_local = null, int $page = null, int $per_page = null);
+    public function getSegmentEffort(int $id, ?int $athlete_id = null, ?string $start_date_local = null, ?string $end_date_local = null, ?int $page = null, ?int $per_page = null);
 
     /**
      * @param int $id
@@ -304,4 +304,40 @@ interface ServiceInterface
      * @param int $id
      */
     public function getStreamsRoute(int $id);
+
+    /**
+     * Create a webhook subscription
+     *
+     * @link    https://developers.strava.com/docs/webhooks/#create-a-subscription
+     * @param int $clientId
+     * @param string $clientSecret
+     * @param string $callbackUrl
+     * @param string $verifyToken
+     * @return  array
+     * @throws  Exception
+     */
+    public function createWebhookSubscription(int $clientId, string $clientSecret, string $callbackUrl, string $verifyToken);
+
+    /**
+     * List webhook subscriptions
+     *
+     * @link    https://developers.strava.com/docs/webhooks/#list-subscriptions
+     * @param int $clientId
+     * @param string $clientSecret
+     * @return  array
+     * @throws  Exception
+     */
+    public function listWebhookSubscriptions(int $clientId, string $clientSecret);
+
+    /**
+     * Delete a webhook subscription
+     *
+     * @link    https://developers.strava.com/docs/webhooks/#delete-a-subscription
+     * @param int $clientId
+     * @param string $clientSecret
+     * @param int $subscriptionId
+     * @return  array
+     * @throws  Exception
+     */
+    public function deleteWebhookSubscription(int $clientId, string $clientSecret, int $subscriptionId);
 }

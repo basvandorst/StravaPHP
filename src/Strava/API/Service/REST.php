@@ -105,7 +105,7 @@ class REST implements ServiceInterface
         }
     }
 
-    public function getAthlete(int $id = null)
+    public function getAthlete(?int $id = null)
     {
         $path = 'athlete';
         if (isset($id)) {
@@ -124,7 +124,7 @@ class REST implements ServiceInterface
         return $this->getResponse('GET', $path, $parameters);
     }
 
-    public function getAthleteRoutes(int $id, string $type = null, int $after = null, int $page = null, int $per_page = null)
+    public function getAthleteRoutes(int $id, ?string $type = null, ?int $after = null, ?int $page = null, ?int $per_page = null)
     {
         $path = 'athletes/' . $id . '/routes';
         $parameters['query'] = [
@@ -146,7 +146,7 @@ class REST implements ServiceInterface
         return $this->getResponse('GET', $path, $parameters);
     }
 
-    public function getAthleteActivities(string $before = null, string $after = null, int $page = null, int $per_page = null)
+    public function getAthleteActivities(?string $before = null, ?string $after = null, ?int $page = null, ?int $per_page = null)
     {
         $path = 'athlete/activities';
         $parameters['query'] = [
@@ -160,7 +160,7 @@ class REST implements ServiceInterface
         return $this->getResponse('GET', $path, $parameters);
     }
 
-    public function getAthleteFriends(int $id = null, int $page = null, int $per_page = null)
+    public function getAthleteFriends(?int $id = null, ?int $page = null, ?int $per_page = null)
     {
         $path = 'athlete/friends';
         if (isset($id)) {
@@ -175,7 +175,7 @@ class REST implements ServiceInterface
         return $this->getResponse('GET', $path, $parameters);
     }
 
-    public function getAthleteFollowers(int $id = null, int $page = null, int $per_page = null)
+    public function getAthleteFollowers(?int $id = null, ?int $page = null, ?int $per_page = null)
     {
         $path = 'athlete/followers';
         if (isset($id)) {
@@ -190,7 +190,7 @@ class REST implements ServiceInterface
         return $this->getResponse('GET', $path, $parameters);
     }
 
-    public function getAthleteBothFollowing(int $id, int $page = null, int $per_page = null)
+    public function getAthleteBothFollowing(int $id, ?int $page = null, ?int $per_page = null)
     {
         $path = 'athletes/' . $id . '/both-following';
         $parameters['query'] = [
@@ -202,7 +202,7 @@ class REST implements ServiceInterface
         return $this->getResponse('GET', $path, $parameters);
     }
 
-    public function getAthleteKom(int $id, int $page = null, int $per_page = null)
+    public function getAthleteKom(int $id, ?int $page = null, ?int $per_page = null)
     {
         $path = 'athletes/' . $id . '/koms';
         $parameters['query'] = [
@@ -222,7 +222,7 @@ class REST implements ServiceInterface
         return $this->getResponse('GET', $path, $parameters);
     }
 
-    public function getAthleteStarredSegments(int $id = null, int $page = null, int $per_page = null)
+    public function getAthleteStarredSegments(?int $id = null, ?int $page = null, ?int $per_page = null)
     {
         $path = 'segments/starred';
         if (isset($id)) {
@@ -253,7 +253,7 @@ class REST implements ServiceInterface
         return $this->getResponse('PUT', $path, $parameters);
     }
 
-    public function getActivity(int $id, bool $include_all_efforts = null)
+    public function getActivity(int $id, ?bool $include_all_efforts = null)
     {
         $path = 'activities/' . $id;
         $parameters['query'] = [
@@ -264,7 +264,7 @@ class REST implements ServiceInterface
         return $this->getResponse('GET', $path, $parameters);
     }
 
-    public function getActivityComments(int $id, bool $markdown = null, int $page = null, int $per_page = null)
+    public function getActivityComments(int $id, ?bool $markdown = null, ?int $page = null, ?int $per_page = null)
     {
         $path = 'activities/' . $id . '/comments';
         $parameters['query'] = [
@@ -277,7 +277,7 @@ class REST implements ServiceInterface
         return $this->getResponse('GET', $path, $parameters);
     }
 
-    public function getActivityKudos(int $id, int $page = null, int $per_page = null)
+    public function getActivityKudos(int $id, ?int $page = null, ?int $per_page = null)
     {
         $path = 'activities/' . $id . '/kudos';
         $parameters['query'] = [
@@ -325,7 +325,7 @@ class REST implements ServiceInterface
         return $this->getResponse('GET', $path, $parameters);
     }
 
-    public function createActivity(string $name, string $type, string $start_date_local, int $elapsed_time, string $description = null, float $distance = null, int $private = null, int $trainer = null)
+    public function createActivity(string $name, string $type, string $start_date_local, int $elapsed_time, ?string $description = null, ?float $distance = null, ?int $private = null, ?int $trainer = null)
     {
         $path = 'activities';
         $parameters['query'] = [
@@ -343,7 +343,7 @@ class REST implements ServiceInterface
         return $this->getResponse('POST', $path, $parameters);
     }
 
-    public function uploadActivity(string $file, string $activity_type = null, string $name = null, string $description = null, int $private = null, int $trainer = null, int $commute = null, string $data_type = null, string $external_id = null)
+    public function uploadActivity(string $file, ?string $activity_type = null, ?string $name = null, ?string $description = null, ?int $private = null, ?int $trainer = null, ?int $commute = null, ?string $data_type = null, ?string $external_id = null)
     {
         $path = 'uploads';
         $parameters['query'] = [
@@ -363,7 +363,7 @@ class REST implements ServiceInterface
         return $this->getResponse('POST', $path, $parameters);
     }
 
-    public function updateActivity(int $id, string $name = null, string $type = null, bool $private = false, bool $commute = false, bool $trainer = false, string $gear_id = null, string $description = null)
+    public function updateActivity(int $id, ?string $name = null, ?string $type = null, bool $private = false, bool $commute = false, bool $trainer = false, ?string $gear_id = null, ?string $description = null)
     {
         $path = 'activities/' . $id;
         $parameters['query'] = [
@@ -404,7 +404,7 @@ class REST implements ServiceInterface
         return $this->getResponse('GET', $path, $parameters);
     }
 
-    public function getClubMembers(int $id, int $page = null, int $per_page = null)
+    public function getClubMembers(int $id, ?int $page = null, ?int $per_page = null)
     {
         $path = 'clubs/' . $id . '/members';
         $parameters['query'] = [
@@ -416,7 +416,7 @@ class REST implements ServiceInterface
         return $this->getResponse('GET', $path, $parameters);
     }
 
-    public function getClubActivities(int $id, int $page = null, int $per_page = null)
+    public function getClubActivities(int $id, ?int $page = null, ?int $per_page = null)
     {
         $path = 'clubs/' . $id . '/activities';
         $parameters['query'] = [
@@ -492,7 +492,7 @@ class REST implements ServiceInterface
         return $this->getResponse('GET', $path, $parameters);
     }
 
-    public function getSegmentLeaderboard(int $id, string $gender = null, string $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $context_entries = null, $page = null, $per_page = null)
+    public function getSegmentLeaderboard(int $id, ?string $gender = null, ?string $age_group = null, $weight_class = null, $following = null, $club_id = null, $date_range = null, $context_entries = null, $page = null, $per_page = null)
     {
         $path = 'segments/' . $id . '/leaderboard';
         $parameters['query'] = [
@@ -511,7 +511,7 @@ class REST implements ServiceInterface
         return $this->getResponse('GET', $path, $parameters);
     }
 
-    public function getSegmentExplorer(string $bounds, string $activity_type = 'riding', int $min_cat = null, int $max_cat = null)
+    public function getSegmentExplorer(string $bounds, string $activity_type = 'riding', ?int $min_cat = null, ?int $max_cat = null)
     {
         $path = 'segments/explore';
         $parameters['query'] = [
@@ -525,7 +525,7 @@ class REST implements ServiceInterface
         return $this->getResponse('GET', $path, $parameters);
     }
 
-    public function getSegmentEffort(int $id, int $athlete_id = null, string $start_date_local = null, string $end_date_local = null, int $page = null, int $per_page = null)
+    public function getSegmentEffort(int $id, ?int $athlete_id = null, ?string $start_date_local = null, ?string $end_date_local = null, ?int $page = null, ?int $per_page = null)
     {
         $path = 'segments/' . $id . '/all_efforts';
         $parameters['query'] = [
@@ -582,5 +582,47 @@ class REST implements ServiceInterface
         $parameters['query'] = ['access_token' => $this->getToken()];
 
         return $this->getResponse('GET', $path, $parameters);
+    }
+
+    public function createWebhookSubscription(int $clientId, string $clientSecret, string $callbackUrl, string $verifyToken)
+    {
+        $path = 'push_subscriptions';
+        $parameters['form_params'] = [
+            'client_id' => $clientId,
+            'client_secret' => $clientSecret,
+            'callback_url' => $callbackUrl,
+            'verify_token' => $verifyToken,
+        ];
+
+        return $this->getResponse('POST', $path, $parameters);
+    }
+
+    public function listWebhookSubscriptions(int $clientId, string $clientSecret)
+    {
+        $path = 'push_subscriptions';
+        $parameters['query'] = [
+            'client_id' => $clientId,
+            'client_secret' => $clientSecret,
+        ];
+
+        return $this->getResponse('GET', $path, $parameters);
+    }
+
+    public function deleteWebhookSubscription(int $clientId, string $clientSecret, int $subscriptionId)
+    {
+        $path = 'push_subscriptions/' . $subscriptionId;
+        $parameters['form_params'] = [
+            'client_id' => $clientId,
+            'client_secret' => $clientSecret,
+        ];
+
+        $result = $this->getResponse('DELETE', $path, $parameters);
+        
+        // For DELETE operations that return 204, ensure we return a proper structure
+        if ($result === null) {
+            return ['success' => true];
+        }
+        
+        return $result;
     }
 }
