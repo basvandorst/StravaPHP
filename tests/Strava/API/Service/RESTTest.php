@@ -5,12 +5,6 @@ namespace Strava\API\Service {
     use GuzzleHttp\Psr7\Response;
     use Tests\Support\TestCase;
 
-    function curl_file_create()
-    {
-        return 'toto';
-    }
-
-
     /**
      * Test...
      *
