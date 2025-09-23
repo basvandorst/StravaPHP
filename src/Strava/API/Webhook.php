@@ -4,7 +4,7 @@ namespace Strava\API;
 
 /**
  * Strava Webhook Handler
- * 
+ *
  * This class provides utilities for handling Strava webhook events,
  * including subscription validation and event processing.
  *
@@ -15,10 +15,10 @@ class Webhook
 {
     /**
      * Handle webhook subscription validation challenge
-     * 
+     *
      * When Strava creates a webhook subscription, it sends a GET request
      * to your callback URL with a challenge to verify ownership.
-     * 
+     *
      * @param string $verifyToken The verify token you provided when creating the subscription
      * @param bool $autoRespond Whether to automatically send the response (default: false)
      * @return array Response array with challenge or error
@@ -27,10 +27,10 @@ class Webhook
     {
         $method = $_SERVER['REQUEST_METHOD'] ?? '';
         $queryString = $_SERVER['QUERY_STRING'] ?? '';
-        
+
         // Parse query string manually to handle Strava's malformed URL format
         parse_str($queryString, $queryParams);
-        
+
         $hubMode = $queryParams['hub_mode'] ?? '';
         $hubChallenge = $queryParams['hub_challenge'] ?? '';
         $hubVerifyToken = $queryParams['hub_verify_token'] ?? '';
@@ -79,7 +79,7 @@ class Webhook
 
     /**
      * Send challenge response to Strava
-     * 
+     *
      * @param string $challenge The challenge string from Strava
      * @return void
      */
@@ -93,7 +93,7 @@ class Webhook
 
     /**
      * Process incoming webhook event
-     * 
+     *
      * @param callable|null $eventHandler Optional callback function to handle the event
      * @return array Parsed webhook event data
      */
@@ -158,7 +158,7 @@ class Webhook
 
     /**
      * Verify webhook event signature (if using signature verification)
-     * 
+     *
      * @param string $payload The raw request body
      * @param string $signature The X-Hub-Signature header value
      * @param string $secret Your webhook secret (if configured)
@@ -176,7 +176,7 @@ class Webhook
 
     /**
      * Get webhook event type
-     * 
+     *
      * @param array $event The parsed webhook event
      * @return string The event type (e.g., 'activity.create', 'activity.update')
      */
@@ -187,7 +187,7 @@ class Webhook
 
     /**
      * Check if event is for a specific object type
-     * 
+     *
      * @param array $event The parsed webhook event
      * @param string $objectType The object type to check (e.g., 'activity', 'athlete')
      * @return bool True if event is for the specified object type
@@ -199,7 +199,7 @@ class Webhook
 
     /**
      * Check if event is a specific aspect type
-     * 
+     *
      * @param array $event The parsed webhook event
      * @param string $aspectType The aspect type to check (e.g., 'create', 'update', 'delete')
      * @return bool True if event is the specified aspect type
@@ -211,10 +211,10 @@ class Webhook
 
     /**
      * Handle complete webhook endpoint (both GET and POST requests)
-     * 
+     *
      * This method provides a complete webhook endpoint handler that can be used
      * as the main entry point for your webhook endpoint.
-     * 
+     *
      * @param string $verifyToken The verify token for subscription validation
      * @param callable|null $eventHandler Optional callback function to handle events
      * @return void This method will exit after sending response
@@ -233,7 +233,7 @@ class Webhook
         // Handle GET requests (webhook verification)
         if ($method === 'GET') {
             $result = self::handleSubscriptionChallenge($verifyToken, false);
-            
+
             if ($result['success']) {
                 // Return the challenge value as JSON as required by Strava
                 echo json_encode(['hub.challenge' => $result['challenge']]);
@@ -248,7 +248,7 @@ class Webhook
         // Handle POST requests (webhook events)
         if ($method === 'POST') {
             $result = self::processEvent($eventHandler);
-            
+
             if ($result['success']) {
                 http_response_code(200);
                 echo 'OK';
@@ -268,7 +268,7 @@ class Webhook
 
     /**
      * Generate a random verify token
-     * 
+     *
      * @param int $length Length of the token (default: 32)
      * @return string Random verify token
      */
@@ -291,7 +291,7 @@ class Webhook
 
     /**
      * Check if webhook event is an activity creation event
-     * 
+     *
      * @param array $event The webhook event data
      * @return bool True if this is an activity creation event
      */
@@ -302,7 +302,7 @@ class Webhook
 
     /**
      * Get athlete ID from webhook event
-     * 
+     *
      * @param array $event The webhook event data
      * @return int|null The athlete ID or null if not found
      */
@@ -313,7 +313,7 @@ class Webhook
 
     /**
      * Get object ID from webhook event
-     * 
+     *
      * @param array $event The webhook event data
      * @return int|null The object ID or null if not found
      */
@@ -324,7 +324,7 @@ class Webhook
 
     /**
      * Validate webhook event payload structure
-     * 
+     *
      * @param array $event The webhook event data
      * @return array Validation result with 'valid' boolean and 'error' message if invalid
      */
@@ -332,7 +332,7 @@ class Webhook
     {
         // Check required fields (matching your tested implementation)
         $requiredFields = ['object_type', 'aspect_type', 'object_id', 'owner_id'];
-        
+
         foreach ($requiredFields as $field) {
             if (!isset($event[$field])) {
                 return [

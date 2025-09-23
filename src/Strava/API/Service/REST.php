@@ -617,12 +617,12 @@ class REST implements ServiceInterface
         ];
 
         $result = $this->getResponse('DELETE', $path, $parameters);
-        
+
         // For DELETE operations that return 204, ensure we return a proper structure
         if ($result === null) {
             return ['success' => true];
         }
-        
+
         return $result;
     }
 }
