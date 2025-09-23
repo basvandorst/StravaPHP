@@ -8,4 +8,5 @@ parameters:
 	ignoreErrors:
 	universalObjectCratesClasses:
 		- Faker\Generator
+	treatPhpDocTypesAsCertain: false
 	scanDirectories:
